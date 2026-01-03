@@ -1,0 +1,3394 @@
+-- ts file was generated at discord.gg/25ms
+
+
+player = game.Players.LocalPlayer
+TweenService = game:GetService("TweenService")
+Players = game:GetService("Players")
+LocalPlayer = Players.LocalPlayer
+ts = game:GetService("TweenService")
+LocalPlayer = Players.LocalPlayer
+Workspace = game:GetService("Workspace")
+thrownFolder = Workspace:WaitForChild("Thrown")
+function nonormalpunchdebris()
+    function changeColorToOrange(p1)
+        if p1:IsA("Part") and p1:FindFirstChild("Smoke") then
+            p1:Destroy()
+        end
+    end
+    function findAndChangeColors()
+        local v2, v3, v4 = ipairs(thrownFolder:GetChildren())
+        while true do
+            local v5
+            v4, v5 = v2(v3, v4)
+            if v4 == nil then
+                break
+            end
+            if v5.Name == "Debris" then
+                changeColorToOrange(v5)
+            end
+        end
+    end
+    local v6 = game:GetService("RunService").Stepped:Connect(function()
+        findAndChangeColors()
+    end)
+    wait(0.6)
+    v6:Disconnect()
+end
+function CleaveHit(p7)
+    if p7 and p7:IsA("BasePart") then
+        local v8 = Instance.new("Part")
+        v8.Size = Vector3.new(0.01, 0.01, 0.01)
+        v8.Shape = Enum.PartType.Block
+        v8.Color = Color3.fromRGB(255, 255, 255)
+        v8.Anchored = true
+        v8.Transparency = 1
+        v8.CanCollide = false
+        v8.Parent = Workspace
+        local v9 = Instance.new("ParticleEmitter")
+        v9.Name = "Break"
+        v9.Lifetime = NumberRange.new(0.3, 0.4)
+        v9.ZOffset = 6
+        v9.SpreadAngle = Vector2.new(360, 360)
+        v9.Squash = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 0.74, 0),
+            NumberSequenceKeypoint.new(0.04, 5.84, 0),
+            NumberSequenceKeypoint.new(0.16, 7.81, 0),
+            NumberSequenceKeypoint.new(0.31, 8.68, 0),
+            NumberSequenceKeypoint.new(1, 9, 0)
+        })
+        v9.Speed = NumberRange.new(0.1, 0.1)
+        v9.Brightness = 1000
+        v9.Texture = "rbxassetid://15407518755"
+        v9.Rotation = NumberRange.new(0, 360)
+        v9.Rate = 40
+        v9.Transparency = NumberSequence.new(0, 1)
+        v9.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+        v9.Size = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 0.5, 0),
+            NumberSequenceKeypoint.new(0.8, 0.8, 0),
+            NumberSequenceKeypoint.new(0.89, 1, 0),
+            NumberSequenceKeypoint.new(0.95, 0.3, 0),
+            NumberSequenceKeypoint.new(1, 0, 0)
+        })
+        v9.Parent = v8
+        local v10 = Instance.new("ParticleEmitter")
+        v10.Name = "Slashes"
+        v10.Lifetime = NumberRange.new(0.1, 0.3)
+        v10.ZOffset = 6
+        v10.TimeScale = 0.20000000298023224
+        v10.LightEmission = - 15
+        v10.SpreadAngle = Vector2.new(360, 360)
+        v10.Squash = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 0.55, 0),
+            NumberSequenceKeypoint.new(0.13, 7.59, 0),
+            NumberSequenceKeypoint.new(0.37, 14.78, 0),
+            NumberSequenceKeypoint.new(1, - 44.37, 0)
+        })
+        v10.Speed = NumberRange.new(0.1, 0.1)
+        v10.Brightness = 1000
+        v10.Texture = "rbxassetid://15407518755"
+        v10.Rotation = NumberRange.new(0, 360)
+        v10.Rate = 40
+        v10.Transparency = NumberSequence.new(0, 1)
+        v10.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+        v10.Size = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 1, 0),
+            NumberSequenceKeypoint.new(1, 0, 0)
+        })
+        v10.Parent = v8
+        local v11 = Instance.new("ParticleEmitter")
+        v11.Name = "Stars"
+        v11.Lifetime = NumberRange.new(0.3, 0.42)
+        v11.Drag = 10
+        v11.SpreadAngle = Vector2.new(360, 360)
+        v11.Squash = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 0, 0),
+            NumberSequenceKeypoint.new(0.06, 8.37, 0),
+            NumberSequenceKeypoint.new(0.13, - 17.23, 0),
+            NumberSequenceKeypoint.new(0.34, 11.3, 0),
+            NumberSequenceKeypoint.new(0.44, - 7.18, 0),
+            NumberSequenceKeypoint.new(0.54, 5.66, 0),
+            NumberSequenceKeypoint.new(0.66, - 2.8, 0),
+            NumberSequenceKeypoint.new(0.77, 0.34, 0),
+            NumberSequenceKeypoint.new(0.88, - 1.85, 0),
+            NumberSequenceKeypoint.new(0.97, - 2.18, 0),
+            NumberSequenceKeypoint.new(1, 0, 0)
+        })
+        v11.Speed = NumberRange.new(- 40, 200)
+        v11.Brightness = 2000
+        v11.Texture = "rbxassetid://15407518755"
+        v11.ShapePartial = 0.4000000059604645
+        v11.Rate = 400
+        v11.Transparency = NumberSequence.new(0, 1)
+        v11.EmissionDirection = Enum.NormalId.Front
+        v11.Size = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 0.1, 1),
+            NumberSequenceKeypoint.new(1, 0, 0)
+        })
+        v11.Parent = v8
+        local v12 = tick()
+        local v13 = 0.1
+        while tick() - v12 < v13 do
+            wait(0.01)
+            v8.CFrame = p7.CFrame * CFrame.new(0, 0, 0)
+        end
+        v11.Rate = 0
+        v10.Rate = 0
+        v9.Rate = 0
+        wait(3)
+        v8:Destroy()
+    end
+end
+function m1dismantle()
+    local v14 = Instance.new("Part")
+    v14.Size = Vector3.new(0.1, 0.1, 0.1)
+    v14.Shape = Enum.PartType.Block
+    v14.Color = Color3.fromRGB(0, 0, 0)
+    v14.Transparency = 1
+    v14.Anchored = true
+    v14.CanCollide = false
+    v14.Parent = Workspace
+    local v15 = Instance.new("ParticleEmitter")
+    v15.Name = "23"
+    v15.Lifetime = NumberRange.new(0.2, 0.2)
+    v15.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+    v15.Speed = NumberRange.new(0, 0.1)
+    v15.Brightness = 10
+    v15.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+    v15.Texture = "rbxassetid://18464209605"
+    v15.Rotation = NumberRange.new(0, 0)
+    v15.Rate = 20
+    v15.Squash = NumberSequence.new(0, - 1)
+    v15.RotSpeed = NumberRange.new(0, 0)
+    v15.EmissionDirection = Enum.NormalId.Back
+    v15.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+    v15.Size = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 0, 0),
+        NumberSequenceKeypoint.new(0.1, 5, 0),
+        NumberSequenceKeypoint.new(0.2, 6, 0),
+        NumberSequenceKeypoint.new(0.3, 7, 0),
+        NumberSequenceKeypoint.new(0.4, 9, 0),
+        NumberSequenceKeypoint.new(0.5, 10, 0),
+        NumberSequenceKeypoint.new(0.6, 11, 0),
+        NumberSequenceKeypoint.new(0.7, 12, 0),
+        NumberSequenceKeypoint.new(0.8, 14, 0),
+        NumberSequenceKeypoint.new(0.9, 15, 0),
+        NumberSequenceKeypoint.new(1, 16, 0)
+    })
+    v15.Parent = v14
+    local v16 = Instance.new("ParticleEmitter")
+    v16.Name = "23"
+    v16.Lifetime = NumberRange.new(0.2, 0.2)
+    v16.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+    v16.ZOffset = 1
+    v16.Speed = NumberRange.new(0, 0.1)
+    v16.Brightness = 0
+    v16.Squash = NumberSequence.new(0, - 1)
+    v16.RotSpeed = NumberRange.new(0, 0)
+    v16.EmissionDirection = Enum.NormalId.Back
+    v16.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+    v16.Texture = "rbxassetid://18464209605"
+    v16.Rotation = NumberRange.new(0, 0)
+    v16.Rate = 20
+    v16.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+    v16.Size = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 0, 0),
+        NumberSequenceKeypoint.new(0.1, 5, 0),
+        NumberSequenceKeypoint.new(0.2, 6, 0),
+        NumberSequenceKeypoint.new(0.3, 7, 0),
+        NumberSequenceKeypoint.new(0.4, 9, 0),
+        NumberSequenceKeypoint.new(0.5, 10, 0),
+        NumberSequenceKeypoint.new(0.6, 11, 0),
+        NumberSequenceKeypoint.new(0.7, 12, 0),
+        NumberSequenceKeypoint.new(0.8, 14, 0),
+        NumberSequenceKeypoint.new(0.9, 15, 0),
+        NumberSequenceKeypoint.new(1, 16, 0)
+    })
+    v16.Parent = v14
+    local v17 = tick()
+    local v18 = 0.1
+    while tick() - v17 < v18 do
+        wait(0.01)
+        local _ = humanoidRootPart.CFrame.LookVector
+        v14.CFrame = humanoidRootPart.CFrame * CFrame.new(0, 0, - 1) * CFrame.Angles(math.rad(90), math.rad(- 10), math.rad(90))
+    end
+    v16.Rate = 0
+    v15.Rate = 0
+    wait(1)
+    v14:Destroy()
+end
+function Glowersss()
+    local vu19 = game:GetService("TweenService")
+    local v20 = game.Players.LocalPlayer
+    local vu21 = v20.Character
+    if vu21 then
+        local v22 = vu21:FindFirstChild("HumanoidRootPart")
+        if v22 then
+            local v23 = v22.Position + v22.CFrame.LookVector * 5
+            local vu24 = Instance.new("Part")
+            vu24.CFrame = CFrame.lookAt(vu24.Position, vu24.Position + v22.CFrame.LookVector)
+            vu24.BrickColor = BrickColor.new("Bright red")
+            vu24.Size = Vector3.new(4, 4, 4)
+            vu24.CFrame = CFrame.new(v23)
+            vu24.Material = Enum.Material.Neon
+            vu24.Name = "M1 vfxer"
+            vu24.Transparency = 1
+            vu24.CanCollide = false
+            vu24.Velocity = v22.CFrame.LookVector * 1
+            vu24.CFrame = CFrame.lookAt(vu24.Position, vu24.Position + v22.CFrame.LookVector)
+            vu24.Parent = workspace
+            local v25 = Instance.new("ObjectValue")
+            v25.Name = "creator"
+            v25.Value = v20
+            v25.Parent = vu24
+            local vu26 = false
+            vu24.Touched:Connect(function(p27)
+                if not vu26 then
+                    vu26 = false
+                    local v28 = p27.Parent
+                    local v29 = v28:FindFirstChild("Humanoid")
+                    local v30 = v28:FindFirstChild("HumanoidRootPart")
+                    if v28 ~= vu21 and (v29 and v30) then
+                        coroutine.wrap(CleaveHit)(v30)
+                        local v31 = Instance.new("Sound")
+                        v31.SoundId = "rbxassetid://6594869919"
+                        v31.Volume = 3
+                        v31.Parent = v30
+                        v31:Play()
+                        local v32, v33, v34 = ipairs(v28:GetChildren())
+                        while true do
+                            local v35
+                            v34, v35 = v32(v33, v34)
+                            if v34 == nil then
+                                break
+                            end
+                            if v35:IsA("BasePart") then
+                                local vu36 = Instance.new("Part")
+                                vu36.Size = v35.Size * 1.05
+                                vu36.CFrame = v35.CFrame
+                                vu36.BrickColor = BrickColor.new("White")
+                                vu36.Material = Enum.Material.Neon
+                                vu36.Transparency = 0.8
+                                vu36.Anchored = true
+                                vu36.CanCollide = false
+                                vu36.Name = "BodyPartClone"
+                                vu36.Parent = workspace
+                                local v37 = vu19:Create(vu36, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), {
+                                    Transparency = 1
+                                })
+                                v37:Play()
+                                v37.Completed:Connect(function()
+                                    if vu36 and vu36.Parent then
+                                        vu36:Destroy()
+                                    end
+                                end)
+                            end
+                        end
+                    end
+                    vu24:Destroy()
+                end
+            end)
+            delay(0.1, function()
+                if vu24 and vu24.Parent then
+                    vu24:Destroy()
+                end
+            end)
+        end
+    else
+        return
+    end
+end
+local vu38 = game.Players.LocalPlayer
+local function vu46()
+    local v39 = Instance.new("Part")
+    v39.Size = Vector3.new(1.05, 2.1, 1.05)
+    v39.BrickColor = BrickColor.new(Color3.fromRGB(255, 0, 0))
+    v39.Material = Enum.Material.Neon
+    v39.Anchored = false
+    v39.Transparency = 0.5
+    v39.CanCollide = false
+    local v40 = vu38.Character:WaitForChild("Right Arm")
+    v39.Position = v40.Position
+    local v41 = Instance.new("Weld")
+    v41.Part0 = v40
+    v41.Part1 = v39
+    v41.C1 = CFrame.new(0, 0, 0)
+    v41.Parent = v39
+    local v42 = Instance.new("Attachment")
+    v42.Parent = v39
+    v42.Position = Vector3.new(0, - 1, 0)
+    local v43 = Instance.new("Attachment")
+    v43.Parent = v39
+    v43.Position = Vector3.new(0, 1, 0)
+    local v44 = Instance.new("Trail")
+    v44.Color = ColorSequence.new(Color3.fromRGB(255, 0, 0))
+    v44.Lifetime = 0.6
+    v44.LightEmission = 10
+    v44.MinLength = 10
+    v44.MaxLength = 1.5
+    v44.Texture = "rbxassetid://5699911427"
+    v44.Attachment0 = v42
+    v44.Attachment1 = v43
+    v44.Parent = v39
+    v39.Parent = game.Workspace
+    local v45 = game:GetService("TweenService"):Create(v39, TweenInfo.new(0.6, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+        Transparency = 1
+    })
+    v45:Play()
+    v45.Completed:Wait()
+    v39:Destroy()
+end
+local vu47 = game.Players.LocalPlayer
+local function vu55()
+    local v48 = Instance.new("Part")
+    v48.Size = Vector3.new(1.05, 2.1, 1.05)
+    v48.BrickColor = BrickColor.new(Color3.fromRGB(255, 0, 0))
+    v48.Material = Enum.Material.Neon
+    v48.Anchored = false
+    v48.Transparency = 0.5
+    v48.CanCollide = false
+    local v49 = vu47.Character:WaitForChild("Left Arm")
+    v48.Position = v49.Position
+    local v50 = Instance.new("Weld")
+    v50.Part0 = v49
+    v50.Part1 = v48
+    v50.C1 = CFrame.new(0, 0, 0)
+    v50.Parent = v48
+    local v51 = Instance.new("Attachment")
+    v51.Parent = v48
+    v51.Position = Vector3.new(0, - 1, 0)
+    local v52 = Instance.new("Attachment")
+    v52.Parent = v48
+    v52.Position = Vector3.new(0, 1, 0)
+    local v53 = Instance.new("Trail")
+    v53.Color = ColorSequence.new(Color3.fromRGB(255, 0, 0))
+    v53.Lifetime = 0.6
+    v53.LightEmission = 10
+    v53.MinLength = 10
+    v53.MaxLength = 1.5
+    v53.Texture = "rbxassetid://5699911427"
+    v53.Attachment0 = v51
+    v53.Attachment1 = v52
+    v53.Parent = v48
+    v48.Parent = game.Workspace
+    local v54 = game:GetService("TweenService"):Create(v48, TweenInfo.new(0.6, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+        Transparency = 1
+    })
+    v54:Play()
+    v54.Completed:Wait()
+    v48:Destroy()
+end
+local _ = game.Players.LocalPlayer
+local _ = game.Players.LocalPlayer
+local v56 = game:GetService("Players").LocalPlayer
+local vu57 = (v56.Character or v56.CharacterAdded:Wait()):WaitForChild("Humanoid"):FindFirstChildOfClass("Animator")
+if vu57 then
+    local vu58 = "rbxassetid://10469493270"
+    Instance.new("Animation").AnimationId = vu58
+    local vu59 = Instance.new("Animation")
+    vu59.AnimationId = "rbxassetid://16515503507"
+    local function vu71()
+        local v60 = vu57
+        local v61, v62, v63 = ipairs(v60:GetPlayingAnimationTracks())
+        while true do
+            local v64
+            v63, v64 = v61(v62, v63)
+            if v63 == nil then
+                break
+            end
+            if v64.Animation.AnimationId == vu58 then
+                v64:Stop()
+                break
+            end
+        end
+        local v65 = vu57
+        local v66, v67, v68 = pairs(v65:GetPlayingAnimationTracks())
+        while true do
+            local v69
+            v68, v69 = v66(v67, v68)
+            if v68 == nil then
+                break
+            end
+            v69:Stop()
+        end
+        local v70 = vu57:LoadAnimation(vu59)
+        v70:Play()
+        v70.TimePosition = 0
+        v70:AdjustSpeed(1)
+    end
+    vu57.AnimationPlayed:Connect(function(p72)
+        if p72.Animation.AnimationId == vu58 then
+            coroutine.wrap(vu71)()
+            coroutine.wrap(vu46)()
+            coroutine.wrap(m1dismantle)()
+            wait(0.25)
+            Glowersss()
+        end
+    end)
+    local v73 = game:GetService("Players").LocalPlayer
+    local vu74 = (v73.Character or v73.CharacterAdded:Wait()):WaitForChild("Humanoid"):FindFirstChildOfClass("Animator")
+    if vu74 then
+        local vu75 = "rbxassetid://10469630950"
+        Instance.new("Animation").AnimationId = vu75
+        local vu76 = Instance.new("Animation")
+        vu76.AnimationId = "rbxassetid://16515520431"
+        local function vu88()
+            local v77 = vu74
+            local v78, v79, v80 = ipairs(v77:GetPlayingAnimationTracks())
+            while true do
+                local v81
+                v80, v81 = v78(v79, v80)
+                if v80 == nil then
+                    break
+                end
+                if v81.Animation.AnimationId == vu75 then
+                    v81:Stop()
+                    break
+                end
+            end
+            local v82 = vu74
+            local v83, v84, v85 = pairs(v82:GetPlayingAnimationTracks())
+            while true do
+                local v86
+                v85, v86 = v83(v84, v85)
+                if v85 == nil then
+                    break
+                end
+                v86:Stop()
+            end
+            local v87 = vu74:LoadAnimation(vu76)
+            v87:Play()
+            v87.TimePosition = 0
+            v87:AdjustSpeed(1)
+        end
+        vu74.AnimationPlayed:Connect(function(p89)
+            if p89.Animation.AnimationId == vu75 then
+                coroutine.wrap(vu88)()
+                coroutine.wrap(vu55)()
+                coroutine.wrap(m1dismantle)()
+                wait(0.1)
+                coroutine.wrap(Glowersss)()
+                coroutine.wrap(Glowersss)()
+            end
+        end)
+        local v90 = game:GetService("Players").LocalPlayer
+        local vu91 = (v90.Character or v90.CharacterAdded:Wait()):WaitForChild("Humanoid"):FindFirstChildOfClass("Animator")
+        if vu91 then
+            local vu92 = "rbxassetid://10469639222"
+            Instance.new("Animation").AnimationId = vu92
+            local vu93 = Instance.new("Animation")
+            vu93.AnimationId = "rbxassetid://16515448089"
+            local function vu105()
+                local v94 = vu91
+                local v95, v96, v97 = ipairs(v94:GetPlayingAnimationTracks())
+                while true do
+                    local v98
+                    v97, v98 = v95(v96, v97)
+                    if v97 == nil then
+                        break
+                    end
+                    if v98.Animation.AnimationId == vu92 then
+                        v98:Stop()
+                        break
+                    end
+                end
+                local v99 = vu91
+                local v100, v101, v102 = pairs(v99:GetPlayingAnimationTracks())
+                while true do
+                    local v103
+                    v102, v103 = v100(v101, v102)
+                    if v102 == nil then
+                        break
+                    end
+                    v103:Stop()
+                end
+                local v104 = vu91:LoadAnimation(vu93)
+                v104:Play()
+                v104.TimePosition = 0
+                v104:AdjustSpeed(1)
+            end
+            vu91.AnimationPlayed:Connect(function(p106)
+                if p106.Animation.AnimationId == vu92 then
+                    coroutine.wrap(vu105)()
+                    coroutine.wrap(vu46)()
+                    coroutine.wrap(m1dismantle)()
+                    wait(0.1)
+                    coroutine.wrap(Glowersss)()
+                    Glowersss()
+                end
+            end)
+            local vu107 = game:GetService("Players")
+            local vu108 = vu107.LocalPlayer
+            local vu109 = vu108.Character or vu108.CharacterAdded:Wait()
+            local vu110 = vu109:WaitForChild("Humanoid")
+            local vu111 = vu110:FindFirstChildOfClass("Animator")
+            if vu111 then
+                local vu112 = "rbxassetid://10469643643"
+                Instance.new("Animation").AnimationId = vu112
+                local vu113 = Instance.new("Animation")
+                vu113.AnimationId = "rbxassetid://16552234590"
+                local function vu125()
+                    local v114 = vu111
+                    local v115, v116, v117 = ipairs(v114:GetPlayingAnimationTracks())
+                    while true do
+                        local v118
+                        v117, v118 = v115(v116, v117)
+                        if v117 == nil then
+                            break
+                        end
+                        if v118.Animation.AnimationId == vu112 then
+                            v118:Stop()
+                            break
+                        end
+                    end
+                    local v119 = vu111
+                    local v120, v121, v122 = pairs(v119:GetPlayingAnimationTracks())
+                    while true do
+                        local v123
+                        v122, v123 = v120(v121, v122)
+                        if v122 == nil then
+                            break
+                        end
+                        v123:Stop()
+                    end
+                    local v124 = vu111:LoadAnimation(vu113)
+                    v124:Play()
+                    v124.TimePosition = 0
+                    v124:AdjustSpeed(1)
+                end
+                vu111.AnimationPlayed:Connect(function(p126)
+                    if p126.Animation.AnimationId == vu112 then
+                        coroutine.wrap(vu125)()
+                        coroutine.wrap(vu46)()
+                        coroutine.wrap(vu55)()
+                        wait(0.1)
+                        coroutine.wrap(m1dismantle)()
+                        Glowersss()
+                    end
+                end)
+                local function vu134()
+                    local vu127 = Instance.new("ColorCorrectionEffect")
+                    vu127.Parent = game.Lighting
+                    vu127.TintColor = Color3.new(1, 1, 1)
+                    vu127.Brightness = 0
+                    local vu128 = Color3.new(1, 0, 0)
+                    local vu129 = 0.5
+                    local vu130 = 0.5
+                    function flashRed()
+                        coroutine.wrap(function()
+                            local v131 = {
+                                TintColor = vu128,
+                                Brightness = 0.2
+                            }
+                            local v132 = TweenService:Create(vu127, TweenInfo.new(vu129, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), v131)
+                            local v133 = TweenService:Create(vu127, TweenInfo.new(vu130, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+                                TintColor = Color3.new(1, 1, 1),
+                                Brightness = 0
+                            })
+                            v132:Play()
+                            v132.Completed:Wait()
+                            v133:Play()
+                        end)()
+                    end
+                    flashRed()
+                end
+                function talkingstuff(p135)
+                    vu108 = game.Players.LocalPlayer
+                    vu109 = vu108.Character or vu108.CharacterAdded:Wait()
+                    humanoidRootPart = vu109:WaitForChild("HumanoidRootPart")
+                    local v136 = Instance.new("BillboardGui", humanoidRootPart)
+                    local v137 = UDim2.new(5, 0, 5, 0)
+                    local v138 = math.huge
+                    local v139 = Enum.ZIndexBehavior.Sibling
+                    v136.StudsOffset = Vector3.new(2, 2, 2)
+                    v136.ZIndexBehavior = v139
+                    v136.MaxDistance = v138
+                    v136.Size = v137
+                    v136.Active = true
+                    v136.Name = "Chant"
+                    local v140 = Instance.new("ImageLabel", v136)
+                    local v141 = Color3.new(1, 1, 1)
+                    local v142 = Vector2.new(0.5, 0.5)
+                    local v143 = UDim2.new(0.9, 0, 0.9, 0)
+                    local v144 = Color3.new(0, 0, 0)
+                    v140.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    v140.BackgroundTransparency = 1
+                    v140.BorderColor3 = v144
+                    v140.Size = v143
+                    v140.Image = "rbxassetid://17344292317"
+                    v140.AnchorPoint = v142
+                    v140.BackgroundColor3 = v141
+                    v140.BorderSizePixel = 0
+                    v140.Name = "Chatt"
+                    local v145 = Instance.new("TextLabel", v140)
+                    local v146 = Color3.new(1, 1, 1)
+                    local v147 = Font.new("rbxassetid://12187375716", Enum.FontWeight.Bold, Enum.FontStyle.Italic)
+                    local v148 = Vector2.new(0.5, 0.5)
+                    local v149 = UDim2.new(0.3, 0, 0.4, 0)
+                    local v150 = Color3.new(0, 0, 0)
+                    local v151 = Color3.new(0, 0, 0)
+                    v145.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    v145.BackgroundTransparency = 1
+                    v145.TextColor3 = v151
+                    v145.Text = p135
+                    v145.BorderColor3 = v150
+                    v145.Size = v149
+                    v145.TextSize = 14
+                    v145.AnchorPoint = v148
+                    v145.FontFace = v147
+                    v145.BackgroundColor3 = v146
+                    v145.TextScaled = true
+                    v145.BorderSizePixel = 0
+                    v145.TextWrapped = true
+                    v145.Name = "Sub"
+                    v145.TextSize = 14
+                    game.Debris:AddItem(v136, 25)
+                    function shakemyass(p152)
+                        for _ = 1, 10 do
+                            p152.Position = UDim2.new(0.5, math.random(- 1, 1), 0.5, math.random(- 1, 1))
+                            task.wait(0.01)
+                        end
+                        p152.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    end
+                    ts:Create(v145, TweenInfo.new(1), {
+                        TextTransparency = 0
+                    }):Play()
+                    ts:Create(v140, TweenInfo.new(1), {
+                        ImageTransparency = 0
+                    }):Play()
+                    coroutine.wrap(shakemyass)(v145)
+                    coroutine.wrap(shakemyass)(v140)
+                    task.wait(1)
+                    ts:Create(v145, TweenInfo.new(1), {
+                        TextTransparency = 1
+                    }):Play()
+                    ts:Create(v140, TweenInfo.new(1), {
+                        ImageTransparency = 1
+                    }):Play()
+                end
+                function UltImage()
+                    coroutine.wrap(function()
+                        LocalPlayer.PlayerGui.ScreenGui:WaitForChild("MagicHealth").Health.Bar.Bar.Image = "rbxassetid://18511971561"
+                        LocalPlayer.PlayerGui.ScreenGui:WaitForChild("MagicHealth").Health.Glow.Image = "rbxassetid://18512475689"
+                        LocalPlayer.PlayerGui.ScreenGui:WaitForChild("MagicHealth").Health.Bar.Bar.ImageColor3 = Color3.fromRGB(255, 70, 70)
+                    end)()
+                end
+                guiParent = vu108:WaitForChild("PlayerGui")
+                local vu153 = Instance.new("ScreenGui")
+                vu153.ResetOnSpawn = true
+                local v154 = Instance.new("Frame")
+                v154.Size = UDim2.new(0.3, 0, 0.2, 0)
+                v154.Position = UDim2.new(0.35, 0, 0.75, 0)
+                v154.BackgroundTransparency = 1
+                v154.ClipsDescendants = true
+                v154.Parent = vu153
+                local function _(_)
+                    local v155 = Instance.new("Frame")
+                    v155.Size = UDim2.new(1, 0, 0.3, 0)
+                    v155.Position = UDim2.new(0, 0, 0.7, 0)
+                    v155.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+                    v155.BackgroundTransparency = 1
+                    v155.BorderSizePixel = 0
+                    local v156 = Instance.new("TextLabel")
+                    v156.Size = UDim2.new(0.9, 0, 0.8, 0)
+                    v156.Position = UDim2.new(0.05, 0, 0.1, 0)
+                    v156.BackgroundTransparency = 1
+                    v156.TextColor3 = Color3.new(1, 1, 1)
+                    v156.Font = Enum.Font.Highway
+                    v156.TextSize = 30
+                    v156.TextWrapped = true
+                    v156.Text = ""
+                    v156.TextTransparency = 1
+                    v156.TextStrokeColor3 = Color3.new(0, 0, 0)
+                    v156.TextStrokeTransparency = 1
+                    v156.Parent = v155
+                    return v155, v156
+                end
+                local function _(p157)
+                    local v158, v159, v160 = ipairs(p157:GetChildren())
+                    while true do
+                        local vu161
+                        v160, vu161 = v158(v159, v160)
+                        if v160 == nil then
+                            break
+                        end
+                        if vu161:IsA("Frame") then
+                            local v162 = TweenInfo.new(0.5, Enum.EasingStyle.Quad)
+                            TweenService:Create(vu161, v162, {
+                                Position = UDim2.new(0, 0, vu161.Position.Y.Scale - 0.3, 0)
+                            }):Play()
+                            local v163 = vu161:FindFirstChild("TextLabel")
+                            if v163 then
+                                local v164 = TweenInfo.new(0.5, Enum.EasingStyle.Quad)
+                                TweenService:Create(v163, v164, {
+                                    TextTransparency = 1,
+                                    TextStrokeTransparency = 1
+                                }):Play()
+                            end
+                            local v165 = TweenInfo.new(0.5, Enum.EasingStyle.Quad)
+                            local v166 = TweenService:Create(vu161, v165, {
+                                BackgroundTransparency = 1
+                            })
+                            v166:Play()
+                            v166.Completed:Connect(function()
+                                vu161:Destroy()
+                            end)
+                        end
+                    end
+                end
+                vu153.Parent = guiParent
+                local vu167 = false
+                local vu168 = false
+                local vu169 = false
+                local vu170 = false
+                local vu171 = false
+                ToolChanting = Instance.new("Tool")
+                ToolChanting.Name = "Chant"
+                ToolChanting.RequiresHandle = false
+                ToolChanting.Parent = game.Players.LocalPlayer.Backpack
+                TweenService = game:GetService("TweenService")
+                function stupidsoundchant()
+                    soundONER = Instance.new("Sound")
+                    soundONER.SoundId = "rbxassetid://120458587618994"
+                    soundONER.Volume = 3
+                    soundONER.Parent = game.Players.LocalPlayer.Character
+                    soundONER.TimePosition = 0.15
+                    soundONER:Play()
+                end
+                function stupidwindchant()
+                    soundNIGGER = Instance.new("Sound")
+                    soundNIGGER.SoundId = "rbxassetid://9126228629"
+                    soundNIGGER.Volume = 3
+                    soundNIGGER.Parent = game.Players.LocalPlayer.Character
+                    soundNIGGER.TimePosition = 0.2
+                    soundNIGGER:Play()
+                end
+                function playtheanimCHANT(p172, p173)
+                    vu108 = game.Players.LocalPlayer
+                    vu109 = vu108.Character or vu108.CharacterAdded:Wait()
+                    humanoidRootPart = vu109:WaitForChild("HumanoidRootPart")
+                    vu110 = vu109:WaitForChild("Humanoid")
+                    local v174 = vu110
+                    local v175, v176, v177 = pairs(v174:GetPlayingAnimationTracks())
+                    while true do
+                        local v178
+                        v177, v178 = v175(v176, v177)
+                        if v177 == nil then
+                            break
+                        end
+                        v178:Stop()
+                    end
+                    local v179 = vu110
+                    local v180, v181, v182 = pairs(v179:GetPlayingAnimationTracks())
+                    while true do
+                        local v183
+                        v182, v183 = v180(v181, v182)
+                        if v182 == nil then
+                            break
+                        end
+                        v183:Stop()
+                    end
+                    local v184 = Instance.new("Animation")
+                    v184.AnimationId = "rbxassetid://" .. p172
+                    local v185 = (vu110:FindFirstChild("Animator") or Instance.new("Animator", vu110)):LoadAnimation(v184)
+                    v185:Play()
+                    v185.TimePosition = p173
+                end
+                function createScreenGuiCHANT(p186, p187, p188)
+                    local vu189 = Instance.new("ScreenGui")
+                    vu189.Parent = p186:WaitForChild("PlayerGui")
+                    local v190 = Instance.new("Frame")
+                    v190.Size = UDim2.new(1, 0, 1, 0)
+                    v190.Position = UDim2.new(0, 0, 0, 0)
+                    v190.BackgroundColor3 = Color3.new(0, 0, 0)
+                    v190.BackgroundTransparency = 0
+                    v190.Parent = vu189
+                    local v191 = Instance.new("ImageLabel")
+                    v191.Name = "Chatt"
+                    v191.BorderSizePixel = 0
+                    v191.BackgroundColor3 = Color3.new(1, 1, 1)
+                    v191.AnchorPoint = Vector2.new(0.5, 0.5)
+                    v191.Image = "rbxassetid://17344292317"
+                    v191.Size = UDim2.new(0.2, 0, 0.4, 0)
+                    v191.BorderColor3 = Color3.new(0, 0, 0)
+                    v191.BackgroundTransparency = 1
+                    v191.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    v191.Parent = vu189
+                    local v192 = Instance.new("TextLabel")
+                    v192.Name = "Sub"
+                    v192.TextWrapped = true
+                    v192.BorderSizePixel = 0
+                    v192.TextScaled = true
+                    v192.BackgroundColor3 = Color3.new(1, 1, 1)
+                    v192.FontFace = Font.new("rbxassetid://12187375716", Enum.FontWeight.Bold, Enum.FontStyle.Italic)
+                    v192.AnchorPoint = Vector2.new(0.5, 0.5)
+                    v192.TextSize = 14
+                    v192.Size = UDim2.new(0.3, 0, 0.4, 0)
+                    v192.BorderColor3 = Color3.new(0, 0, 0)
+                    v192.Text = p187
+                    v192.TextColor3 = Color3.new(0, 0, 0)
+                    v192.BackgroundTransparency = 1
+                    v192.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    v192.Parent = v191
+                    TweenService:Create(v190, TweenInfo.new(p188 + 3, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+                        BackgroundTransparency = 1
+                    }):Play()
+                    TweenService:Create(v191, TweenInfo.new(p188 + 1, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+                        Position = UDim2.new(0.5, 0, 0.55, 0),
+                        ImageTransparency = 1
+                    }):Play()
+                    local v193 = TweenService:Create(v192, TweenInfo.new(p188 + 1, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+                        TextTransparency = 1
+                    })
+                    v193:Play()
+                    v193.Completed:Connect(function()
+                        vu189:Destroy()
+                    end)
+                end
+                local vu194 = game.Players.LocalPlayer
+                function EffectsForChant()
+                    l_TweenService_1 = game:GetService("TweenService")
+                    task.spawn(function()
+                        local v195 = workspace.Camera
+                        l_TweenService_1:Create(v195, TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+                            FieldOfView = 98
+                        }):Play()
+                        task.wait(0.3)
+                        l_TweenService_1:Create(v195, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                            FieldOfView = 70
+                        }):Play()
+                    end)
+                    local v196 = Instance.new("Attachment")
+                    v196.Parent = vu194.character.Torso
+                    local v197 = Instance.new("ParticleEmitter")
+                    v197.Name = "Ring"
+                    v197.Lifetime = NumberRange.new(0.6, 0.6)
+                    v197.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v197.Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Color3.new(1, 0, 0)),
+                        ColorSequenceKeypoint.new(1, Color3.new(1, 0, 0))
+                    })
+                    v197.Speed = NumberRange.new(0, 0)
+                    v197.Brightness = 15
+                    v197.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid2x2
+                    v197.Texture = "rbxassetid://76746787490632"
+                    v197.RotSpeed = NumberRange.new(200, 200)
+                    v197.Rate = 10
+                    v197.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.63, 0.21, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v197.Size = NumberSequence.new(15, 0)
+                    v197.Parent = v196
+                    local v198 = Instance.new("ParticleEmitter")
+                    v198.Name = "Burst"
+                    v198.Lifetime = NumberRange.new(0.6, 0.6)
+                    v198.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v198.Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Color3.new(1, 0, 0)),
+                        ColorSequenceKeypoint.new(1, Color3.new(1, 0, 0))
+                    })
+                    v198.LightEmission = 0.30000001192092896
+                    v198.Speed = NumberRange.new(0, 0)
+                    v198.Brightness = 15
+                    v198.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                    v198.Texture = "rbxassetid://12156297119"
+                    v198.Rate = 10
+                    v198.Size = NumberSequence.new(15, 0)
+                    v198.Parent = v196
+                    wait(0.1)
+                    v198.Rate = 0
+                    v197.Rate = 0
+                end
+                function ChantTalk(p199)
+                    createScreenGuiCHANT(vu194, p199, 0.3)
+                end
+                local vu200 = 0
+                local vu201 = false
+                ToolChanting.Activated:Connect(function()
+                    if vu200 >= 3 then
+                        if vu200 == 3 and not vu201 then
+                            print("nope nuh uh already activated")
+                        end
+                    else
+                        vu200 = vu200 + 1
+                        if vu200 ~= 1 then
+                            if vu200 ~= 2 then
+                                if vu200 == 3 then
+                                    vu167 = false
+                                    vu168 = true
+                                    vu169 = false
+                                    playtheanimCHANT(8887084105, 0.2)
+                                    coroutine.wrap(EffectsForChant)()
+                                    coroutine.wrap(stupidwindchant)()
+                                    wait(0.3)
+                                    playtheanimCHANT(16746843881, 4.2)
+                                    coroutine.wrap(stupidsoundchant)()
+                                    coroutine.wrap(ChantTalk)("Twin Meteors.")
+                                end
+                            else
+                                vu167 = false
+                                vu168 = false
+                                vu169 = true
+                                playtheanimCHANT(8887084105, 0.2)
+                                coroutine.wrap(EffectsForChant)()
+                                coroutine.wrap(stupidwindchant)()
+                                wait(0.3)
+                                playtheanimCHANT(16746843881, 4.2)
+                                coroutine.wrap(stupidsoundchant)()
+                                coroutine.wrap(ChantTalk)("Recoil.")
+                            end
+                        else
+                            vu167 = true
+                            vu168 = false
+                            vu169 = false
+                            playtheanimCHANT(8887084105, 0.2)
+                            coroutine.wrap(EffectsForChant)()
+                            coroutine.wrap(stupidwindchant)()
+                            wait(0.3)
+                            coroutine.wrap(stupidsoundchant)()
+                            playtheanimCHANT(16746843881, 4.2)
+                            coroutine.wrap(ChantTalk)("Scale Of The Dragon.")
+                        end
+                    end
+                end)
+                function resetCounter()
+                    vu200 = 0
+                    print("reset the chanting")
+                    vu167 = false
+                    vu168 = false
+                    vu169 = false
+                end
+                function toggleResetFlag()
+                    vu201 = not vu201
+                    if vu201 then
+                        resetCounter()
+                    end
+                end
+                function UltGui()
+                    local vu202 = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+                    function setToolName(p203, p204)
+                        local v205 = vu202:FindFirstChild("Hotbar")
+                        if v205 then
+                            local v206 = v205:FindFirstChild("Backpack")
+                            local v207 = v206 and v206:FindFirstChild("Hotbar")
+                            if v207 then
+                                local v208 = v207:FindFirstChild(tostring(p203)).Base
+                                local v209 = v208 and v208:FindFirstChild("ToolName")
+                                if v209 then
+                                    v209.Text = p204
+                                    v209.TextScaled = false
+                                    v209.Font = Enum.Font.Cartoon
+                                end
+                            end
+                        end
+                    end
+                    setToolName(1, "Unexpected Dismantle")
+                    setToolName(2, "Open: FURNACE")
+                    setToolName(3, "World Cutting Slash")
+                    setToolName(4, "Malevolent Shrine")
+                    function findGuiAndSetText()
+                        vu153 = vu202:FindFirstChild("ScreenGui")
+                        if vu153 then
+                            magicHealthFrame = vu153:FindFirstChild("MagicHealth")
+                            if magicHealthFrame then
+                                textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+                                if textLabel then
+                                    textLabel.Text = "Incomplete Shrine"
+                                end
+                            end
+                        end
+                    end
+                    vu202.DescendantAdded:Connect(findGuiAndSetText)
+                    findGuiAndSetText()
+                    UltImage()
+                end
+                function initializeHotbarAndGUI()
+                    vu194 = game.Players.LocalPlayer
+                    playerGui = vu194:WaitForChild("PlayerGui")
+                    function setToolName(p210, p211)
+                        hotbar = playerGui:FindFirstChild("Hotbar")
+                        if hotbar then
+                            backpack = hotbar:FindFirstChild("Backpack")
+                            if backpack then
+                                hotbarFrame = backpack:FindFirstChild("Hotbar")
+                                if hotbarFrame then
+                                    baseButton = hotbarFrame:FindFirstChild(tostring(p210)).Base
+                                    if baseButton then
+                                        toolNameLabel = baseButton:FindFirstChild("ToolName")
+                                        if toolNameLabel then
+                                            toolNameLabel.Text = p211
+                                            toolNameLabel.TextScaled = false
+                                            toolNameLabel.Font = Enum.Font.Cartoon
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                    setToolName(1, "Chanted Dismantle")
+                    setToolName(2, "Cursed Barrage")
+                    setToolName(3, "Cleaving Punch")
+                    setToolName(4, "Broken Web");
+                    (function()
+                        local v212 = playerGui:FindFirstChild("ScreenGui")
+                        local v213 = v212 and v212:FindFirstChild("MagicHealth")
+                        if v213 then
+                            textLabelgay = v213:FindFirstChild("TextLabel")
+                            if textLabelgay then
+                                textLabelgay.Text = "Incomplete Shrine"
+                            end
+                        end
+                    end)()
+                    UltImage()
+                end
+                initializeHotbarAndGUI()
+                function DismantleProjactually()
+                    part = Instance.new("Part")
+                    part.Size = Vector3.new(0.1, 0.1, 0.1)
+                    part.Shape = Enum.PartType.Block
+                    part.Color = Color3.fromRGB(0, 0, 0)
+                    part.Transparency = 1
+                    part.Anchored = true
+                    part.CanCollide = false
+                    part.Parent = Workspace
+                    local v214 = Instance.new("ParticleEmitter")
+                    v214.Name = "23"
+                    v214.Lifetime = NumberRange.new(0.3, 0.3)
+                    v214.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v214.Speed = NumberRange.new(0, 0.1)
+                    v214.Brightness = 10
+                    v214.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                    v214.Texture = "rbxassetid://18464209605"
+                    v214.Rotation = NumberRange.new(0, 0)
+                    v214.Rate = 40
+                    v214.Squash = NumberSequence.new(1, - 3)
+                    v214.RotSpeed = NumberRange.new(0, 0)
+                    v214.EmissionDirection = Enum.NormalId.Back
+                    v214.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v214.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.1, 14.28, 0),
+                        NumberSequenceKeypoint.new(0.2, 20.03, 0),
+                        NumberSequenceKeypoint.new(0.3, 23.82, 0),
+                        NumberSequenceKeypoint.new(0.4, 26.52, 0),
+                        NumberSequenceKeypoint.new(0.5, 28.48, 0),
+                        NumberSequenceKeypoint.new(0.6, 29.89, 0),
+                        NumberSequenceKeypoint.new(0.7, 30.88, 0),
+                        NumberSequenceKeypoint.new(0.8, 31.53, 0),
+                        NumberSequenceKeypoint.new(0.9, 31.89, 0),
+                        NumberSequenceKeypoint.new(1, 32, 0)
+                    })
+                    v214.Parent = part
+                    local v215 = Instance.new("ParticleEmitter")
+                    v215.Name = "23"
+                    v215.Lifetime = NumberRange.new(0.3, 0.3)
+                    v215.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v215.ZOffset = 1
+                    v215.Speed = NumberRange.new(0, 0.1)
+                    v215.Brightness = 0
+                    v215.Squash = NumberSequence.new(1, - 3)
+                    v215.RotSpeed = NumberRange.new(0, 0)
+                    v215.EmissionDirection = Enum.NormalId.Back
+                    v215.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                    v215.Texture = "rbxassetid://18464209605"
+                    v215.Rotation = NumberRange.new(0, 0)
+                    v215.Rate = 40
+                    v215.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v215.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.1, 14.28, 0),
+                        NumberSequenceKeypoint.new(0.2, 20.03, 0),
+                        NumberSequenceKeypoint.new(0.3, 23.82, 0),
+                        NumberSequenceKeypoint.new(0.4, 26.52, 0),
+                        NumberSequenceKeypoint.new(0.5, 28.48, 0),
+                        NumberSequenceKeypoint.new(0.6, 29.89, 0),
+                        NumberSequenceKeypoint.new(0.7, 30.88, 0),
+                        NumberSequenceKeypoint.new(0.8, 31.53, 0),
+                        NumberSequenceKeypoint.new(0.9, 31.89, 0),
+                        NumberSequenceKeypoint.new(1, 32, 0)
+                    })
+                    v215.Parent = part
+                    local v216 = tick()
+                    local v217 = 0.1
+                    while tick() - v216 < v217 do
+                        wait(0.01)
+                        local _ = humanoidRootPart.CFrame.LookVector
+                        part.CFrame = humanoidRootPart.CFrame * CFrame.new(0, 0, - 10) * CFrame.Angles(math.rad(90), math.rad(- 10), math.rad(90))
+                    end
+                    v215.Rate = 0
+                    v214.Rate = 0
+                    wait(3)
+                    part:Destroy()
+                end
+                function DismantleProjactuallyMULTI(p218)
+                    part = Instance.new("Part")
+                    part.Size = Vector3.new(0.1, 0.1, 0.1)
+                    part.Shape = Enum.PartType.Block
+                    part.Color = Color3.fromRGB(0, 0, 0)
+                    part.Transparency = 1
+                    part.Anchored = true
+                    part.CanCollide = false
+                    part.Parent = Workspace
+                    local v219 = Instance.new("ParticleEmitter")
+                    v219.Name = "23"
+                    v219.Lifetime = NumberRange.new(0.3, 0.3)
+                    v219.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v219.Speed = NumberRange.new(0, 0.1)
+                    v219.Brightness = 10
+                    v219.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                    v219.Texture = "rbxassetid://18464209605"
+                    v219.Rotation = NumberRange.new(0, 0)
+                    v219.Rate = 40
+                    v219.Squash = NumberSequence.new(1, - 3)
+                    v219.RotSpeed = NumberRange.new(0, 0)
+                    v219.EmissionDirection = Enum.NormalId.Back
+                    v219.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v219.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.1, 14.28, 0),
+                        NumberSequenceKeypoint.new(0.2, 20.03, 0),
+                        NumberSequenceKeypoint.new(0.3, 23.82, 0),
+                        NumberSequenceKeypoint.new(0.4, 26.52, 0),
+                        NumberSequenceKeypoint.new(0.5, 28.48, 0),
+                        NumberSequenceKeypoint.new(0.6, 29.89, 0),
+                        NumberSequenceKeypoint.new(0.7, 30.88, 0),
+                        NumberSequenceKeypoint.new(0.8, 31.53, 0),
+                        NumberSequenceKeypoint.new(0.9, 31.89, 0),
+                        NumberSequenceKeypoint.new(1, 32, 0)
+                    })
+                    v219.Parent = part
+                    local v220 = Instance.new("ParticleEmitter")
+                    v220.Name = "23"
+                    v220.Lifetime = NumberRange.new(0.3, 0.3)
+                    v220.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v220.ZOffset = 1
+                    v220.Speed = NumberRange.new(0, 0.1)
+                    v220.Brightness = 0
+                    v220.Squash = NumberSequence.new(1, - 3)
+                    v220.RotSpeed = NumberRange.new(0, 0)
+                    v220.EmissionDirection = Enum.NormalId.Back
+                    v220.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                    v220.Texture = "rbxassetid://18464209605"
+                    v220.Rotation = NumberRange.new(0, 0)
+                    v220.Rate = 40
+                    v220.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v220.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.1, 14.28, 0),
+                        NumberSequenceKeypoint.new(0.2, 20.03, 0),
+                        NumberSequenceKeypoint.new(0.3, 23.82, 0),
+                        NumberSequenceKeypoint.new(0.4, 26.52, 0),
+                        NumberSequenceKeypoint.new(0.5, 28.48, 0),
+                        NumberSequenceKeypoint.new(0.6, 29.89, 0),
+                        NumberSequenceKeypoint.new(0.7, 30.88, 0),
+                        NumberSequenceKeypoint.new(0.8, 31.53, 0),
+                        NumberSequenceKeypoint.new(0.9, 31.89, 0),
+                        NumberSequenceKeypoint.new(1, 32, 0)
+                    })
+                    v220.Parent = part
+                    local v221 = tick()
+                    local v222 = 0.1
+                    while tick() - v221 < v222 do
+                        wait(0.01)
+                        local _ = humanoidRootPart.CFrame.LookVector
+                        part.CFrame = humanoidRootPart.CFrame * CFrame.new(0, 0, - 10) * CFrame.Angles(math.rad(90), math.rad(p218), math.rad(90))
+                    end
+                    v220.Rate = 0
+                    v219.Rate = 0
+                    wait(3)
+                    part:Destroy()
+                end
+                function dismantlinghands()
+                    local v223 = Instance.new("Part")
+                    if v223 and vu109:FindFirstChild("Right Arm") then
+                        v223.CFrame = vu109["Right Arm"].CFrame * CFrame.new(0, - 0.85, 0)
+                        v223.Size = Vector3.new(1, 2, 1)
+                        v223.Transparency = 1
+                        local v224 = Instance.new("ParticleEmitter")
+                        v224.Name = "sparklelines2"
+                        v224.Lifetime = NumberRange.new(0.04, 0.04)
+                        v224.ZOffset = 4
+                        v224.Squash = NumberSequence.new({
+                            NumberSequenceKeypoint.new(0, 0, 0),
+                            NumberSequenceKeypoint.new(1, 3, 12)
+                        })
+                        v224.Speed = NumberRange.new(0.1, 0.2)
+                        v224.Brightness = 30
+                        v224.Texture = "rbxassetid://18463718356"
+                        v224.Rotation = NumberRange.new(90, 90)
+                        v224.Rate = 500
+                        v224.LockedToPart = false
+                        v224.Size = NumberSequence.new({
+                            NumberSequenceKeypoint.new(0, 1, 0),
+                            NumberSequenceKeypoint.new(1, 0, 0)
+                        })
+                        v224.Shape = Enum.ParticleEmitterShape.Disc
+                        v224.Parent = v223
+                        local v225 = Instance.new("ParticleEmitter")
+                        v225.Name = "speedlines2"
+                        v225.Lifetime = NumberRange.new(0.01, 0.15)
+                        v225.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                        v225.Color = ColorSequence.new({
+                            ColorSequenceKeypoint.new(0, Color3.new(1, 0.64, 0.14)),
+                            ColorSequenceKeypoint.new(1, Color3.new(1, 0.64, 0.14))
+                        })
+                        v225.Drag = 2
+                        v225.LightEmission = - 5
+                        v225.Squash = NumberSequence.new({
+                            NumberSequenceKeypoint.new(0, - 0.64, 0),
+                            NumberSequenceKeypoint.new(0.49, 1.73, 1.27),
+                            NumberSequenceKeypoint.new(1, 2.55, 0)
+                        })
+                        v225.Speed = NumberRange.new(0.1, 0.2)
+                        v225.Brightness = 0
+                        v225.Texture = "rbxassetid://18461978474"
+                        v225.Rotation = NumberRange.new(90, 90)
+                        v225.ShapePartial = 2
+                        v225.Rate = 50
+                        v225.LockedToPart = false
+                        v225.Orientation = Enum.ParticleOrientation.VelocityParallel
+                        v225.Size = NumberSequence.new({
+                            NumberSequenceKeypoint.new(0, 0, 0),
+                            NumberSequenceKeypoint.new(0.29, 3, 0),
+                            NumberSequenceKeypoint.new(1, 0, 0)
+                        })
+                        v225.Shape = Enum.ParticleEmitterShape.Disc
+                        v225.Parent = v223
+                        v223.Anchored = false
+                        v223.CanCollide = false
+                        v223.Parent = vu109
+                        local v226 = Instance.new("Weld")
+                        v226.Part0 = vu109["Right Arm"]
+                        v226.Part1 = v223
+                        v226.C0 = vu109["Right Arm"].CFrame:inverse() * v223.CFrame
+                        v226.Parent = vu109["Right Arm"]
+                        wait(0.6)
+                        v225.Rate = 0
+                        v224.Rate = 0
+                        wait(1)
+                        v226:Destroy()
+                        v223:Destroy()
+                    end
+                end
+                function Pmomantle()
+                    local v227 = Instance.new("Part")
+                    v227.Size = Vector3.new(1, 1, 1)
+                    v227.Shape = Enum.PartType.Block
+                    v227.Color = Color3.fromRGB(255, 0, 0)
+                    v227.Transparency = 1
+                    v227.Anchored = true
+                    v227.CanCollide = false
+                    v227.Parent = Workspace
+                    local v228 = Instance.new("ParticleEmitter")
+                    v228.Name = "Slashes"
+                    v228.Lifetime = NumberRange.new(0.05, 0.05)
+                    v228.ZOffset = 6
+                    v228.TimeScale = 0.15000000596046448
+                    v228.LightEmission = - 15
+                    v228.SpreadAngle = Vector2.new(360, 360)
+                    v228.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0.55, 0),
+                        NumberSequenceKeypoint.new(0.13, 7.59, 0),
+                        NumberSequenceKeypoint.new(0.37, 14.78, 0),
+                        NumberSequenceKeypoint.new(1, 14.8, 0)
+                    })
+                    v228.Speed = NumberRange.new(0.1, 0.1)
+                    v228.Brightness = 1000
+                    v228.Texture = "rbxassetid://15407518755"
+                    v228.Rotation = NumberRange.new(0, 360)
+                    v228.LockedToPart = false
+                    v228.Rate = 500
+                    v228.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v228.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 3, 0),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v228.Parent = v227
+                    local v229 = tick()
+                    local v230 = 0.6
+                    while tick() - v229 < v230 do
+                        wait(0.01)
+                        local _ = humanoidRootPart.CFrame.LookVector
+                        v227.CFrame = humanoidRootPart.CFrame * CFrame.new(0, 0, 0)
+                    end
+                    v228.Rate = 0
+                    wait(2)
+                    v227:Destroy()
+                end
+                function niggakys()
+                    local v231 = Instance.new("Part")
+                    v231.Size = Vector3.new(0.01, 0.01, 0.01)
+                    v231.Shape = Enum.PartType.Block
+                    v231.Color = Color3.fromRGB(255, 255, 255)
+                    v231.Anchored = true
+                    v231.Transparency = 1
+                    v231.CanCollide = false
+                    v231.Parent = Workspace
+                    local v232 = Instance.new("ParticleEmitter")
+                    v232.Name = "Break"
+                    v232.Lifetime = NumberRange.new(1, 1)
+                    v232.ZOffset = 6
+                    v232.SpreadAngle = Vector2.new(360, 360)
+                    v232.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0.74, 0),
+                        NumberSequenceKeypoint.new(0.04, 5.84, 0),
+                        NumberSequenceKeypoint.new(0.16, 7.81, 0),
+                        NumberSequenceKeypoint.new(0.31, 8.68, 0),
+                        NumberSequenceKeypoint.new(1, 9, 0)
+                    })
+                    v232.Speed = NumberRange.new(0.1, 0.1)
+                    v232.Brightness = 1000
+                    v232.Texture = "rbxassetid://15407518755"
+                    v232.Rotation = NumberRange.new(0, 360)
+                    v232.Rate = 400
+                    v232.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v232.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 5, 0),
+                        NumberSequenceKeypoint.new(0.8, 4.94, 0),
+                        NumberSequenceKeypoint.new(0.89, 4.38, 0),
+                        NumberSequenceKeypoint.new(0.95, 3.06, 0),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v232.Parent = v231
+                    local v233 = Instance.new("ParticleEmitter")
+                    v233.Name = "Slashes"
+                    v233.Lifetime = NumberRange.new(0.1, 0.1)
+                    v233.ZOffset = 6
+                    v233.TimeScale = 0.20000000298023224
+                    v233.LightEmission = - 15
+                    v233.SpreadAngle = Vector2.new(360, 360)
+                    v233.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0.55, 0),
+                        NumberSequenceKeypoint.new(0.13, 7.59, 0),
+                        NumberSequenceKeypoint.new(0.37, 14.78, 0),
+                        NumberSequenceKeypoint.new(1, - 44.37, 0)
+                    })
+                    v233.Speed = NumberRange.new(0.1, 0.1)
+                    v233.Brightness = 1000
+                    v233.Texture = "rbxassetid://15407518755"
+                    v233.Rotation = NumberRange.new(0, 360)
+                    v233.Rate = 400
+                    v233.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v233.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 3, 0),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v233.Parent = v231
+                    local v234 = Instance.new("ParticleEmitter")
+                    v234.Name = "Stars"
+                    v234.Lifetime = NumberRange.new(0.3, 1)
+                    v234.Drag = 10
+                    v234.SpreadAngle = Vector2.new(360, 360)
+                    v234.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.06, 8.37, 0),
+                        NumberSequenceKeypoint.new(0.13, - 17.23, 0),
+                        NumberSequenceKeypoint.new(0.34, 11.3, 0),
+                        NumberSequenceKeypoint.new(0.44, - 7.18, 0),
+                        NumberSequenceKeypoint.new(0.54, 5.66, 0),
+                        NumberSequenceKeypoint.new(0.66, - 2.8, 0),
+                        NumberSequenceKeypoint.new(0.77, 0.34, 0),
+                        NumberSequenceKeypoint.new(0.88, - 1.85, 0),
+                        NumberSequenceKeypoint.new(0.97, - 2.18, 0),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v234.Speed = NumberRange.new(- 40, 200)
+                    v234.Brightness = 2000
+                    v234.Texture = "rbxassetid://15407518755"
+                    v234.ShapePartial = 0.4000000059604645
+                    v234.Rate = 4000
+                    v234.EmissionDirection = Enum.NormalId.Front
+                    v234.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 2, 1),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v234.Parent = v231
+                    local v235 = tick()
+                    local v236 = 0.1
+                    while tick() - v235 < v236 do
+                        wait(0.01)
+                        local _ = humanoidRootPart.CFrame.LookVector
+                        v231.CFrame = humanoidRootPart.CFrame * CFrame.new(0, 0, 0)
+                    end
+                    v234.Rate = 0
+                    v233.Rate = 0
+                    v232.Rate = 0
+                    wait(7)
+                    v231:Destroy()
+                end
+                function WorldCuttingSlash()
+                    vu107 = game:GetService("Players")
+                    Workspace = game:GetService("Workspace")
+                    vu194 = vu107.LocalPlayer
+                    vu109 = vu194.Character or vu194.CharacterAdded:Wait()
+                    humanoidRootPart = vu109:WaitForChild("HumanoidRootPart")
+                    workspace = game.Workspace
+                    vu107 = game:GetService("Players")
+                    local v237 = game:GetObjects("rbxassetid://86338424274772")[1]
+                    char = vu194.Character or vu194.CharacterAdded:Wait()
+                    humRootPart = char:WaitForChild("HumanoidRootPart")
+                    hollowPurple = v237:FindFirstChild("WaffleProjectile")
+                    TweenService = game:GetService("TweenService")
+                    Debris = game:GetService("Debris")
+                    function enableEffects(p238)
+                        local v239, v240, v241 = pairs(p238:GetDescendants())
+                        while true do
+                            local v242
+                            v241, v242 = v239(v240, v241)
+                            if v241 == nil then
+                                break
+                            end
+                            if v242:IsA("ParticleEmitter") or v242:IsA("Beam") then
+                                v242.Enabled = true
+                            end
+                        end
+                    end
+                    function launchHollowPurple(p243, p244, p245)
+                        local v246 = TweenInfo.new(p245, Enum.EasingStyle.Linear)
+                        local v247 = p243.Position + humRootPart.CFrame.LookVector * p244
+                        TweenService:Create(p243, v246, {
+                            Position = v247
+                        }):Play()
+                    end
+                    hollowPurple.Parent = workspace
+                    hollowPurple.CFrame = humRootPart.CFrame * CFrame.new(0, 10, 10)
+                    hollowPurple.Transparency = 1
+                    enableEffects(hollowPurple)
+                    hollowPurple.Anchored = false
+                    launchHollowPurple(hollowPurple, 800, 2)
+                    wait(10)
+                    hollowPurple:Destroy()
+                end
+                local vu248 = 10468665991
+                vu194 = game.Players.LocalPlayer
+                local v249 = vu194.Character
+                if v249 then
+                    vu291 = v249
+                else
+                    vu291 = vu194.CharacterAdded:Wait()
+                end
+                local v250 = vu291
+                local v251 = vu291.WaitForChild(v250, "Humanoid")
+                local function v275(p252)
+                    if p252.Animation.AnimationId == "rbxassetid://" .. vu248 then
+                        p = game.Players.LocalPlayer
+                        Humanoid = p.Character:WaitForChild("Humanoid")
+                        local v253, v254, v255 = pairs(Humanoid:GetPlayingAnimationTracks())
+                        while true do
+                            local v256
+                            v255, v256 = v253(v254, v255)
+                            if v255 == nil then
+                                break
+                            end
+                            v256:Stop()
+                        end
+                        if vu170 then
+                            if vu291.RunSOunding then
+                                vu291.RunSOunding:Destroy()
+                            end
+                            coroutine.wrap(talkingstuff)("DISMANTLE.")
+                            vu171 = true
+                            local v257 = Instance.new("Animation")
+                            v257.AnimationId = "rbxassetid://13723174078"
+                            local v258 = Humanoid:LoadAnimation(v257)
+                            v258:Play()
+                            v258:AdjustSpeed(1)
+                            v258.TimePosition = 0.3
+                            v258:AdjustSpeed(1)
+                            KaiDismantle = Instance.new("Sound")
+                            KaiDismantle.SoundId = "rbxassetid://135946445746457"
+                            KaiDismantle.Volume = 3
+                            KaiDismantle.TimePosition = 0.7
+                            KaiDismantle.Parent = game.Players.LocalPlayer.Character
+                            KaiDismantle:Play()
+                            wait(0.6)
+                            Dismantledshiinotmany = Instance.new("Sound")
+                            Dismantledshiinotmany.SoundId = "rbxassetid://128721324987372"
+                            Dismantledshiinotmany.Volume = 3
+                            Dismantledshiinotmany.TimePosition = 0.2
+                            Dismantledshiinotmany.Parent = game.Players.LocalPlayer.Character
+                            Dismantledshiinotmany:Play()
+                            wait(2.5)
+                            vu170 = false
+                            vu171 = false
+                        elseif vu167 then
+                            resetCounter()
+                            coroutine.wrap(talkingstuff)("Dismantle.")
+                            local v259 = Instance.new("Animation")
+                            v259.AnimationId = "rbxassetid://14351441234"
+                            local v260 = Humanoid:LoadAnimation(v259)
+                            v260:Play()
+                            v260:AdjustSpeed(1)
+                            v260.TimePosition = 1
+                            v260:AdjustSpeed(0.55)
+                            KaiDismantle = Instance.new("Sound")
+                            KaiDismantle.SoundId = "rbxassetid://135946445746457"
+                            KaiDismantle.Volume = 3
+                            KaiDismantle.TimePosition = 0.7
+                            KaiDismantle.Parent = game.Players.LocalPlayer.Character
+                            KaiDismantle:Play()
+                            Dismantledshiimany = Instance.new("Sound")
+                            Dismantledshiimany.SoundId = "rbxassetid://85596573444140"
+                            Dismantledshiimany.Volume = 3
+                            Dismantledshiimany.TimePosition = 0.5
+                            Dismantledshiimany.Parent = game.Players.LocalPlayer.Character
+                            Dismantledshiimany:Play()
+                            wait(0.55)
+                            Dismantledshiimany:Destroy()
+                            Dismantledshiinotmany = Instance.new("Sound")
+                            Dismantledshiinotmany.SoundId = "rbxassetid://128721324987372"
+                            Dismantledshiinotmany.Volume = 3
+                            Dismantledshiinotmany.TimePosition = 0
+                            Dismantledshiinotmany.Parent = game.Players.LocalPlayer.Character
+                            Dismantledshiinotmany:Play()
+                            coroutine.wrap(nonormalpunchdebris)()
+                            coroutine.wrap(DismantleProjactuallyMULTI)(- 90)
+                            wait(0.05)
+                            coroutine.wrap(DismantleProjactuallyMULTI)(- 55)
+                            wait(0.05)
+                            coroutine.wrap(DismantleProjactuallyMULTI)(- 10)
+                        elseif vu169 then
+                            resetCounter()
+                            local v261 = Instance.new("Animation")
+                            v261.AnimationId = "rbxassetid://16734584478"
+                            local v262 = Humanoid:LoadAnimation(v261)
+                            v262:Play()
+                            v262:AdjustSpeed(1)
+                            v262.TimePosition = 4.6
+                            v262:AdjustSpeed(1)
+                            coroutine.wrap(Pmomantle)()
+                            Dismantledshiimany = Instance.new("Sound")
+                            Dismantledshiimany.SoundId = "rbxassetid://85596573444140"
+                            Dismantledshiimany.Volume = 3
+                            Dismantledshiimany.TimePosition = 2
+                            Dismantledshiimany.Parent = game.Players.LocalPlayer.Character
+                            Dismantledshiimany:Play()
+                            for _ = 0, 6 do
+                                coroutine.wrap(Glowersss)
+                                wait(0.1)
+                            end
+                            coroutine.wrap(nonormalpunchdebris)()
+                            coroutine.wrap(niggakys)()
+                            Dismantledshiimany:Destroy()
+                            Dismantledshiinotmany = Instance.new("Sound")
+                            Dismantledshiinotmany.SoundId = "rbxassetid://128721324987372"
+                            Dismantledshiinotmany.Volume = 3
+                            Dismantledshiinotmany.TimePosition = 0
+                            Dismantledshiinotmany.Parent = game.Players.LocalPlayer.Character
+                            Dismantledshiinotmany:Play()
+                        elseif vu168 then
+                            resetCounter()
+                            coroutine.wrap(talkingstuff)("Think Fast.")
+                            local v263 = Instance.new("Animation")
+                            v263.AnimationId = "rbxassetid://13073745835"
+                            local v264 = Humanoid:LoadAnimation(v263)
+                            v264:Play()
+                            v264:AdjustSpeed(1)
+                            v264.TimePosition = 0
+                            v264:AdjustSpeed(1)
+                            l_TweenService_1 = game:GetService("TweenService")
+                            task.spawn(function()
+                                local v265 = workspace.Camera
+                                l_TweenService_1:Create(v265, TweenInfo.new(0.6, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+                                    FieldOfView = 30
+                                }):Play()
+                                task.wait(0.6)
+                                l_TweenService_1:Create(v265, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                    FieldOfView = 70
+                                }):Play()
+                            end)
+                            thinkfast = Instance.new("Sound")
+                            thinkfast.SoundId = "rbxassetid://98076270798343"
+                            thinkfast.Volume = 6
+                            thinkfast.TimePosition = 0
+                            thinkfast.Parent = game.Players.LocalPlayer.Character
+                            thinkfast:Play()
+                            wcscharge = Instance.new("Sound")
+                            wcscharge.SoundId = "rbxassetid://4299626748"
+                            wcscharge.Volume = 3
+                            wcscharge.TimePosition = 0
+                            wcscharge.Parent = game.Players.LocalPlayer.Character
+                            wcscharge:Play()
+                            wait(0.6)
+                            firewcs = Instance.new("Sound")
+                            firewcs.SoundId = "rbxassetid://4299584756"
+                            firewcs.Volume = 6
+                            firewcs.TimePosition = 0.2
+                            firewcs.Parent = game.Players.LocalPlayer.Character
+                            firewcs:Play()
+                            coroutine.wrap(nonormalpunchdebris)()
+                            coroutine.wrap(WorldCuttingSlash)()
+                            task.spawn(function()
+                                RunService = game:GetService("RunService")
+                                Player = game.Players.LocalPlayer
+                                Camera = game.Workspace.CurrentCamera
+                                local vu266 = 20
+                                function ScreenShake(pu267, pu268)
+                                    local vu269 = tick()
+                                    local vu270 = nil
+                                    vu270 = RunService.RenderStepped:Connect(function()
+                                        if pu267 > tick() - vu269 then
+                                            local v271 = Vector3.new(math.random(- pu268, pu268) / vu266, math.random(- pu268, pu268) / vu266, math.random(- pu268, pu268) / vu266)
+                                            Camera.CFrame = Camera.CFrame * CFrame.new(v271)
+                                        else
+                                            vu270:Disconnect()
+                                        end
+                                    end)
+                                end
+                                ScreenShake(0.5, 9)
+                            end)
+                        else
+                            local v272 = Instance.new("Animation")
+                            v272.AnimationId = "rbxassetid://16139108718"
+                            local v273 = Humanoid:LoadAnimation(v272)
+                            v273:Play()
+                            v273:AdjustSpeed(0.1)
+                            v273.TimePosition = 1.1
+                            v273:AdjustSpeed(0.6)
+                            l_TweenService_1 = game:GetService("TweenService")
+                            task.spawn(function()
+                                local v274 = workspace.Camera
+                                l_TweenService_1:Create(v274, TweenInfo.new(0.6, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+                                    FieldOfView = 98
+                                }):Play()
+                                task.wait(0.6)
+                                l_TweenService_1:Create(v274, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                    FieldOfView = 70
+                                }):Play()
+                            end)
+                            coroutine.wrap(dismantlinghands)()
+                            wait(0.6)
+                            Dismantledshii = Instance.new("Sound")
+                            Dismantledshii.SoundId = "rbxassetid://127747836286692"
+                            Dismantledshii.Volume = 3
+                            Dismantledshii.Parent = game.Players.LocalPlayer.Character
+                            Dismantledshii:Play()
+                            coroutine.wrap(DismantleProjactually)()
+                            coroutine.wrap(nonormalpunchdebris)()
+                        end
+                    end
+                end
+                workspace = game:GetService("Workspace")
+                players = game:GetService("Players")
+                vu194 = players.LocalPlayer
+                function setModelColor(p276)
+                    local v277, v278, v279 = ipairs(p276:GetDescendants())
+                    while true do
+                        local v280
+                        v279, v280 = v277(v278, v279)
+                        if v279 == nil then
+                            break
+                        end
+                        if v280:IsA("BasePart") then
+                            v280.BrickColor = BrickColor.new("Blue")
+                            if not v280:IsA("MeshPart") then
+                                v280.Color = Color3.fromRGB(100, 0, 0)
+                                v280.Material = Enum.Material.Neon
+                                v280.Transparency = 0
+                                local v281 = Instance.new("ParticleEmitter")
+                                v281.Name = "Aura"
+                                v281.Lifetime = NumberRange.new(0.4, 0.6)
+                                v281.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                                v281.Color = ColorSequence.new(Color3.new(1, 0.7, 0.7))
+                                v281.ZOffset = 2
+                                v281.LightEmission = - 5
+                                v281.SpreadAngle = Vector2.new(360, 360)
+                                v281.Speed = NumberRange.new(0, 2)
+                                v281.Brightness = 5
+                                v281.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                                v281.Texture = "rbxassetid://9285330517"
+                                v281.Acceleration = Vector3.new(0, 15, 0)
+                                v281.Rotation = NumberRange.new(- 360, 360)
+                                v281.LockedToPart = true
+                                v281.Rate = 15
+                                v281.EmissionDirection = Enum.NormalId.Front
+                                v281.Size = NumberSequence.new(1, 0.38)
+                                v281.Parent = v280
+                                local v282 = Instance.new("ParticleEmitter")
+                                v282.Name = "Sparks"
+                                v282.Lifetime = NumberRange.new(0.3, 0.5)
+                                v282.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                                v282.Color = ColorSequence.new(Color3.new(1, 0.7, 0.7))
+                                v282.ZOffset = 2
+                                v282.LightEmission = - 5
+                                v282.SpreadAngle = Vector2.new(360, 360)
+                                v282.Speed = NumberRange.new(0, 5)
+                                v282.Brightness = 5
+                                v282.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                                v282.Texture = "rbxassetid://15269497616"
+                                v282.Acceleration = Vector3.new(0, 20, 0)
+                                v282.Rotation = NumberRange.new(- 360, 360)
+                                v282.Rate = 15
+                                v282.LockedToPart = true
+                                v282.EmissionDirection = Enum.NormalId.Front
+                                v282.VelocityInheritance = 0.5
+                                v282.FlipbookStartRandom = true
+                                v282.Parent = v280
+                                local v283, v284, v285 = ipairs(p276:GetDescendants())
+                                while true do
+                                    local v286
+                                    v285, v286 = v283(v284, v285)
+                                    if v285 == nil then
+                                        break
+                                    end
+                                    if v286:IsA("Shirt") then
+                                        v286:Destroy()
+                                    end
+                                end
+                                local v287, v288, v289 = ipairs(p276:GetDescendants())
+                                while true do
+                                    local v290
+                                    v289, v290 = v287(v288, v289)
+                                    if v289 == nil then
+                                        break
+                                    end
+                                    if v290:IsA("Trail") then
+                                        v290:Destroy()
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+                local vu291 = vu194.Character
+                local v292 = vu291
+                local v293 = vu291.FindFirstChild(v292, "Left Arm")
+                if not v293 then
+                    local v294 = vu291
+                    v293 = vu291.FindFirstChild(v294, "LeftArm")
+                end
+                leftArm = v293
+                local v295 = vu291
+                local v296 = vu291.FindFirstChild(v295, "Right Arm")
+                if not v296 then
+                    local v297 = vu291
+                    v296 = vu291.FindFirstChild(v297, "RightArm")
+                end
+                rightArm = v296
+                function onModelAdded(p298)
+                    if p298.Name == "Model" then
+                        parenter = p298.Parent
+                        if not (parenter:IsA("Model") and parenter:FindFirstChild("Humanoid")) then
+                            setModelColor(p298)
+                            vu291 = vu194.Character
+                            if vu291 then
+                                leftArm = vu291:FindFirstChild("Left Arm") or vu291:FindFirstChild("LeftArm")
+                                rightArm = vu291:FindFirstChild("Right Arm") or vu291:FindFirstChild("RightArm")
+                                if leftArm then
+                                    leftArm.Transparency = 0
+                                    local v299, v300, v301 = ipairs(leftArm:GetDescendants())
+                                    while true do
+                                        local v302
+                                        v301, v302 = v299(v300, v301)
+                                        if v301 == nil then
+                                            break
+                                        end
+                                        if v302:IsA("Trail") then
+                                            v302:Destroy()
+                                        end
+                                    end
+                                end
+                                if rightArm then
+                                    rightArm.Transparency = 0
+                                    local v303, v304, v305 = ipairs(rightArm:GetDescendants())
+                                    while true do
+                                        local v306
+                                        v305, v306 = v303(v304, v305)
+                                        if v305 == nil then
+                                            break
+                                        end
+                                        if v306:IsA("Trail") then
+                                            v306:Destroy()
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+                function monitorModels()
+                    thrownFolder = workspace:WaitForChild("Thrown")
+                    local v308 = thrownFolder.ChildAdded:Connect(function(p307)
+                        onModelAdded(p307)
+                    end)
+                    wait(1.5)
+                    v308:Disconnect()
+                end
+                function youpmofr()
+                    for _ = 0, 14 do
+                        coroutine.wrap(Glowersss)()
+                        wait(0.1)
+                    end
+                end
+                function onModelAddedgay(p309)
+                    if p309.Name == "Model" then
+                        local v310 = p309.Parent
+                        if not (v310:IsA("Model") and v310:FindFirstChild("Humanoid")) then
+                            p309:Destroy()
+                            local v311 = vu194.Character
+                            if v311 then
+                                local v312 = v311:FindFirstChild("Left Arm") or v311:FindFirstChild("LeftArm")
+                                local v313 = v311:FindFirstChild("Right Arm") or v311:FindFirstChild("RightArm")
+                                if v312 then
+                                    v312.Transparency = 0
+                                end
+                                if v313 then
+                                    v313.Transparency = 0
+                                end
+                            end
+                        end
+                    end
+                end
+                local function vu316()
+                    local v315 = workspace:WaitForChild("Thrown").ChildAdded:Connect(function(p314)
+                        onModelAddedgay(p314)
+                    end)
+                    wait(1.5)
+                    v315:Disconnect()
+                end
+                v251.AnimationPlayed:Connect(v275)
+                local vu317 = 10466974800
+                vu194 = game.Players.LocalPlayer
+                local v318 = vu194.Character
+                if v318 then
+                    vu291 = v318
+                else
+                    vu291 = vu194.CharacterAdded:Wait()
+                end
+                local v319 = vu291
+                v251 = vu291.WaitForChild(v319, "Humanoid")
+                local function v331(p320)
+                    if p320.Animation.AnimationId == "rbxassetid://" .. vu317 then
+                        p = game.Players.LocalPlayer
+                        Humanoid = p.Character:WaitForChild("Humanoid")
+                        local v321, v322, v323 = pairs(Humanoid:GetPlayingAnimationTracks())
+                        while true do
+                            local v324
+                            v323, v324 = v321(v322, v323)
+                            if v323 == nil then
+                                break
+                            end
+                            v324:Stop()
+                        end
+                        if vu170 then
+                            vu291.RunSOunding:Destroy()
+                            vu171 = true
+                            local v325 = Instance.new("Animation")
+                            v325.AnimationId = "rbxassetid://15957374019"
+                            local v326 = Humanoid:LoadAnimation(v325)
+                            v326:Play()
+                            v326:AdjustSpeed(1)
+                            v326.TimePosition = 0
+                            v326:AdjustSpeed(1)
+                            coroutine.wrap(talkingstuff)("Heh, Kid.")
+                            coroutine.wrap(youpmofr)()
+                            coroutine.wrap(vu316)()
+                            hehekozo = Instance.new("Sound")
+                            hehekozo.SoundId = "rbxassetid://77732395767858"
+                            hehekozo.Volume = 3
+                            hehekozo.TimePosition = 0.5
+                            hehekozo.Parent = game.Players.LocalPlayer.Character
+                            hehekozo:Play()
+                            wait(3.1)
+                            vu170 = false
+                            vu171 = false
+                        else
+                            local v327 = Instance.new("Animation")
+                            v327.AnimationId = "rbxassetid://18896229321"
+                            local v328 = Humanoid:LoadAnimation(v327)
+                            v328:Play()
+                            v328:AdjustSpeed(1)
+                            v328.TimePosition = 0
+                            v328:AdjustSpeed(1.3)
+                            coroutine.wrap(monitorModels)()
+                            domakneu = Instance.new("Sound")
+                            domakneu.SoundId = "rbxassetid://85568629036078"
+                            domakneu.Volume = 3
+                            domakneu.Parent = game.Players.LocalPlayer.Character
+                            domakneu:Play()
+                            slashbarfe = Instance.new("Sound")
+                            slashbarfe.SoundId = "rbxassetid://5711961181"
+                            slashbarfe.Volume = 3
+                            slashbarfe.TimePosition = 0.3
+                            slashbarfe.Parent = game.Players.LocalPlayer.Character
+                            slashbarfe:Play()
+                            coroutine.wrap(talkingstuff)("Know your place...")
+                            coroutine.wrap(youpmofr)()
+                            wait(1.4)
+                            v328:Stop()
+                            local v329 = Instance.new("Animation")
+                            v329.AnimationId = "rbxassetid://18896232119"
+                            local v330 = Humanoid:LoadAnimation(v329)
+                            v330:Play()
+                            v330:AdjustSpeed(1)
+                            v330.TimePosition = 0.2
+                            v330:AdjustSpeed(1)
+                            domakneu:Destroy()
+                            slashbarfe:Destroy()
+                        end
+                    end
+                end
+                local v332 = vu291
+                righter = vu291.WaitForChild(v332, "Left Arm")
+                local v333 = vu291
+                humanoidRootPart = vu291.WaitForChild(v333, "HumanoidRootPart")
+                function RightArmBurst()
+                    local v334 = Instance.new("Part")
+                    v334.Size = Vector3.new(0.1, 0.1, 0.1)
+                    v334.Shape = Enum.PartType.Block
+                    v334.Color = Color3.fromRGB(0, 255, 255)
+                    v334.Anchored = true
+                    v334.Transparency = 1
+                    v334.CanCollide = false
+                    v334.Parent = Workspace
+                    local v335 = Instance.new("ParticleEmitter")
+                    v335.Name = "Ring"
+                    v335.Lifetime = NumberRange.new(0.2, 0.3)
+                    v335.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v335.LightInfluence = 1
+                    v335.LightEmission = 1
+                    v335.SpreadAngle = Vector2.new(360, 360)
+                    v335.Speed = NumberRange.new(0.1, 0.1)
+                    v335.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid2x2
+                    v335.Texture = "rbxassetid://9293225960"
+                    v335.RotSpeed = NumberRange.new(200, 800)
+                    v335.Rotation = NumberRange.new(- 360, 360)
+                    v335.Rate = 50
+                    v335.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0.5, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v335.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v335.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.08, 3.82, 3.48),
+                        NumberSequenceKeypoint.new(0.23, 6.68, 3.78),
+                        NumberSequenceKeypoint.new(0.43, 8.47, 3.48),
+                        NumberSequenceKeypoint.new(0.66, 9.76, 2.78),
+                        NumberSequenceKeypoint.new(1, 10.65, 2.76)
+                    })
+                    v335.Parent = v334
+                    local v336 = Instance.new("ParticleEmitter")
+                    v336.Name = "Wind"
+                    v336.Lifetime = NumberRange.new(0.1, 0.1)
+                    v336.LightEmission = 1
+                    v336.SpreadAngle = Vector2.new(360, 360)
+                    v336.Speed = NumberRange.new(0.1, 0.1)
+                    v336.Texture = "rbxassetid://10365550581"
+                    v336.Rate = 40
+                    v336.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0.5, 0.4),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v336.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v336.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.13, 6.03, 0),
+                        NumberSequenceKeypoint.new(0.27, 7.74, 0),
+                        NumberSequenceKeypoint.new(0.51, 8.75, 0),
+                        NumberSequenceKeypoint.new(1, 10, 0)
+                    })
+                    v336.Parent = v334
+                    local v337 = Instance.new("ParticleEmitter")
+                    v337.Name = "Burst2"
+                    v337.Lifetime = NumberRange.new(0.3, 0.5)
+                    v337.Color = ColorSequence.new(Color3.fromRGB(255, 0, 0))
+                    v337.Drag = 10
+                    v337.LightEmission = - 20
+                    v337.SpreadAngle = Vector2.new(360, 360)
+                    v337.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, - 2, 0),
+                        NumberSequenceKeypoint.new(1, - 2, 0)
+                    })
+                    v337.Speed = NumberRange.new(50, 150)
+                    v337.Brightness = 15
+                    v337.Texture = "rbxassetid://179123233"
+                    v337.Acceleration = Vector3.new(0, 10, 0)
+                    v337.Rate = 400
+                    v337.EmissionDirection = Enum.NormalId.Front
+                    v337.Orientation = Enum.ParticleOrientation.VelocityParallel
+                    v337.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 1, 0.5),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v337.Parent = v334
+                    local v338 = Instance.new("ParticleEmitter")
+                    v338.Name = "Burst"
+                    v338.Lifetime = NumberRange.new(0.3, 0.5)
+                    v338.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v338.Color = ColorSequence.new(Color3.fromRGB(255, 0, 0))
+                    v338.SpreadAngle = Vector2.new(360, 360)
+                    v338.Speed = NumberRange.new(1, 1)
+                    v338.Brightness = 5
+                    v338.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                    v338.Texture = "rbxassetid://17863944368"
+                    v338.RotSpeed = NumberRange.new(- 10, 10)
+                    v338.Rotation = NumberRange.new(0, 360)
+                    v338.Rate = 50
+                    v338.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.5, 0, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v338.Orientation = Enum.ParticleOrientation.VelocityParallel
+                    v338.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 1, 0),
+                        NumberSequenceKeypoint.new(0.12, 4.91, 3.59),
+                        NumberSequenceKeypoint.new(0.34, 7.96, 4.03),
+                        NumberSequenceKeypoint.new(0.6, 9.39, 4.61),
+                        NumberSequenceKeypoint.new(1, 10, 4.89)
+                    })
+                    v338.Parent = v334
+                    local v339 = Instance.new("ParticleEmitter")
+                    v339.Name = "Burst3"
+                    v339.Lifetime = NumberRange.new(0.08, 0.08)
+                    v339.Color = ColorSequence.new(Color3.fromRGB(255, 0, 0))
+                    v339.LightEmission = 1
+                    v339.SpreadAngle = Vector2.new(360, 360)
+                    v339.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, - 3, 0),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v339.Speed = NumberRange.new(0.01, 0.01)
+                    v339.Brightness = 5
+                    v339.Texture = "rbxassetid://1053548563"
+                    v339.Rotation = NumberRange.new(- 360, 360)
+                    v339.Rate = 100
+                    v339.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v339.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v339.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 60, 0),
+                        NumberSequenceKeypoint.new(1, 60, 0)
+                    })
+                    v339.Parent = v334
+                    local v340 = Instance.new("ParticleEmitter")
+                    v340.Name = "Dust"
+                    v340.FlipbookFramerate = NumberRange.new(10, 30)
+                    v340.Lifetime = NumberRange.new(1, 2)
+                    v340.Drag = 4
+                    v340.LightInfluence = 1
+                    v340.SpreadAngle = Vector2.new(180, 0)
+                    v340.Speed = NumberRange.new(10, 120)
+                    v340.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid8x8
+                    v340.Texture = "rbxassetid://13026594575"
+                    v340.Acceleration = Vector3.new(0, - 30, 0)
+                    v340.Rotation = NumberRange.new(- 360, 360)
+                    v340.Rate = 40
+                    v340.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.5, 0, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v340.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.04, 9.57, 0),
+                        NumberSequenceKeypoint.new(0.12, 16.64, 0),
+                        NumberSequenceKeypoint.new(0.3, 22.52, 0),
+                        NumberSequenceKeypoint.new(0.56, 27.4, 0),
+                        NumberSequenceKeypoint.new(1, 29.56, 0)
+                    })
+                    v340.FlipbookStartRandom = true
+                    v340.Parent = v334
+                    local v341 = tick()
+                    local v342 = 0.1
+                    while tick() - v341 < v342 do
+                        wait(0.01)
+                        local _ = righter.CFrame
+                        v334.CFrame = righter.CFrame * CFrame.new(0, 0, 0)
+                    end
+                    v338.Rate = 0
+                    v337.Rate = 0
+                    v339.Rate = 0
+                    v340.Rate = 0
+                    v335.Rate = 0
+                    v336.Rate = 0
+                    wait(3)
+                    v334:Destroy()
+                end
+                v251.AnimationPlayed:Connect(v331)
+                local vu343 = 10471336737
+                local v344 = game.Players.LocalPlayer
+                local vu345 = v344.Character or v344.CharacterAdded:Wait()
+                local v346 = vu345
+                local v347 = vu345.WaitForChild(v346, "Humanoid")
+                function PmoFissure()
+                    local v348 = Instance.new("Part")
+                    v348.Size = Vector3.new(0.1, 0.1, 0.1)
+                    v348.Shape = Enum.PartType.Block
+                    v348.Color = Color3.fromRGB(255, 0, 0)
+                    v348.Transparency = 1
+                    v348.Anchored = true
+                    v348.CanCollide = false
+                    v348.Parent = Workspace
+                    local v349 = Instance.new("ParticleEmitter")
+                    v349.Name = "FluxFissureRef"
+                    v349.Lifetime = NumberRange.new(1, 1)
+                    v349.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v349.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+                    v349.ZOffset = 10
+                    v349.Speed = NumberRange.new(0, 0)
+                    v349.Brightness = 10
+                    v349.Texture = "rbxassetid://6884453656"
+                    v349.LockedToPart = true
+                    v349.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 1, 0),
+                        NumberSequenceKeypoint.new(0.2, 0, 0),
+                        NumberSequenceKeypoint.new(0.5, 0, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v349.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 2, 0),
+                        NumberSequenceKeypoint.new(1, 2, 0)
+                    })
+                    v349.Parent = v348
+                    local v350 = Instance.new("ParticleEmitter")
+                    v350.Name = "FluxFissure"
+                    v350.Lifetime = NumberRange.new(0.5, 0.5)
+                    v350.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v350.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+                    v350.ZOffset = 10
+                    v350.Speed = NumberRange.new(0, 0)
+                    v350.Brightness = 10
+                    v350.Rate = 30
+                    v350.Texture = "rbxassetid://5503993383"
+                    v350.LockedToPart = true
+                    v350.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 1, 0),
+                        NumberSequenceKeypoint.new(0.3, 0, 0),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v350.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 8, 0),
+                        NumberSequenceKeypoint.new(1, 2, 0)
+                    })
+                    v350.Parent = v348
+                    local v351 = tick()
+                    local v352 = 0.1
+                    while tick() - v351 < v352 do
+                        wait(0.01)
+                        local _ = humanoidRootPart.CFrame.LookVector
+                        v348.CFrame = humanoidRootPart.CFrame * CFrame.new(0, - 2.5, - 2)
+                    end
+                    v349.Rate = 0
+                    v350.Rate = 0
+                    wait(3)
+                    v348:Destroy()
+                end
+                function freezeCharacter()
+                    local v353 = vu345
+                    local v354, v355, v356 = ipairs(v353:GetChildren())
+                    while true do
+                        local v357
+                        v356, v357 = v354(v355, v356)
+                        if v356 == nil then
+                            break
+                        end
+                        if v357:IsA("BasePart") then
+                            v357.Anchored = true
+                        end
+                    end
+                    wait(0.2)
+                    local v358 = vu345
+                    local v359, v360, v361 = ipairs(v358:GetChildren())
+                    while true do
+                        local v362
+                        v361, v362 = v359(v360, v361)
+                        if v361 == nil then
+                            break
+                        end
+                        if v362:IsA("BasePart") then
+                            v362.Anchored = false
+                        end
+                    end
+                end
+                function webbroke()
+                    local v363 = Instance.new("Part")
+                    v363.Size = Vector3.new(0.1, 0.1, 0.1)
+                    v363.Shape = Enum.PartType.Block
+                    v363.Color = Color3.fromRGB(255, 255, 255)
+                    v363.Transparency = 1
+                    v363.Anchored = true
+                    v363.CanCollide = false
+                    v363.Parent = Workspace
+                    local v364 = Instance.new("ParticleEmitter")
+                    v364.Name = "Dust"
+                    v364.FlipbookFramerate = NumberRange.new(10, 30)
+                    v364.Lifetime = NumberRange.new(0.5, 0.5)
+                    v364.Drag = 8
+                    v364.LightInfluence = 1
+                    v364.SpreadAngle = Vector2.new(10, 10)
+                    v364.Speed = NumberRange.new(0.1, 100)
+                    v364.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid8x8
+                    v364.Texture = "rbxassetid://13026594575"
+                    v364.Rotation = NumberRange.new(- 360, 360)
+                    v364.Rate = 100
+                    v364.EmissionDirection = Enum.NormalId.Front
+                    v364.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.5, 0, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v364.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.09, 8.02, 0),
+                        NumberSequenceKeypoint.new(0.27, 14.06, 0),
+                        NumberSequenceKeypoint.new(0.5, 16.65, 0),
+                        NumberSequenceKeypoint.new(0.72, 18.23, 0),
+                        NumberSequenceKeypoint.new(1, 19.36, 0)
+                    })
+                    v364.FlipbookStartRandom = true
+                    v364.Parent = v363
+                    local v365 = Instance.new("ParticleEmitter")
+                    v365.Name = "Ring"
+                    v365.Lifetime = NumberRange.new(0.5, 1)
+                    v365.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v365.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+                    v365.Drag = 8
+                    v365.ZOffset = 2
+                    v365.LightInfluence = 1
+                    v365.LightEmission = 1
+                    v365.SpreadAngle = Vector2.new(10, 10)
+                    v365.Speed = NumberRange.new(0.1, 50)
+                    v365.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid2x2
+                    v365.Texture = "rbxassetid://9293225960"
+                    v365.RotSpeed = NumberRange.new(- 200, 200)
+                    v365.Rotation = NumberRange.new(- 360, 360)
+                    v365.Rate = 50
+                    v365.EmissionDirection = Enum.NormalId.Front
+                    v365.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.07, 0.91, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v365.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v365.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.02, 3.58, 3.48),
+                        NumberSequenceKeypoint.new(0.06, 6.65, 3.78),
+                        NumberSequenceKeypoint.new(0.14, 9.42, 3.48),
+                        NumberSequenceKeypoint.new(0.25, 11.51, 2.78),
+                        NumberSequenceKeypoint.new(0.52, 12.83, 2.73),
+                        NumberSequenceKeypoint.new(1, 13.23, 2.76)
+                    })
+                    v365.Parent = v363
+                    local v366 = Instance.new("ParticleEmitter")
+                    v366.Name = "Sparks"
+                    v366.Lifetime = NumberRange.new(0.4, 0.8)
+                    v366.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+                    v366.Drag = 10
+                    v366.LightEmission = - 15
+                    v366.SpreadAngle = Vector2.new(1, 90)
+                    v366.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, - 5, 0),
+                        NumberSequenceKeypoint.new(1, - 6, 0)
+                    })
+                    v366.Speed = NumberRange.new(40, 150)
+                    v366.Brightness = 1000
+                    v366.Texture = "rbxassetid://15407518755"
+                    v366.Rate = 1000
+                    v366.EmissionDirection = Enum.NormalId.Front
+                    v366.Orientation = Enum.ParticleOrientation.VelocityParallel
+                    v366.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0.5, 0),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v366.Parent = v363
+                    local v367 = tick()
+                    local v368 = 0.1
+                    while tick() - v367 < v368 do
+                        wait(0.01)
+                        local _ = humanoidRootPart.CFrame.LookVector
+                        v363.CFrame = humanoidRootPart.CFrame * CFrame.new(0, - 2.5, 0)
+                    end
+                    v365.Rate = 0
+                    v364.Rate = 0
+                    wait(0.3)
+                    v366.Rate = 0
+                    wait(3)
+                    v363:Destroy()
+                end
+                v347.AnimationPlayed:Connect(function(p369)
+                    if p369.Animation.AnimationId == "rbxassetid://" .. vu343 then
+                        local v370 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+                        local v371, v372, v373 = pairs(v370:GetPlayingAnimationTracks())
+                        while true do
+                            local v374
+                            v373, v374 = v371(v372, v373)
+                            if v373 == nil then
+                                break
+                            end
+                            v374:Stop()
+                        end
+                        local v375 = Instance.new("Animation")
+                        v375.AnimationId = "rbxassetid://105811521074269"
+                        local v376 = v370:LoadAnimation(v375)
+                        v376:Play()
+                        v376:AdjustSpeed(0)
+                        v376.TimePosition = 1.2
+                        v376:AdjustSpeed(1)
+                        coroutine.wrap(RightArmBurst)()
+                        tnpirn = Instance.new("Sound")
+                        tnpirn.SoundId = "rbxassetid://120714138513879"
+                        tnpirn.Volume = 3
+                        tnpirn.TimePosition = 0
+                        tnpirn.Parent = game.Players.LocalPlayer.Character
+                        tnpirn:Play()
+                        wait(0.4)
+                        coroutine.wrap(Glowersss)()
+                    end
+                end)
+                local vu377 = 12510170988
+                local v378 = game.Players.LocalPlayer;
+                (v378.Character or v378.CharacterAdded:Wait()):WaitForChild("Humanoid").AnimationPlayed:Connect(function(p379)
+                    if p379.Animation.AnimationId == "rbxassetid://" .. vu377 then
+                        local v380 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+                        local v381, v382, v383 = pairs(v380:GetPlayingAnimationTracks())
+                        while true do
+                            local v384
+                            v383, v384 = v381(v382, v383)
+                            if v383 == nil then
+                                break
+                            end
+                            v384:Stop()
+                        end
+                        local v385 = Instance.new("Animation")
+                        v385.AnimationId = "rbxassetid://100558589307006"
+                        local v386 = v380:LoadAnimation(v385)
+                        v386:Play()
+                        v386:AdjustSpeed(0)
+                        v386.TimePosition = 0
+                        v386:AdjustSpeed(1.3)
+                        coroutine.wrap(PmoFissure)()
+                        wait(0.5)
+                        coroutine.wrap(freezeCharacter)()
+                        coroutine.wrap(webbroke)()
+                        coroutine.wrap(Glowersss)()
+                    end
+                end)
+                local vu387 = 15955393872
+                local v388 = game.Players.LocalPlayer
+                local vu389 = (v388.Character or v388.CharacterAdded:Wait()):WaitForChild("Humanoid")
+                local vu390 = game.Players.LocalPlayer
+                local vu391 = vu390.Character
+                backpack = vu390.Backpack
+                function equipFirstTool()
+                    tools = backpack:GetChildren()
+                    tooler = tools[3]
+                    if tooler:IsA("Tool") then
+                        tooler.Parent = vu391
+                        wait(0.1)
+                        tooler.Parent = backpack
+                    else
+                        print("NO MOVE DETECTED")
+                    end
+                end
+                function ihateniggers()
+                    vu107 = game:GetService("Players")
+                    vu390 = vu107.LocalPlayer
+                    camera = workspace.CurrentCamera
+                    vu391 = vu390.Character or vu390.CharacterAdded:Wait()
+                    humanoidRootPart = vu391:WaitForChild("HumanoidRootPart")
+                    vu389 = vu391:WaitForChild("Humanoid")
+                    local vu392 = Instance.new("Animation")
+                    vu392.AnimationId = "rbxassetid://18459183268"
+                    local v393 = (vu389:FindFirstChild("Animator") or Instance.new("Animator", vu389)):LoadAnimation(vu392)
+                    v393:Play()
+                    v393.TimePosition = 0
+                    v393:AdjustSpeed(1)
+                    local v394 = Instance.new("ScreenGui")
+                    v394.Parent = vu390:WaitForChild("PlayerGui")
+                    local v395 = Instance.new("TextLabel")
+                    v395.Size = UDim2.new(0, 200, 0, 50)
+                    v395.Position = UDim2.new(0.5, - 100, 0.25, - 25)
+                    v395.BackgroundTransparency = 1
+                    v395.Text = "DOMAIN"
+                    v395.TextColor3 = Color3.new(0, 0, 0)
+                    v395.TextStrokeTransparency = 0
+                    v395.TextSize = 50
+                    v395.TextStrokeColor3 = Color3.new(1, 1, 1)
+                    v395.Parent = v394
+                    local v396 = Instance.new("TextLabel")
+                    v396.Size = UDim2.new(0, 200, 0, 50)
+                    v396.Position = UDim2.new(0.5, - 100, 0.25, - 25)
+                    v396.BackgroundTransparency = 1
+                    v396.Text = "EXPANSION"
+                    v396.TextSize = 50
+                    v396.TextColor3 = Color3.new(0, 0, 0)
+                    v396.TextStrokeTransparency = 0
+                    v396.TextStrokeColor3 = Color3.new(1, 1, 1)
+                    v396.Parent = v394
+                    function animateTextLabel(p397, p398)
+                        p397:TweenPosition(p398, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.35, true)
+                        wait(1.35)
+                        p397:TweenPosition(UDim2.new(0.5, - 100, 0.25, - 25), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.35, true)
+                        wait(0.2)
+                        p397:Destroy()
+                    end
+                    wait(0.1)
+                    v393:AdjustSpeed(1)
+                    function createCloneGui()
+                        local v399 = Instance.new("ScreenGui")
+                        v399.Parent = vu390:WaitForChild("PlayerGui")
+                        local vu400 = Instance.new("ViewportFrame")
+                        vu400.Size = UDim2.new(1, 0, 0.02, 0)
+                        vu400.Position = UDim2.new(0, 0, 0.25, 0)
+                        vu400.Parent = v399
+                        vu400.Ambient = Color3.new(0.3, 0.3, 0.3)
+                        vu400.LightColor = Color3.new(1, 0, 0)
+                        vu400.LightDirection = Vector3.new(1, 1, 0.5)
+                        vu400.BorderColor3 = Color3.new(1, 1, 1)
+                        vu400.BorderSizePixel = 3
+                        vu400.Rotation = - 10
+                        local v401 = vu390.Character:Clone()
+                        v401.Parent = vu400
+                        local v402, v403, v404 = ipairs(v401:GetDescendants())
+                        while true do
+                            local v405
+                            v404, v405 = v402(v403, v404)
+                            if v404 == nil then
+                                break
+                            end
+                            if v405:IsA("Script") or v405:IsA("LocalScript") then
+                                v405:Destroy()
+                            end
+                        end
+                        local v406 = Instance.new("Camera")
+                        vu400.CurrentCamera = v406
+                        local v407 = camera.CFrame
+                        v401:SetPrimaryPartCFrame(CFrame.new(v407.Position) * CFrame.Angles(0, 0, 0))
+                        local v408 = Vector3.new(0, 0, - 3)
+                        v406.CFrame = CFrame.new(v407.Position + v408, v407.Position) * CFrame.Angles(0.1, 0, 0.2)
+                        humanoidRootPart = v401:WaitForChild("HumanoidRootPart")
+                        cloneHumanoid = v401:WaitForChild("Humanoid")
+                        cloneAnimator = cloneHumanoid:FindFirstChild("Animator") or Instance.new("Animator", cloneHumanoid)
+                        cloneAnimationTrack = cloneAnimator:LoadAnimation(vu392)
+                        cloneAnimationTrack:Play()
+                        cloneAnimationTrack.TimePosition = 0
+                        cloneAnimationTrack:AdjustSpeed(1)
+                        function Background()
+                            local v409 = Instance.new("Part")
+                            v409.Size = Vector3.new(45, 20, 1)
+                            v409.Anchored = true
+                            v409.CanCollide = false
+                            v409.Parent = vu400
+                            local v410 = Instance.new("Decal")
+                            v410.Texture = "rbxassetid://17668583842"
+                            v410.Parent = v409
+                            v410.Face = Enum.NormalId.Front
+                            local v411 = humanoidRootPart.CFrame.LookVector
+                            v409.Position = humanoidRootPart.Position + v411 * - 3
+                            local vu412 = Instance.new("Part")
+                            vu412.Size = Vector3.new(2000, 2000, 1)
+                            vu412.Anchored = true
+                            vu412.CanCollide = false
+                            vu412.Parent = vu400
+                            local v413 = Instance.new("Decal")
+                            v413.Texture = "rbxassetid://17668583842"
+                            v413.Parent = vu412
+                            v413.Face = Enum.NormalId.Front
+                            local v414 = humanoidRootPart.CFrame.LookVector
+                            vu412.Position = humanoidRootPart.Position + v414 * - 4
+                            delay(10, function()
+                                vu412:Destroy()
+                            end)
+                        end
+                        Background()
+                        TweenService = game:GetService("TweenService")
+                        local v415 = TweenInfo.new(0.35, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+                        local v416 = {
+                            Size = UDim2.new(1.3, 0, 0.4, 0)
+                        }
+                        local v417 = TweenService:Create(vu400, v415, v416)
+                        v417:Play()
+                        local v418 = TweenInfo.new(0.35, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+                        local v419 = {
+                            Position = UDim2.new(- 0.15, 0, 0.1, 0)
+                        }
+                        TweenService:Create(vu400, v418, v419):Play()
+                        v417.Completed:Wait()
+                        wait(1)
+                        local v420 = TweenInfo.new(0.35, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+                        local v421 = {
+                            Size = UDim2.new(1, 0, 0.01, 0)
+                        }
+                        local v422 = TweenService:Create(vu400, v420, v421)
+                        v422:Play()
+                        local v423 = TweenInfo.new(0.35, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+                        local v424 = {
+                            Position = UDim2.new(0, 0, 0.25, 0)
+                        }
+                        TweenService:Create(vu400, v423, v424):Play()
+                        v422.Completed:Wait()
+                        v399:Destroy()
+                    end
+                    coroutine.wrap(createCloneGui)()
+                    coroutine.wrap(animateTextLabel)(v395, UDim2.new(0.2, 0, 0.13, - 25))
+                    coroutine.wrap(animateTextLabel)(v396, UDim2.new(0.8, - 200, 0.48, - 25))
+                end
+                function nigganaynay()
+                    local vu425 = "rbxassetid://14762632034"
+                    local v426 = game:GetService("RunService")
+                    local function vu431()
+                        local v427, v428, v429 = ipairs(workspace:GetDescendants())
+                        while true do
+                            local v430
+                            v429, v430 = v427(v428, v429)
+                            if v429 == nil then
+                                break
+                            end
+                            if v430:IsA("Sound") and (v430.SoundId == vu425 and v430.IsPlaying) then
+                                v430:Destroy()
+                            end
+                        end
+                    end
+                    local v432 = v426.Stepped:Connect(function()
+                        vu431()
+                    end)
+                    wait(0.1)
+                    v432:Disconnect()
+                end
+                function othernigga()
+                    local vu433 = "rbxassetid://14841861836"
+                    local v434 = game:GetService("RunService")
+                    local function vu439()
+                        local v435, v436, v437 = ipairs(workspace:GetDescendants())
+                        while true do
+                            local v438
+                            v437, v438 = v435(v436, v437)
+                            if v437 == nil then
+                                break
+                            end
+                            if v438:IsA("Sound") and (v438.SoundId == vu433 and v438.IsPlaying) then
+                                v438:Destroy()
+                            end
+                        end
+                    end
+                    local v440 = v434.Stepped:Connect(function()
+                        vu439()
+                    end)
+                    wait(0.1)
+                    v440:Disconnect()
+                end
+                function createScreenGui(p441, p442, p443)
+                    local vu444 = Instance.new("ScreenGui")
+                    vu444.Parent = p441:WaitForChild("PlayerGui")
+                    local v445 = Instance.new("Frame")
+                    v445.Size = UDim2.new(2, 0, 2, 0)
+                    v445.Position = UDim2.new(0, 0, 0, 0)
+                    v445.BackgroundColor3 = Color3.new(0, 0, 0)
+                    v445.BackgroundTransparency = 0
+                    v445.Parent = vu444
+                    local v446 = Instance.new("ImageLabel")
+                    v446.Name = "Chatt"
+                    v446.BorderSizePixel = 0
+                    v446.BackgroundColor3 = Color3.new(1, 1, 1)
+                    v446.AnchorPoint = Vector2.new(0.5, 0.5)
+                    v446.Image = "rbxassetid://17344292317"
+                    v446.Size = UDim2.new(0.15, 0, 0.3, 0)
+                    v446.BorderColor3 = Color3.new(0, 0, 0)
+                    v446.BackgroundTransparency = 1
+                    v446.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    v446.Parent = vu444
+                    local v447 = Instance.new("TextLabel")
+                    v447.Name = "Sub"
+                    v447.TextWrapped = true
+                    v447.BorderSizePixel = 0
+                    v447.TextScaled = true
+                    v447.BackgroundColor3 = Color3.new(1, 1, 1)
+                    v447.FontFace = Font.new("rbxassetid://12187375716", Enum.FontWeight.Bold, Enum.FontStyle.Italic)
+                    v447.AnchorPoint = Vector2.new(0.5, 0.5)
+                    v447.TextSize = 14
+                    v447.Size = UDim2.new(0.3, 0, 0.4, 0)
+                    v447.BorderColor3 = Color3.new(0, 0, 0)
+                    v447.Text = p442
+                    v447.TextColor3 = Color3.new(0, 0, 0)
+                    v447.BackgroundTransparency = 1
+                    v447.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    v447.Parent = v446
+                    delay(p443, function()
+                        vu444:Destroy()
+                    end)
+                end
+                vu390 = game.Players.LocalPlayer
+                function DomainSpeech()
+                    createScreenGui(vu390, "DOMAIN EXPANSION", 0.5)
+                    wait(1)
+                    createScreenGui(vu390, "DOMAIN EXPANSION", 0.3)
+                    wait(0.75)
+                    createScreenGui(vu390, "DOMAIN EXPANSION", 0.3)
+                    wait(0.75)
+                    createScreenGui(vu390, "DOMAIN EXPANSION", 0.2)
+                end
+                vu389.AnimationPlayed:Connect(function(p448)
+                    if p448.Animation.AnimationId == "rbxassetid://" .. vu387 then
+                        local v449 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+                        local v450, v451, v452 = pairs(v449:GetPlayingAnimationTracks())
+                        while true do
+                            local v453
+                            v452, v453 = v450(v451, v452)
+                            if v452 == nil then
+                                break
+                            end
+                            v453:Stop()
+                        end
+                        local v454 = Instance.new("Animation")
+                        v454.AnimationId = "rbxassetid://15943915877"
+                        local v455 = v449:LoadAnimation(v454)
+                        v455:Play()
+                        v455:AdjustSpeed(0)
+                        v455.TimePosition = 0.05
+                        v455:AdjustSpeed(1)
+                    end
+                end)
+                local vu456 = 12447707844
+                local v457 = game.Players.LocalPlayer
+                local vu458 = (v457.Character or v457.CharacterAdded:Wait()):WaitForChild("Humanoid")
+                local function v472(p459)
+                    if p459.Animation.AnimationId == "rbxassetid://" .. vu456 then
+                        local v460 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+                        local v461, v462, v463 = pairs(v460:GetPlayingAnimationTracks())
+                        while true do
+                            local v464
+                            v463, v464 = v461(v462, v463)
+                            if v463 == nil then
+                                break
+                            end
+                            v464:Stop()
+                        end
+                        local v465 = Instance.new("Animation")
+                        v465.AnimationId = "rbxassetid://18459178353"
+                        local v466 = v460:LoadAnimation(v465)
+                        v466:Play()
+                        v466:AdjustSpeed(0)
+                        v466.TimePosition = 0
+                        v466:AdjustSpeed(5)
+                        l_TweenService_1 = game:GetService("TweenService")
+                        task.spawn(function()
+                            l_Camera_1 = workspace.Camera
+                            l_TweenService_1:Create(l_Camera_1, TweenInfo.new(1.5, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+                                FieldOfView = 102
+                            }):Play()
+                            task.wait(1.5)
+                            l_TweenService_1:Create(l_Camera_1, TweenInfo.new(6, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                FieldOfView = 70
+                            }):Play()
+                        end)
+                        local v467 = Instance.new("Sound")
+                        v467.SoundId = "rbxassetid://7817341182"
+                        v467.Volume = 5
+                        v467.Parent = game.Players.LocalPlayer.Character
+                        v467:Play()
+                        local v468 = Instance.new("Sound")
+                        v468.SoundId = "rbxassetid://7817336081"
+                        v468.Volume = 3
+                        v468.Parent = game.Players.LocalPlayer.Character
+                        v468:Play()
+                        local v469 = Instance.new("Sound")
+                        v469.SoundId = "rbxassetid://99240762321565"
+                        v469.Name = "MSmusic"
+                        v469.Volume = 1
+                        v469.TimePosition = 116
+                        v469.Parent = game.Players.LocalPlayer.Character
+                        v469:Play()
+                        coroutine.wrap(ihateniggers)()
+                        wait(1.4)
+                        local v470 = game.Players.LocalPlayer.Backpack["Table Flip"]
+                        vu458 = game.Players.LocalPlayer.Character.Humanoid
+                        if v470 then
+                            vu458:EquipTool(v470)
+                            wait(0.01)
+                            vu458:UnequipTools()
+                        end
+                        v469.Volume = 3
+                        local v471 = Instance.new("Sound")
+                        v471.SoundId = "rbxassetid://116830129938452"
+                        v471.Volume = 3
+                        v471.Parent = game.Players.LocalPlayer.Character
+                        v471:Play()
+                    end
+                end
+                function domainSlashes()
+                    local v473 = Instance.new("Part")
+                    v473.Size = Vector3.new(300, 500, 500)
+                    v473.Shape = Enum.PartType.Block
+                    v473.Color = Color3.fromRGB(255, 0, 0)
+                    v473.Anchored = true
+                    v473.Transparency = 1
+                    v473.CanCollide = false
+                    v473.Parent = Workspace
+                    local v474 = Instance.new("ParticleEmitter")
+                    v474.Name = "Slash1"
+                    v474.Lifetime = NumberRange.new(0.1, 0.1)
+                    v474.SpreadAngle = Vector2.new(360, 360)
+                    v474.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 10, 0),
+                        NumberSequenceKeypoint.new(1, 10, 0)
+                    })
+                    v474.Speed = NumberRange.new(0.1, 0.1)
+                    v474.Brightness = 1000
+                    v474.Texture = "rbxassetid://15407518755"
+                    v474.Rate = 4000
+                    v474.Orientation = Enum.ParticleOrientation.VelocityParallel
+                    v474.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 75.33, 0),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v474.Shape = Enum.ParticleEmitterShape.Sphere
+                    v474.Parent = v473
+                    local v475 = Instance.new("ParticleEmitter")
+                    v475.Name = "Slash2"
+                    v475.Lifetime = NumberRange.new(0.05, 0.05)
+                    v475.SpreadAngle = Vector2.new(360, 360)
+                    v475.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 10, 0),
+                        NumberSequenceKeypoint.new(1, 10, 0)
+                    })
+                    v475.Speed = NumberRange.new(0.1, 0.1)
+                    v475.Brightness = 1000
+                    v475.Texture = "rbxassetid://995724625"
+                    v475.Rate = 4000
+                    v475.Orientation = Enum.ParticleOrientation.VelocityParallel
+                    v475.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 75.33, 0),
+                        NumberSequenceKeypoint.new(1, 0, 0)
+                    })
+                    v475.Shape = Enum.ParticleEmitterShape.Sphere
+                    v475.Parent = v473
+                    local v476 = Instance.new("ParticleEmitter")
+                    v476.Name = "Sparks"
+                    v476.FlipbookFramerate = NumberRange.new(1, 80)
+                    v476.Lifetime = NumberRange.new(0.2, 0.2)
+                    v476.Color = ColorSequence.new({
+                        ColorSequenceKeypoint.new(0, Color3.new(0.33, 0, 0)),
+                        ColorSequenceKeypoint.new(0.5, Color3.new(0.66, 0.24, 0.24)),
+                        ColorSequenceKeypoint.new(1, Color3.new(1, 0.49, 0.49))
+                    })
+                    v476.Drag = 5
+                    v476.ZOffset = 30
+                    v476.SpreadAngle = Vector2.new(360, 360)
+                    v476.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, - 3, 0),
+                        NumberSequenceKeypoint.new(0.07, - 0.94, 0.73),
+                        NumberSequenceKeypoint.new(0.11, 0.71, 0.68),
+                        NumberSequenceKeypoint.new(0.29, 1.13, 0.66),
+                        NumberSequenceKeypoint.new(0.41, 0.99, 0.63),
+                        NumberSequenceKeypoint.new(0.47, - 1.87, 0.61),
+                        NumberSequenceKeypoint.new(0.64, 0.39, 0.57),
+                        NumberSequenceKeypoint.new(0.78, - 0.78, 0.55),
+                        NumberSequenceKeypoint.new(0.86, - 1.48, 0.53),
+                        NumberSequenceKeypoint.new(1, 0, 0.5)
+                    })
+                    v476.Speed = NumberRange.new(- 200, 200)
+                    v476.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                    v476.Texture = "rbxassetid://16144047329"
+                    v476.Acceleration = Vector3.new(0, - 15, 0)
+                    v476.ShapePartial = 0.699999988079071
+                    v476.Rate = 4000
+                    v476.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 1, 0),
+                        NumberSequenceKeypoint.new(0.2, 0, 0),
+                        NumberSequenceKeypoint.new(0.5, 0, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v476.ShapeInOut = Enum.ParticleEmitterShapeInOut.Inward
+                    v476.Orientation = Enum.ParticleOrientation.VelocityParallel
+                    v476.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 100, 0),
+                        NumberSequenceKeypoint.new(1, 100, 0)
+                    })
+                    v476.Shape = Enum.ParticleEmitterShape.Sphere
+                    v476.FlipbookStartRandom = true
+                    v476.Parent = v473
+                    local v477 = tick()
+                    local v478 = 0.3
+                    while tick() - v477 < v478 do
+                        wait(0.01)
+                        local _ = humanoidRootPart.CFrame.LookVector
+                        v473.CFrame = humanoidRootPart.CFrame * CFrame.new(0, 0, 0)
+                    end
+                    v474.Rate = 0
+                    v476.Rate = 0
+                    v475.Rate = 0
+                    wait(3)
+                    v473:Destroy()
+                end
+                vu458.AnimationPlayed:Connect(v472)
+                local vu479 = 11365563255
+                local v480 = game.Players.LocalPlayer
+                local vu481 = v480.Character or v480.CharacterAdded:Wait()
+                local v482 = vu481
+                vu458 = vu481.WaitForChild(v482, "Humanoid")
+                local function v503(p483)
+                    if p483.Animation.AnimationId == "rbxassetid://" .. vu479 then
+                        local v484 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+                        local v485, v486, v487 = pairs(v484:GetPlayingAnimationTracks())
+                        while true do
+                            local v488
+                            v487, v488 = v485(v486, v487)
+                            if v487 == nil then
+                                break
+                            end
+                            v488:Stop()
+                        end
+                        local v489 = Instance.new("Animation")
+                        v489.AnimationId = "rbxassetid://16054192884"
+                        local v490 = v484:LoadAnimation(v489)
+                        v490:Play()
+                        v490:AdjustSpeed(0)
+                        v490.TimePosition = 0.85
+                        v490:AdjustSpeed(0.1)
+                        coroutine.wrap(DomainSpeech)()
+                        coroutine.wrap(othernigga)()
+                        coroutine.wrap(nigganaynay)()
+                        local vu491 = 138358609107599
+                        local vu492 = game:GetObjects("rbxassetid://" .. vu491)
+                        local function v502()
+                            local v493 = vu492[1]
+                            if v493 then
+                                local v494 = v493:FindFirstChildOfClass("Model")
+                                if v494 then
+                                    if not v494:FindFirstChildOfClass("Part") then
+                                        warn("No part found in the model")
+                                        return
+                                    end
+                                    local v495 = CFrame.new(0, 10, 15)
+                                    local v496 = vu481.PrimaryPart.CFrame
+                                    local v497 = v496 * v495
+                                    v494:PivotTo((CFrame.lookAt(v497.Position, v496.Position)))
+                                    local v498, v499, v500 = ipairs(v494:GetDescendants())
+                                    while true do
+                                        local v501
+                                        v500, v501 = v498(v499, v500)
+                                        if v500 == nil then
+                                            break
+                                        end
+                                        if v501:IsA("BasePart") then
+                                            v501.Anchored = true
+                                            v501.CanCollide = false
+                                        end
+                                    end
+                                    v494.Parent = workspace
+                                    wait(6)
+                                    v494:Destroy()
+                                else
+                                    warn("Union part not found in the model")
+                                end
+                            else
+                                warn("Model with ID " .. vu491 .. " not found")
+                            end
+                        end
+                        coroutine.wrap(v502)()
+                        initializeHotbarAndGUI()
+                        wait(6)
+                        coroutine.wrap(domainSlashes)()
+                        coroutine.wrap(vu134)()
+                        initializeHotbarAndGUI()
+                        wait(6)
+                        vu481.MSmusic:Destroy()
+                    end
+                end
+                vu458.AnimationPlayed:Connect(v503)
+                local vu504 = 12447707844
+                local v505 = game.Players.LocalPlayer
+                local v506 = v505.Character
+                if v506 then
+                    vu481 = v506
+                else
+                    vu481 = v505.CharacterAdded:Wait()
+                end
+                local v507 = vu481
+                vu458 = vu481.WaitForChild(v507, "Humanoid")
+                function DashVFX()
+                    local v508 = Instance.new("Part")
+                    v508.Anchored = true
+                    v508.CanCollide = false
+                    v508.Size = Vector3.new(0.1, 0.1, 0.1)
+                    v508.Transparency = 1
+                    v508.CFrame = humanoidRootPart.CFrame + humanoidRootPart.CFrame.LookVector * 5
+                    v508.Parent = workspace
+                    local v509 = Instance.new("ParticleEmitter")
+                    v509.Name = "Dust"
+                    v509.FlipbookFramerate = NumberRange.new(10, 30)
+                    v509.Lifetime = NumberRange.new(0.5, 0.75)
+                    v509.Drag = 8
+                    v509.LightInfluence = 1
+                    v509.SpreadAngle = Vector2.new(10, 10)
+                    v509.Speed = NumberRange.new(0.1, 5)
+                    v509.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid8x8
+                    v509.Texture = "rbxassetid://13026594575"
+                    v509.Rotation = NumberRange.new(- 360, 360)
+                    v509.Rate = 0
+                    v509.EmissionDirection = Enum.NormalId.Front
+                    v509.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.5, 0, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v509.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v509.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.08, 4.96, 0),
+                        NumberSequenceKeypoint.new(0.22, 8.37, 0),
+                        NumberSequenceKeypoint.new(0.46, 11.53, 0),
+                        NumberSequenceKeypoint.new(0.7, 12.98, 0),
+                        NumberSequenceKeypoint.new(1, 13.99, 0)
+                    })
+                    v509.FlipbookStartRandom = true
+                    v509.Parent = v508
+                    local v510 = Instance.new("ParticleEmitter")
+                    v510.Name = "Ring"
+                    v510.Lifetime = NumberRange.new(0.2, 0.5)
+                    v510.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v510.ZOffset = 2
+                    v510.LightInfluence = 1
+                    v510.LightEmission = 1
+                    v510.SpreadAngle = Vector2.new(10, 10)
+                    v510.Speed = NumberRange.new(0.1, 0.1)
+                    v510.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid2x2
+                    v510.Texture = "rbxassetid://9293225960"
+                    v510.RotSpeed = NumberRange.new(- 200, 200)
+                    v510.Rotation = NumberRange.new(- 360, 360)
+                    v510.Rate = 0
+                    v510.EmissionDirection = Enum.NormalId.Front
+                    v510.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0.9, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v510.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v510.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(0.03, 3.14, 3.48),
+                        NumberSequenceKeypoint.new(0.15, 6.48, 3.78),
+                        NumberSequenceKeypoint.new(0.3, 9.21, 3.48),
+                        NumberSequenceKeypoint.new(0.61, 11.6, 2.78),
+                        NumberSequenceKeypoint.new(1, 13.23, 2.76)
+                    })
+                    v510.Parent = v508
+                    local v511 = Instance.new("Attachment")
+                    v511.Name = "Dash1"
+                    v511.Position = Vector3.new(4.94, - 1, 0)
+                    v511.Parent = v508
+                    local v512 = Instance.new("ParticleEmitter")
+                    v512.Name = "Dash"
+                    v512.Lifetime = NumberRange.new(0.5, 0.5)
+                    v512.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v512.LightInfluence = 1
+                    v512.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(1, - 2, 0)
+                    })
+                    v512.Speed = NumberRange.new(0.1, 0.1)
+                    v512.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                    v512.Texture = "rbxassetid://16144040679"
+                    v512.LockedToPart = true
+                    v512.EmissionDirection = Enum.NormalId.Right
+                    v512.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v512.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v512.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 10, 0),
+                        NumberSequenceKeypoint.new(1, 10, 0)
+                    })
+                    v512.Rate = 0
+                    v512.Parent = v511
+                    local v513 = Instance.new("Attachment")
+                    v513.Name = "Dash2"
+                    v513.Position = Vector3.new(- 4, - 1, 0)
+                    v513.Parent = v508
+                    local v514 = Instance.new("ParticleEmitter")
+                    v514.Name = "Dash"
+                    v514.Lifetime = NumberRange.new(0.5, 0.5)
+                    v514.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                    v514.LightInfluence = 1
+                    v514.Squash = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(1, - 2, 0)
+                    })
+                    v514.Speed = NumberRange.new(0.1, 0.1)
+                    v514.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                    v514.Texture = "rbxassetid://16144040679"
+                    v514.LockedToPart = true
+                    v514.EmissionDirection = Enum.NormalId.Right
+                    v514.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 0, 0),
+                        NumberSequenceKeypoint.new(1, 1, 0)
+                    })
+                    v514.Orientation = Enum.ParticleOrientation.VelocityPerpendicular
+                    v514.Size = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0, 10, 0),
+                        NumberSequenceKeypoint.new(1, 10, 0)
+                    })
+                    v514.Rate = 0
+                    v514.Parent = v513
+                    v509:Emit(10)
+                    v510:Emit(10)
+                    v512:Emit(3)
+                    v514:Emit(3)
+                    wait(2)
+                    v508:Destroy()
+                end
+                vu458.AnimationPlayed:Connect(function(p515)
+                    if p515.Animation.AnimationId == "rbxassetid://" .. vu504 then
+                        p = game.Players.LocalPlayer
+                        Humanoid = p.Character:WaitForChild("Humanoid")
+                        local v516, v517, v518 = pairs(Humanoid:GetPlayingAnimationTracks())
+                        while true do
+                            local v519
+                            v518, v519 = v516(v517, v518)
+                            if v518 == nil then
+                                break
+                            end
+                            v519:Stop()
+                        end
+                        local v520 = Instance.new("Animation")
+                        v520.AnimationId = "rbxassetid://17106858586 "
+                        local v521 = Humanoid:LoadAnimation(v520)
+                        v521:Play()
+                        v521:AdjustSpeed(0)
+                        v521.TimePosition = 0
+                        v521:AdjustSpeed(1)
+                    end
+                end)
+                local vu522 = 10479335397
+                local v523 = game.Players.LocalPlayer;
+                (v523.Character or v523.CharacterAdded:Wait()):WaitForChild("Humanoid").AnimationPlayed:Connect(function(p524)
+                    if p524.Animation.AnimationId == "rbxassetid://" .. vu522 then
+                        local v525 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+                        local v526, v527, v528 = pairs(v525:GetPlayingAnimationTracks())
+                        while true do
+                            local v529
+                            v528, v529 = v526(v527, v528)
+                            if v528 == nil then
+                                break
+                            end
+                            v529:Stop()
+                        end
+                        local v530 = Instance.new("Animation")
+                        v530.AnimationId = "rbxassetid://132259592388175"
+                        local v531 = v525:LoadAnimation(v530)
+                        v531:Play()
+                        v531:AdjustSpeed(0)
+                        v531.TimePosition = 0
+                        v531:AdjustSpeed(1.3)
+                        coroutine.wrap(DashVFX)()
+                    end
+                end)
+                local v532 = game.Players.LocalPlayer;
+                (v532.Character or v532.CharacterAdded:Wait()):WaitForChild("Humanoid")
+                local v533 = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+                local v534, v535, v536 = pairs(v533:GetPlayingAnimationTracks())
+                while true do
+                    local v537
+                    v536, v537 = v534(v535, v536)
+                    if v536 == nil then
+                        break
+                    end
+                    v537:Stop()
+                end
+                local v538 = Instance.new("Animation")
+                v538.AnimationId = "rbxassetid://17861840167"
+                local v539 = v533:LoadAnimation(v538)
+                v539:Play()
+                v539:AdjustSpeed(0)
+                v539.TimePosition = 0.05
+                v539:AdjustSpeed(1)
+                local vu540 = "10470389827"
+                local v541 = game.Players.LocalPlayer
+                local vu542 = (v541.Character or v541.CharacterAdded:Wait()):WaitForChild("Humanoid")
+                local vu543 = vu542:WaitForChild("Animator")
+                local vu544 = Instance.new("Animation")
+                vu544.AnimationId = "rbxassetid://14056370647"
+                local vu545 = nil
+                local function v548(p546)
+                    if p546.Animation.AnimationId == "rbxassetid://" .. vu540 then
+                        p546:Stop()
+                        if not vu545 then
+                            vu545 = vu543:LoadAnimation(vu544)
+                        end
+                        vu545:Play()
+                        vu545:AdjustSpeed(0)
+                        vu545.TimePosition = 3.7
+                        local vu547 = nil
+                        vu547 = p546.Stopped:Connect(function()
+                            if vu545 then
+                                vu545:Stop()
+                            end
+                            if vu547 then
+                                vu547:Disconnect()
+                                vu547 = nil
+                            end
+                        end)
+                    end
+                end
+                vu543.AnimationPlayed:Connect(v548)
+                local vu549 = Instance.new("ParticleEmitter")
+                vu549.Name = "Aura"
+                vu549.FlipbookFramerate = NumberRange.new(2, 10)
+                vu549.Lifetime = NumberRange.new(1, 2)
+                vu549.Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Color3.new(0.33, 0, 0)),
+                    ColorSequenceKeypoint.new(0.5, Color3.new(0.33, 0, 0)),
+                    ColorSequenceKeypoint.new(0.51, Color3.new(0.14, 0, 0)),
+                    ColorSequenceKeypoint.new(1, Color3.new(0.14, 0, 0))
+                })
+                vu549.ZOffset = - 1
+                vu549.Speed = NumberRange.new(0, 0)
+                vu549.Brightness = 5
+                vu549.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                vu549.Texture = "rbxassetid://14607282852"
+                vu549.Rotation = NumberRange.new(- 360, 360)
+                vu549.LockedToPart = true
+                vu549.Rate = 30
+                vu549.Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 1, 0),
+                    NumberSequenceKeypoint.new(0.5, 0, 0),
+                    NumberSequenceKeypoint.new(1, 1, 0)
+                })
+                vu549.FlipbookStartRandom = true
+                function addAuraToPlayer(p550)
+                    local v551 = p550.Character or p550.CharacterAdded:Wait()
+                    local v552, v553, v554 = pairs(v551:GetDescendants())
+                    while true do
+                        local v555
+                        v554, v555 = v552(v553, v554)
+                        if v554 == nil then
+                            break
+                        end
+                        if v555:IsA("BasePart") then
+                            auraClone = vu549:Clone()
+                            auraClone.Parent = v555
+                        end
+                    end
+                end
+                local v556 = game.Players.LocalPlayer
+                addAuraToPlayer(v556)
+                local v557 = game:GetService("Players")
+                local _ = v557.LocalPlayer
+                local vu558 = game.Players.LocalPlayer
+                local vu559 = vu558.Character or vu558.CharacterAdded:Wait()
+                local v560 = vu559
+                humanoidRootPart = vu559.WaitForChild(v560, "HumanoidRootPart")
+                function spawnModelInHand(p561)
+                    local v562 = Instance.new("Part")
+                    if v562 and vu559:FindFirstChild("Right Arm") then
+                        v562.CFrame = vu559["Right Arm"].CFrame * CFrame.new(0, - 0.85, 0)
+                        v562.Size = Vector3.new(1, 2, 1)
+                        v562.Transparency = 1
+                        local v563 = Instance.new("ParticleEmitter")
+                        v563.Name = "Aura"
+                        v563.Lifetime = NumberRange.new(0.4, 0.6)
+                        v563.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                        v563.Color = ColorSequence.new(Color3.new(1, 0.6, 0.6))
+                        v563.ZOffset = 2
+                        v563.LightEmission = - 5
+                        v563.SpreadAngle = Vector2.new(360, 360)
+                        v563.Speed = NumberRange.new(0, 2)
+                        v563.Brightness = 5
+                        v563.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                        v563.Texture = "rbxassetid://9285330517"
+                        v563.Acceleration = Vector3.new(0, 15, 0)
+                        v563.Rotation = NumberRange.new(- 360, 360)
+                        v563.LockedToPart = true
+                        v563.Rate = 15
+                        v563.EmissionDirection = Enum.NormalId.Front
+                        v563.Size = NumberSequence.new(1, 0.38)
+                        v563.Parent = v562
+                        local v564 = Instance.new("ParticleEmitter")
+                        v564.Name = "Sparks"
+                        v564.Lifetime = NumberRange.new(0.3, 0.5)
+                        v564.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+                        v564.Color = ColorSequence.new(Color3.new(1, 0.6, 0.6))
+                        v564.ZOffset = 2
+                        v564.LightEmission = - 5
+                        v564.SpreadAngle = Vector2.new(360, 360)
+                        v564.Speed = NumberRange.new(0, 5)
+                        v564.Brightness = 5
+                        v564.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+                        v564.Texture = "rbxassetid://15269497616"
+                        v564.Acceleration = Vector3.new(0, 20, 0)
+                        v564.Rotation = NumberRange.new(- 360, 360)
+                        v564.Rate = 100
+                        v564.EmissionDirection = Enum.NormalId.Front
+                        v564.VelocityInheritance = 0.5
+                        v564.FlipbookStartRandom = true
+                        v564.Parent = v562
+                        local v565 = Instance.new("Attachment")
+                        v565.Name = "A1"
+                        v565.CFrame = CFrame.new(0, - 1, - 2)
+                        v565.Position = Vector3.new(0, - 1, - 2)
+                        v565.Parent = v562
+                        local v566 = Instance.new("Attachment")
+                        v566.Name = "A0"
+                        v566.CFrame = CFrame.new(0, - 1, 2)
+                        v566.Position = Vector3.new(0, - 1, 2)
+                        v566.Parent = v562
+                        local v567 = Instance.new("Trail")
+                        v567.FaceCamera = true
+                        v567.Attachment1 = v565
+                        v567.Texture = "rbxassetid://6045867277"
+                        v567.Color = ColorSequence.new(Color3.fromRGB(255, 100, 100))
+                        v567.WidthScale = NumberSequence.new({
+                            NumberSequenceKeypoint.new(0, 1, 0),
+                            NumberSequenceKeypoint.new(1, 0, 0)
+                        })
+                        v567.Transparency = NumberSequence.new({
+                            NumberSequenceKeypoint.new(0, 0, 0),
+                            NumberSequenceKeypoint.new(1, 1, 0)
+                        })
+                        v567.Attachment0 = v566
+                        v567.Lifetime = 1
+                        v567.LightEmission = 1
+                        v567.Brightness = 3
+                        v567.TextureMode = Enum.TextureMode.Wrap
+                        v567.TextureLength = 8
+                        v567.Parent = v562
+                        v562.Anchored = false
+                        v562.CanCollide = false
+                        v562.Parent = vu559
+                        local v568 = Instance.new("Weld")
+                        v568.Part0 = vu559["Right Arm"]
+                        v568.Part1 = v562
+                        v568.C0 = vu559["Right Arm"].CFrame:inverse() * v562.CFrame
+                        v568.Parent = vu559["Right Arm"]
+                        wait(p561)
+                        v563.Rate = 0
+                        v564.Rate = 0
+                        v567:Destroy()
+                        v566:Destroy()
+                        v565:Destroy()
+                        wait(3)
+                        v568:Destroy()
+                        v562:Destroy()
+                    end
+                end
+                function GoGoGoJohnyGo()
+                    bodyVelocity = Instance.new("BodyVelocity", humanoidRootPart)
+                    bodyVelocity.MaxForce = Vector3.new(10000000, 10000000, 10000000)
+                    flightDuration = 3
+                    flightSpeed = 100
+                    function flyForward()
+                        local v569 = tick()
+                        while tick() - v569 < flightDuration do
+                            wait(0.1)
+                            if vu171 then
+                                bodyVelocity:Destroy()
+                            else
+                                bodyVelocity.Velocity = humanoidRootPart.CFrame.LookVector * flightSpeed
+                            end
+                        end
+                        bodyVelocity:Destroy()
+                    end
+                    flyForward()
+                end
+                function playtheanim(p570, p571, p572)
+                    vu558 = game.Players.LocalPlayer
+                    vu559 = vu558.Character or vu558.CharacterAdded:Wait()
+                    humanoidRootPart = vu559:WaitForChild("HumanoidRootPart")
+                    vu542 = vu559:WaitForChild("Humanoid")
+                    local v573 = Instance.new("Animation")
+                    v573.AnimationId = "rbxassetid://" .. p570
+                    local v574 = (vu542:FindFirstChild("Animator") or Instance.new("Animator", vu542)):LoadAnimation(v573)
+                    v574:Play()
+                    v574:AdjustSpeed(p571)
+                    v574.TimePosition = p572
+                end
+                ToolHeianRun = Instance.new("Tool")
+                ToolHeianRun.Name = "Heian Run"
+                ToolHeianRun.CanBeDropped = false
+                ToolHeianRun.RequiresHandle = false
+                ToolHeianRun.Parent = vu558:WaitForChild("Backpack")
+                ToolHeianRun.Activated:Connect(function()
+                    coroutine.wrap(playtheanim)(18253337048, 0.1, 0)
+                    coroutine.wrap(spawnModelInHand)(4)
+                    wait(0.4)
+                    gusemo = Instance.new("Sound")
+                    gusemo.SoundId = "rbxassetid://97960256382964"
+                    gusemo.Volume = 3
+                    gusemo.TimePosition = 0
+                    gusemo.Parent = game.Players.LocalPlayer.Character
+                    gusemo:Play()
+                    runningmhtsound = Instance.new("Sound")
+                    runningmhtsound.SoundId = "rbxassetid://4085790525"
+                    runningmhtsound.Volume = 3
+                    runningmhtsound.TimePosition = 0
+                    runningmhtsound.Parent = game.Players.LocalPlayer.Character
+                    runningmhtsound:Play()
+                    runer2 = Instance.new("Sound")
+                    runer2.SoundId = "rbxassetid://4086203738"
+                    runer2.Volume = 3
+                    runer2.TimePosition = 0
+                    runer2.Parent = game.Players.LocalPlayer.Character
+                    runer2:Play()
+                    wait(0.6)
+                    local v575 = vu542
+                    local v576, v577, v578 = pairs(v575:GetPlayingAnimationTracks())
+                    while true do
+                        local v579
+                        v578, v579 = v576(v577, v578)
+                        if v578 == nil then
+                            break
+                        end
+                        v579:Stop()
+                    end
+                    winderr = Instance.new("Sound")
+                    winderr.SoundId = "rbxassetid://3848835272"
+                    winderr.Volume = 1
+                    winderr.TimePosition = 0.2
+                    winderr.Parent = game.Players.LocalPlayer.Character
+                    winderr:Play()
+                    runsounds = Instance.new("Sound")
+                    runsounds.SoundId = "rbxassetid://17429233290"
+                    runsounds.Volume = 1
+                    runsounds.Name = "RunSOunding"
+                    runsounds.TimePosition = 2
+                    runsounds.PlaybackSpeed = 0.5
+                    runsounds.Parent = game.Players.LocalPlayer.Character
+                    runsounds:Play()
+                    coroutine.wrap(playtheanim)(18253337048, 0.2, 0.1)
+                    coroutine.wrap(GoGoGoJohnyGo)()
+                    vu170 = true
+                    wait(3)
+                    if not vu171 then
+                        vu170 = false
+                        local v580 = vu542
+                        local v581, v582, v583 = pairs(v580:GetPlayingAnimationTracks())
+                        while true do
+                            local v584
+                            v583, v584 = v581(v582, v583)
+                            if v583 == nil then
+                                break
+                            end
+                            v584:Stop()
+                        end
+                        runsounds:Destroy()
+                        slammer = Instance.new("Sound")
+                        slammer.SoundId = "rbxassetid://4299510555"
+                        slammer.Volume = 1
+                        slammer.TimePosition = 0.2
+                        slammer.Parent = game.Players.LocalPlayer.Character
+                        slammer:Play()
+                        coroutine.wrap(playtheanim)(119325239112989, 1, 0)
+                    end
+                end)
+            else
+                warn("Animator not found!")
+            end
+        else
+            warn("Animator not found!")
+            return
+        end
+    else
+        warn("Animator not found!")
+        return
+    end
+else
+    warn("Animator not found!")
+    return
+end
