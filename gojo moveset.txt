@@ -1,0 +1,2493 @@
+-- ts file was generated at discord.gg/25ms
+
+
+local vu1 = false
+local v2 = false
+local v3 = v2 and loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletfan2007/BaldyToSorcerer/main/EarlyAccessStatus.lua"))() or loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletfan2007/BaldyToSorcerer/main/PublicStatus.lua"))()
+local v4 = loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletfan2007/BaldyToSorcerer/main/Blacklisted.lua"))()
+local v5 = table.find(v4, tostring(game:GetService("RbxAnalyticsService"):GetClientId()))
+if v2 and getgenv().secretahhkey ~= "thisisthesecretestkeyofalltime" or (v3 ~= true or v5) then
+    if v2 then
+        getgenv().hubName = "TSEK V2 Early Access Fail Unknown"
+        if getgenv().secretahhkey ~= "thisisthesecretestkeyofalltime" then
+            getgenv().hubName = "TSEK V2 Early Access Fail Wrong Key"
+        end
+        if v3 ~= true then
+            getgenv().hubName = "TSEK V2 Early Access Fail Status Down"
+        end
+        if v5 then
+            getgenv().hubName = "TSEK V2 Early Access Fail Blacklisted"
+        end
+        game.Players.LocalPlayer:Kick("You\'re either blacklisted, the script is down, or you dont have the key.")
+    end
+elseif v3 == true then
+    if v2 then
+        getgenv().hubName = "TSEK V2 Early Access Success"
+    end
+    local function v7(p6)
+        return game:GetService(p6)
+    end
+    local vu8 = v7("RunService")
+    local vu9 = v7("Players")
+    v7("UserInputService")
+    local vu10 = v7("TweenService")
+    local v11 = vu9.LocalPlayer.Character
+    local vu12 = vu8.Heartbeat
+    local vu13 = Random.new()
+    local vu14 = loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletfan2007/KOKUSENNN/refs/heads/main/ParticleHandler.lua"))()
+    local vu15 = loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletfan2007/KOKUSENNN/refs/heads/main/LightningBolt.lua"))()
+    local vu16 = loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletfan2007/KOKUSENNN/refs/heads/main/Trove.lua"))()
+    local vu17 = {
+        Color = Color3.fromRGB(125, 0, 0)
+    }
+    local vu18 = game.ReplicatedStorage.Resources:FindFirstChild("Gojo") or game:GetObjects("rbxassetid://97406440754007")[1]
+    vu18.Parent = game.ReplicatedStorage.Resources
+    vu18.Name = "Gojo"
+    spawn(function()
+        makefolder("TSEKSounds")
+        local v19, v20, v21 = pairs({
+            "AwakenActivate.mp3",
+            "AwakenVoiceline.mp3",
+            "BlackFlash.mp3",
+            "GuessIllBeALittleRough.MP3",
+            "Jamada.MP3",
+            "M1Hit1.mp3",
+            "M1Hit2.mp3",
+            "M1Hit3.mp3",
+            "M1Hit4.mp3",
+            "PurpleShoot.mp3",
+            "PurpleStartup.mp3",
+            "ReversalRedFire.mp3",
+            "ReversalRedStartup2.MP3",
+            "SeriousPunchMusic.MP3"
+        })
+        while true do
+            local v22
+            v21, v22 = v19(v20, v21)
+            if v21 == nil then
+                break
+            end
+            if not isfile("TSEKSounds/" .. v22) then
+                local v23 = tick()
+                local v24 = request({
+                    Url = "https://github.com/skibiditoiletfan2007/TSEKSounds/raw/main/" .. v22,
+                    Method = "GET"
+                }).Body
+                if v24 then
+                    print("\'" .. v22 .. "\' Downloaded in " .. string.format("%.2f", tick() - v23) .. "s.")
+                    writefile("TSEKSounds/" .. v22, v24)
+                else
+                    warn("\'" .. v22 .. "\' failed to load.")
+                end
+            end
+        end
+    end)
+    if getgenv().connections then
+        local v25, v26, v27 = pairs(getgenv().connections)
+        while true do
+            local v28
+            v27, v28 = v25(v26, v27)
+            if v27 == nil then
+                break
+            end
+            v28:Disconnect()
+            getgenv().connections[v27] = nil
+        end
+    else
+        getgenv().connections = {}
+    end
+    function Notification(p29, p30)
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "The Sorcerer Everybody Knows",
+            Text = p29,
+            Icon = "rbxassetid://15029401778",
+            Duration = p30
+        })
+    end
+    function LoadAnimation(p31, p32)
+        if p31:IsA("Humanoid") or p31:IsA("Animator") then
+            if not tostring(p32):match("rbxassetid://") then
+                p32 = "rbxassetid://" .. tostring(p32)
+            end
+            local v33 = Instance.new("Animation")
+            v33.AnimationId = p32
+            return p31:LoadAnimation(v33)
+        end
+    end
+    function IsAnimPlaying(p34, p35)
+        local v36, v37, v38 = pairs(p34:GetPlayingAnimationTracks())
+        while true do
+            local v39
+            v38, v39 = v36(v37, v38)
+            if v38 == nil then
+                break
+            end
+            if v39.Animation.AnimationId:match(p35) then
+                return v39
+            end
+        end
+    end
+    function EnableAllVisuals(p40, p41)
+        local v42, v43, v44 = pairs(p40:GetDescendants())
+        while true do
+            local v45
+            v44, v45 = v42(v43, v44)
+            if v44 == nil then
+                break
+            end
+            if v45:IsA("ParticleEmitter") or (v45:IsA("Trail") or v45:IsA("Beam")) then
+                v45.Enabled = p41
+            end
+        end
+    end
+    function ChangeName(p46, p47)
+        local v48 = not p47 and {
+            ["Normal Punch"] = "Reversal Red : Repel",
+            ["Consecutive Punches"] = "Ruthless Barrage",
+            Shove = "Instant Strikes",
+            Uppercut = "Mighty Uprise",
+            ["Death Counter"] = "Calculated Hit",
+            ["Table Flip"] = "Reversal Red\nMaximum",
+            ["Serious Punch"] = "Hollow Technique Purple"
+        } or nil
+        if v48[p46.Name] then
+            p46:SetAttribute("FakeName", v48[p46.Name])
+        end
+    end
+    function GetAsset(p49, p50)
+        local v51 = p49:Clone()
+        if p50 then
+            local v52, v53, v54 = pairs(p50)
+            while true do
+                local v55
+                v54, v55 = v52(v53, v54)
+                if v54 == nil then
+                    break
+                end
+                v51[v54] = v55
+            end
+        end
+        return v51
+    end
+    function EmitAll(p56, p57)
+        local v58, v59, v60 = pairs(p56:GetDescendants())
+        while true do
+            local vu61
+            v60, vu61 = v58(v59, v60)
+            if v60 == nil then
+                break
+            end
+            if vu61:IsA("ParticleEmitter") then
+                local vu62 = vu61:GetAttribute("EmitCount") or p57
+                local v63 = vu61:GetAttribute("EmitDelay") or 0
+                task.delay(v63, function()
+                    vu61:Emit(vu62)
+                end)
+            end
+        end
+    end
+    local function vu78(p64)
+        local v65 = p64 or {}
+        local v66 = v65.Start or Vector3.zero
+        local v67 = v65.End or Vector3.zero
+        local v68 = v65.Amount or 12
+        if not v65.Color then
+            local _ = vu17.Color
+        end
+        local vu69 = Instance.new("Attachment")
+        vu69.Position = v66
+        vu69.Archivable = false
+        vu69.Parent = workspace.Terrain
+        local vu70 = Instance.new("Attachment")
+        vu70.Position = v67
+        vu70.Archivable = false
+        vu70.Parent = workspace.Terrain
+        local vu71 = vu15.new(vu69, vu70, v68)
+        vu71.Color = vu17.Color
+        if v65.HSVShift then
+            vu71.Color = vu14.HSVShift(vu71.Color, v65.HSVShift)
+        end
+        vu71.MinRadius = 0
+        vu71.MaxRadius = 2.5
+        vu71.PulseLength = 1.5
+        vu71.PulseSpeed = 4
+        vu71.Thickness = 0.6
+        vu71.FadeLength = 0.25
+        vu71.AnimationSpeed = 8
+        if v65.Info then
+            local v72, v73, v74 = pairs(v65.Info)
+            while true do
+                local v75
+                v74, v75 = v72(v73, v74)
+                if v74 == nil then
+                    break
+                end
+                vu71[v74] = v75
+            end
+        end
+        return vu71, function(p76, p77)
+            if getmetatable(vu71) then
+                vu71:DestroyDissipate(p76, p77)
+            end
+            vu69:Destroy()
+            vu70:Destroy()
+        end
+    end
+    local function vu94(p79, p80)
+        if p79 ~= nil then
+            if typeof(p79) == "Instance" and p79:IsA("BasePart") then
+                p79 = p79.CFrame
+            end
+            local v81 = p80 or {}
+            local v82 = workspace.CurrentCamera:FindFirstChild("_BlackFlash")
+            if v82 then
+                v82 = v82:FindFirstChild("Highlight")
+            end
+            if v82 then
+                if v81.HSVShift then
+                    v82.OutlineColor = vu14.HSVShift(v82:GetAttribute("OriginalColor"), v81.HSVShift)
+                else
+                    v82.OutlineColor = v82:GetAttribute("OriginalColor")
+                end
+            end
+            local v83 = vu16.new()
+            for _ = 1, 4 do
+                local v84 = vu13
+                local v85 = vu13:NextNumber(12, 18) * (v84:NextInteger(0, 1) == 0 and - 1 or 1)
+                local v86 = vu13:NextNumber(- 8, 12)
+                local v87 = vu13:NextNumber(12, 18) * (vu13:NextInteger(0, 1) == 0 and - 1 or 1)
+                local _, vu88 = vu78({
+                    Start = (p79 * CFrame.new(- v85, - v86, - v87)).Position,
+                    End = (p79 * CFrame.new(v85, v86, v87)).Position,
+                    Info = {
+                        Thickness = 0.75,
+                        PulseLength = 4,
+                        PulseSpeed = 4,
+                        MaxRadius = 8,
+                        AnimationSpeed = 12
+                    },
+                    HSVShift = v81.HSVShift
+                })
+                v83:Add(function()
+                    vu88()
+                end)
+            end
+            for _ = 1, 3 do
+                local v89 = vu13
+                local v90 = vu13:NextNumber(18, 36) * (v89:NextInteger(0, 1) == 0 and - 1 or 1)
+                local v91 = vu13:NextNumber(6, 12)
+                local v92 = vu13:NextNumber(2, 12) * (vu13:NextInteger(0, 1) == 0 and - 1 or 1)
+                local _, vu93 = vu78({
+                    Start = p79.Position,
+                    End = (p79 * CFrame.new(v90, v91, v92)).Position,
+                    Info = {
+                        Thickness = 1.75,
+                        MaxRadius = 16,
+                        PulseLength = 4,
+                        PulseSpeed = 12,
+                        AnimationSpeed = 64
+                    },
+                    HSVShift = v81.HSVShift
+                })
+                v83:Add(function()
+                    vu93()
+                end)
+            end
+            task.wait(1)
+            v83:Destroy()
+        end
+    end
+    local vu95 = {}
+    local function vu135(pu96, pu97)
+        if pu97 == false then
+            if vu95[pu96] then
+                vu95[pu96] = nil
+                return
+            end
+        elseif pu97 then
+            local v98 = vu95[pu96]
+            local v99
+            if v98 then
+                v99 = false
+            else
+                v98 = {}
+                vu95[pu96] = v98
+                v99 = true
+            end
+            local v100, v101, v102 = pairs(pu97)
+            while true do
+                local v103
+                v102, v103 = v100(v101, v102)
+                if v102 == nil then
+                    break
+                end
+                v98[v102] = v103
+            end
+            local vu104 = pu96:FindFirstChild("Torso")
+            local vu105 = {
+                pu96:FindFirstChild("Torso"),
+                pu96:FindFirstChild("Left Arm"),
+                pu96:FindFirstChild("Right Arm"),
+                pu96:FindFirstChild("Left Leg"),
+                pu96:FindFirstChild("Right Leg"),
+                pu96:FindFirstChild("Head")
+            }
+            local vu106 = v98
+            local vu107 = v99
+            task.spawn(function()
+                if not vu107 then
+                    return
+                end
+                while pu96 and (pu96:IsDescendantOf(game) and vu95[pu96]) do
+                    task.wait(vu106.Rate or 0.05)
+                    local v108 = "Character"
+                    local v109 = vu106.Range or 24
+                    if not vu104 then
+                        break
+                    end
+                    local v110 = vu105[vu13:NextInteger(1, # vu105)]
+                    if v110 then
+                        local v111
+                        if v108 == "Character" then
+                            v111 = OverlapParams.new()
+                            v111.FilterType = Enum.RaycastFilterType.Exclude
+                            v111.FilterDescendantsInstances = {
+                                workspace.CurrentCamera,
+                                unpack(vu105)
+                            }
+                            v111.MaxParts = 64
+                        else
+                            v111 = OverlapParams.new()
+                            v111.FilterType = Enum.RaycastFilterType.Exclude
+                            v111.FilterDescendantsInstances = {
+                                workspace.CurrentCamera,
+                                unpack(vu105)
+                            }
+                            v111.MaxParts = 64
+                        end
+                        local v112 = {}
+                        if v108 == "Character" then
+                            v112 = workspace:GetPartBoundsInBox(v110.CFrame, Vector3.new(25, 25, 25), v111)
+                        else
+                            local v113 = workspace:GetPartBoundsInBox(v110.CFrame, v110.Size + Vector3.new(v109, v109, v109), v111)
+                            if v113 then
+                                local v114, v115, v116 = pairs(v113)
+                                while true do
+                                    local v117
+                                    v116, v117 = v114(v115, v116)
+                                    if v116 == nil then
+                                        break
+                                    end
+                                    if v117.Anchored and (v117.Transparency < 0.95 and v117.Size.Magnitude >= 3) then
+                                        table.insert(v112, v117)
+                                    end
+                                end
+                            end
+                        end
+                        if # v112 > 0 then
+                            local v118 = nil
+                            local v119 = nil
+                            if v108 == "Character" then
+                                if # v112 ~= 1 then
+                                    pu97 = v112[vu13:NextInteger(1, # v112)]
+                                else
+                                    v118 = v112[1]
+                                end
+                            elseif v108 == "Part" then
+                                local v120 = RaycastParams.new()
+                                v120.FilterType = Enum.RaycastFilterType.Include
+                                v120.FilterDescendantsInstances = v112
+                                v120.IgnoreWater = true
+                                for _ = 1, 24 do
+                                    local v121 = vu13
+                                    local v122 = vu13
+                                    local v123 = vu13
+                                    local v124 = (CFrame.new(vu104.Position) * CFrame.Angles(math.rad((v121:NextNumber(- 360, 360))), math.rad((v122:NextNumber(- 360, 360))), (math.rad((v123:NextNumber(- 360, 360)))))).LookVector
+                                    local v125 = workspace:Raycast(vu104.Position, v124 * (v109 + 4), v120)
+                                    if v125 then
+                                        v118 = v125.Instance
+                                        v119 = v125.Position
+                                        break
+                                    end
+                                end
+                            end
+                            if v118 and (v108 ~= "Part" or v119) then
+                                local v126 = workspace.CurrentCamera:FindFirstChild("_BlackFlash")
+                                if v126 then
+                                    v126 = v126:FindFirstChild("Highlight")
+                                end
+                                if v126 then
+                                    if pu97.HSVShift then
+                                        v126.OutlineColor = v2.HSVShift(v126:GetAttribute("OriginalColor"), pu97.HSVShift)
+                                    else
+                                        v126.OutlineColor = v126:GetAttribute("OriginalColor")
+                                    end
+                                end
+                                local v127, v128 = vu78({
+                                    HSVShift = pu97.HSVShift
+                                })
+                                local v129 = vu13
+                                local v130 = vu13
+                                local v131 = vu13
+                                v127.Attachment0.Position = Vector3.new(v129:NextNumber(- v110.Size.X, v110.Size.X) / 2, v130:NextNumber(- v110.Size.Y, v110.Size.Y) / 2, v131:NextNumber(- v110.Size.Z, v110.Size.Z) / 2)
+                                v127.Attachment0.Parent = v110
+                                if v108 == "Character" then
+                                    local v132 = vu13
+                                    local v133 = vu13
+                                    local v134 = vu13
+                                    v127.Attachment1.Position = Vector3.new(v132:NextNumber(- v118.Size.X, v118.Size.X) / 2, v133:NextNumber(- v118.Size.Y, v118.Size.Y) / 2, v134:NextNumber(- v118.Size.Z, v118.Size.Z) / 2)
+                                    v127.Attachment1.Parent = v118
+                                else
+                                    v127.Attachment1.Parent = v118
+                                    v127.Attachment1.WorldPosition = v119
+                                end
+                                v127.Attachment1.WorldCFrame = CFrame.new(v127.Attachment1.WorldPosition) * CFrame.Angles(0, 0, - 1.5707963267948966)
+                                if v108 == "Character" then
+                                    v127.Thickness = 0.75
+                                    v127.MaxRadius = vu13:NextNumber(1.5, 8)
+                                    v127.PulseLength = 2
+                                    v127.PulseSpeed = 8
+                                    v127.CurveSize0 = 0
+                                    v127.CurveSize1 = v127.MaxRadius
+                                    v127.Frequency = 0.25
+                                    v127.AnimationSpeed = 8
+                                else
+                                    v127.Thickness = 0.75
+                                    v127.MaxRadius = vu13:NextNumber(1.5, 8)
+                                    v127.PulseLength = 2
+                                    v127.PulseSpeed = 8
+                                    v127.CurveSize0 = 0
+                                    v127.CurveSize1 = v127.MaxRadius
+                                    v127.Frequency = 0.25
+                                    v127.AnimationSpeed = 8
+                                end
+                                v127.Enabled = true
+                                task.delay(v127.PulseLength + 0.5, v128)
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+    function DoTheGojo(pu136)
+        local vu137 = vu9:GetPlayerFromCharacter(pu136)
+        local vu138
+        if pu136 then
+            vu138 = pu136:WaitForChild("Humanoid", 1)
+        else
+            vu138 = pu136
+        end
+        local vu139
+        if pu136 then
+            vu139 = pu136:WaitForChild("HumanoidRootPart", 1)
+        else
+            vu139 = pu136
+        end
+        local vu140
+        if vu138 then
+            vu140 = vu138:WaitForChild("Animator", 1)
+        else
+            vu140 = vu138
+        end
+        if vu138 and (vu139 and vu137) then
+            local vu141 = {
+                "Torso",
+                "Left Arm",
+                "Right Arm",
+                "Left Leg",
+                "Right Leg",
+                "Head"
+            }
+            local v142 = OverlapParams.new()
+            v142.FilterType = Enum.RaycastFilterType.Exclude
+            v142.FilterDescendantsInstances = {
+                pu136
+            }
+            local vu143 = {
+                ["rbxassetid://10469493270"] = {
+                    CustomAnim = "rbxassetid://17888704024",
+                    BodyPart = "Right Arm"
+                },
+                ["rbxassetid://10469630950"] = {
+                    CustomAnim = "rbxassetid://13532600125",
+                    BodyPart = "Left Arm"
+                },
+                ["rbxassetid://10469639222"] = {
+                    CustomAnim = "rbxassetid://13295919399",
+                    BodyPart = "Left Arm"
+                },
+                ["rbxassetid://10469643643"] = {
+                    CustomAnim = "rbxassetid://13294471966",
+                    BodyPart = "Left Leg",
+                    Heavy = true
+                }
+            }
+            local vu144 = getgenv().connections
+            local function vu150()
+                local v145, v146, v147 = pairs(vu143)
+                while true do
+                    local v148
+                    v147, v148 = v145(v146, v147)
+                    if v147 == nil then
+                        break
+                    end
+                    if v148.CustomAnim then
+                        local v149 = IsAnimPlaying(vu140, v148.CustomAnim)
+                        if v149 then
+                            v149:Stop()
+                        end
+                    end
+                end
+            end
+            local function vu190(pu151)
+                local vu152 = pu151:WaitForChild("Humanoid", 1)
+                local vu153 = pu151:WaitForChild("HumanoidRootPart", 1)
+                local vu154 = vu152.Health
+                if vu144 and vu144[pu151.Name] then
+                    vu144[pu151.Name]:Disconnect()
+                end
+                vu144[pu151.Name] = vu152:GetPropertyChangedSignal("Health"):Connect(function()
+                    if pu151:GetAttribute("LastHit") == pu136.Name then
+                        local v155 = vu154 - vu152.Health
+                        if vu152.Health < vu154 then
+                            local vu156 = IsAnimPlaying(vu140, 17888704024) and "M1Hit1.mp3" or IsAnimPlaying(vu140, 13532600125) and "M1Hit2.mp3" or (IsAnimPlaying(vu140, 13295919399) and "M1Hit3.mp3" or IsAnimPlaying(vu140, 10503381238) and "M1Hit3.mp3" or (IsAnimPlaying(vu140, 13294471966) or IsAnimPlaying(vu140, 10470104242)))
+                            local v157 = IsAnimPlaying(vu140, 13294471966) or IsAnimPlaying(vu140, 10470104242)
+                            local v158 = IsAnimPlaying(vu140, 10466974800)
+                            local v159 = IsAnimPlaying(vu140, 10471336737)
+                            local v160 = IsAnimPlaying(vu140, 12510170988)
+                            if vu152.Health > 0 then
+                                if (vu156 or v160) and v155 > 1 then
+                                    local v161 = vu18:FindFirstChild("Hit", true)
+                                    if v157 or v160 then
+                                        local v162 = v161 and v161:FindFirstChild("Heavy")
+                                        if v162 then
+                                            v162 = v161.Heavy:Clone()
+                                        end
+                                        if v162 then
+                                            v162.Parent = workspace.Thrown
+                                            v162.Anchored = false
+                                            v162.CFrame = v160 and vu139.CFrame or vu153.CFrame
+                                            v162.CFrame = v160 and vu139.CFrame or CFrame.new(vu153.Position, vu139.Position)
+                                            EmitAll(v162, 1)
+                                            spawn(function()
+                                                local v163 = Instance.new("Sound", vu153)
+                                                v163.PlayOnRemove = true
+                                                v163.Volume = 2
+                                                v163.SoundId = getcustomasset("TSEKSounds/M1Hit4.mp3")
+                                                v163:Destroy()
+                                            end)
+                                            game.Debris:AddItem(v162, 2)
+                                        end
+                                    else
+                                        local v164 = v161 and v161:FindFirstChild("Light")
+                                        if v164 then
+                                            v164 = v161.Light:Clone()
+                                        end
+                                        if v164 then
+                                            v164.Parent = workspace.Thrown
+                                            v164.Anchored = false
+                                            v164.CFrame = vu153.CFrame
+                                            v164.CFrame = CFrame.new(vu153.Position, vu139.Position)
+                                            EmitAll(v164, 1)
+                                            spawn(function()
+                                                local v165 = Instance.new("Sound", vu153)
+                                                v165.PlayOnRemove = true
+                                                v165.Volume = 2
+                                                v165.SoundId = getcustomasset("TSEKSounds/" .. vu156)
+                                                v165:Destroy()
+                                            end)
+                                            game.Debris:AddItem(v164, 0.6)
+                                        end
+                                    end
+                                end
+                            elseif v158 or v159 then
+                                local v166 = vu18:FindFirstChild("BlackFlashWhiff", true)
+                                if not v166 then
+                                    return
+                                end
+                                local v167 = GetAsset(v166, {
+                                    Parent = workspace.Thrown,
+                                    CFrame = vu153.CFrame
+                                })
+                                spawn(function()
+                                    local v168 = Instance.new("Sound", vu153)
+                                    v168.PlayOnRemove = true
+                                    v168.Volume = 5
+                                    v168.SoundId = getcustomasset("TSEKSounds/BlackFlash.mp3")
+                                    v168:Destroy()
+                                end)
+                                spawn(function()
+                                    local v169 = Instance.new("Folder", workspace)
+                                    local v170 = pu151
+                                    local v171, v172, v173 = pairs(v170:GetChildren())
+                                    while true do
+                                        local v174
+                                        v173, v174 = v171(v172, v173)
+                                        if v173 == nil then
+                                            break
+                                        end
+                                        if table.find(vu141, v174.Name) then
+                                            local v175 = pu151:FindFirstChild(vu141[table.find(vu141, v174.Name)])
+                                            if v175 then
+                                                local v176 = v175:Clone()
+                                                v176.Parent = v169
+                                                v176.Transparency = 1
+                                                v176.CanCollide = false
+                                                v176.Anchored = false
+                                                v176:ClearAllChildren()
+                                                local v177 = Instance.new("Weld")
+                                                v177.Part0 = v176
+                                                v177.Part1 = v175
+                                                v177.Parent = v176
+                                            end
+                                        end
+                                    end
+                                    game.Debris:AddItem(v169, 3)
+                                    vu135(v169, {})
+                                end)
+                                EmitAll(v167, 3)
+                                vu94(vu153)
+                                game.Debris:AddItem(v167, 3)
+                            elseif v160 then
+                                local v178 = vu18:FindFirstChild("BlackFlashWhiff", true)
+                                if not v178 then
+                                    return
+                                end
+                                local v179 = GetAsset(v178, {
+                                    Parent = workspace.Thrown,
+                                    CFrame = vu153.CFrame
+                                })
+                                spawn(function()
+                                    local v180 = Instance.new("Sound", vu153)
+                                    v180.PlayOnRemove = true
+                                    v180.Volume = 5
+                                    v180.SoundId = getcustomasset("TSEKSounds/BlackFlash.mp3")
+                                    v180:Destroy()
+                                end)
+                                spawn(function()
+                                    local v181 = Instance.new("Folder", workspace)
+                                    local v182 = pu151
+                                    local v183, v184, v185 = pairs(v182:GetChildren())
+                                    while true do
+                                        local v186
+                                        v185, v186 = v183(v184, v185)
+                                        if v185 == nil then
+                                            break
+                                        end
+                                        if table.find(vu141, v186.Name) then
+                                            local v187 = pu151:FindFirstChild(vu141[table.find(vu141, v186.Name)])
+                                            if v187 then
+                                                local v188 = v187:Clone()
+                                                v188.Parent = v181
+                                                v188.Transparency = 1
+                                                v188.CanCollide = false
+                                                v188.Anchored = false
+                                                v188:ClearAllChildren()
+                                                local v189 = Instance.new("Weld")
+                                                v189.Part0 = v188
+                                                v189.Part1 = v187
+                                                v189.Parent = v188
+                                            end
+                                        end
+                                    end
+                                    game.Debris:AddItem(v181, 3)
+                                    vu135(v181, {})
+                                end)
+                                EmitAll(v179, 3)
+                                vu94(vu153)
+                                game.Debris:AddItem(v179, 3)
+                            end
+                        end
+                    end
+                    vu154 = vu152.Health
+                end)
+            end
+            pu136:SetAttribute("UltimateName", "THE STRONGEST OF TODAY")
+            local v191, v192, v193 = pairs(vu137.Backpack:GetChildren())
+            local vu194 = vu143
+            local v195 = vu144
+            local function vu201(p196)
+                local v197, v198, v199 = pairs(vu137.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants())
+                while true do
+                    local v200
+                    v199, v200 = v197(v198, v199)
+                    if v199 == nil then
+                        break
+                    end
+                    if v200.Name == "ToolName" and v200.Text:match(p196) then
+                        return v200.Parent
+                    end
+                end
+            end
+            while true do
+                local v202
+                v193, v202 = v191(v192, v193)
+                if v193 == nil then
+                    break
+                end
+                ChangeName(v202)
+            end
+            if morph then
+                local v203 = vu18:FindFirstChild("The Strongest Of Today Morph", true)
+                local v204, v205, v206 = pairs(pu136:GetDescendants())
+                while true do
+                    local v207
+                    v206, v207 = v204(v205, v206)
+                    if v206 == nil then
+                        break
+                    end
+                    if v207:IsA("Accessory") or (v207:isA("Pants") or (v207:IsA("Shirt") or (v207:IsA("ShirtGraphic") or (v207:IsA("Decal") or (v207:IsA("CharacterMesh") or v207.Name == "Container"))))) then
+                        v207:Destroy()
+                    end
+                end
+                local v208, v209, v210 = pairs(v203:GetChildren())
+                while true do
+                    local v211
+                    v210, v211 = v208(v209, v210)
+                    if v210 == nil then
+                        break
+                    end
+                    local v212 = pu136:FindFirstChild(v211.Name)
+                    if v212 and v211:FindFirstChild("Container") then
+                        local v213 = v211.Container:Clone()
+                        v213.Parent = v212
+                        local v214 = Instance.new("Weld", v213)
+                        v214.Part0 = v213
+                        v214.Part1 = v212
+                        v212.Transparency = 1
+                    end
+                end
+            end
+            local v215, v216, v217 = pairs(workspace.Live:GetChildren())
+            while true do
+                local v218
+                v217, v218 = v215(v216, v217)
+                if v217 == nil then
+                    break
+                end
+                if v218 ~= pu136 then
+                    vu190(v218)
+                end
+            end
+            v195.WTF = vu137.PlayerGui.ChildAdded:Connect(function(p219)
+                if p219.Name == "Death" then
+                    vu12:Wait()
+                    p219:Destroy()
+                end
+            end)
+            v195.DeleteTheseStuff = pu136.DescendantAdded:Connect(function(p220)
+                if p220.Name ~= "VUP" then
+                    if p220:IsA("Sound") then
+                        if p220.SoundId == "rbxassetid://14762034452" or (p220.SoundId == "rbxassetid://12982132788" or (p220.SoundId == "rbxassetid://15955559676" or p220.SoundId == "rbxassetid://15996452516")) then
+                            vu12:Wait()
+                            print("erm")
+                            p220:Destroy()
+                        end
+                    elseif p220.Name == "BarrageBind" then
+                        p220:SetAttribute("Times", nil)
+                    end
+                else
+                    p220.MaxForce = Vector3.zero
+                    p220.Velocity = Vector3.zero
+                    vu12:Wait()
+                    p220:Destroy()
+                end
+            end)
+            v195[# v195 + 1] = game.ReplicatedStorage.Replication.OnClientEvent:connect(function(p221)
+                local _ = p221.Effect
+                if p221.Effect == "Serious Punch Camera" then
+                    local vu222 = workspace.CurrentCamera.CameraType
+                    workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
+                    task.delay(0.1, function()
+                        workspace.CurrentCamera.CameraType = vu222
+                    end)
+                end
+            end)
+            v195.DeleteStuff = workspace.DescendantAdded:Connect(function(p223)
+                if p223:IsA("Sound") then
+                    if p223.SoundId == "rbxassetid://12982132685" and IsAnimPlaying(vu140, "12983333733") then
+                        vu12:Wait()
+                        p223:Destroy()
+                    end
+                    if (table.find({
+                        "rbxassetid://11365235856",
+                        "rbxassetid://14761553780",
+                        "rbxassetid://14762092682",
+                        "rbxassetid://11365247503",
+                        "rbxassetid://11365448933"
+                    }, p223.SoundId) or p223.Parent == workspace.CurrentCamera) and IsAnimPlaying(vu140, "11365563255") then
+                        game:GetService("RunService").Heartbeat:Wait()
+                        p223:Destroy()
+                    end
+                end
+            end)
+            v195.NoNoRotating = vu8.RenderStepped:Connect(function()
+                local v224, v225, v226 = pairs(game.Players.LocalPlayer.Character:GetChildren())
+                local v227 = {
+                    "NoRotate"
+                }
+                while true do
+                    local v228
+                    v226, v228 = v224(v225, v226)
+                    if v226 == nil then
+                        break
+                    end
+                    if table.find(v227, v228.Name) and (IsAnimPlaying(vu140, "12983333733") or IsAnimPlaying(vu140, "11365563255")) then
+                        v228:Destroy()
+                    end
+                end
+                local v229 = vu201("Hollow Technique Purple")
+                if v229 and v229:FindFirstChild("Reuse") then
+                    v229.Reuse.Visible = true
+                    v229.Reuse.Reuse.Visible = true
+                    v229.Reuse.Text = "VARIANT"
+                    v229.Reuse.Reuse.Text = "VARIANT"
+                end
+            end)
+            v195.UltNameConnection = pu136:GetAttributeChangedSignal("UltimateName"):connect(function()
+                pu136:SetAttribute("UltimateName", "THE STRONGEST OF TODAY")
+            end)
+            v195.OhMyInfinityAura = pu136:GetAttributeChangedSignal("Ulted"):connect(function()
+                local v230 = vu18:FindFirstChild("Infinity", true)
+                if v230 then
+                    v230 = v230:FindFirstChild("Aura")
+                end
+                local v231 = pu136:FindFirstChild("Aura")
+                local vu232 = pu136:FindFirstChild("Counter")
+                if pu136:GetAttribute("Ulted") ~= true then
+                    local v233 = pu136
+                    local v234, v235, v236 = pairs(v233:GetDescendants())
+                    while true do
+                        local vu237
+                        v236, vu237 = v234(v235, v236)
+                        if v236 == nil then
+                            break
+                        end
+                        if vu237.Name == "Coat" and vu237:IsA("MeshPart") then
+                            spawn(function()
+                                if vu232 then
+                                    vu232:GetPropertyChangedSignal("Parent"):Wait()
+                                end
+                                if seriouspunch then
+                                    wait(9)
+                                end
+                                if tableflip then
+                                    wait(8)
+                                end
+                                vu237.Transparency = 0
+                            end)
+                        end
+                    end
+                    if v231 then
+                        if vu232 then
+                            vu232:GetPropertyChangedSignal("Parent"):Wait()
+                        end
+                        game.Debris:AddItem(v231, 6)
+                        local v238, v239, v240 = pairs(v231:GetDescendants())
+                        while true do
+                            local v241
+                            v240, v241 = v238(v239, v240)
+                            if v240 == nil then
+                                break
+                            end
+                            if v241:IsA("ParticleEmitter") then
+                                game:GetService("TweenService"):Create(v241, TweenInfo.new(6, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                    Rate = 0
+                                }):Play()
+                            elseif v241:IsA("Beam") then
+                                game:GetService("TweenService"):Create(v241, TweenInfo.new(6, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                    Width0 = 0,
+                                    Width1 = 1
+                                }):Play()
+                            end
+                        end
+                    end
+                else
+                    local v242 = pu136
+                    local v243, v244, v245 = pairs(v242:GetDescendants())
+                    while true do
+                        local v246
+                        v245, v246 = v243(v244, v245)
+                        if v245 == nil then
+                            break
+                        end
+                        if v246.Name == "Coat" and v246:IsA("MeshPart") then
+                            v246.Transparency = 1
+                        end
+                    end
+                    if not v231 then
+                        local v247 = v230:Clone()
+                        v247.Parent = pu136
+                        local v248, v249, v250 = pairs(v247:GetChildren())
+                        while true do
+                            local v251
+                            v250, v251 = v248(v249, v250)
+                            if v250 == nil then
+                                break
+                            end
+                            local v252 = pu136:FindFirstChild(v251.Name)
+                            local v253 = Instance.new("Weld", v251)
+                            v253.Part0 = v251
+                            v253.Part1 = v252
+                        end
+                        local v254, v255, v256 = pairs(v247:GetDescendants())
+                        while true do
+                            local v257, vu258 = v254(v255, v256)
+                            if v257 == nil then
+                                break
+                            end
+                            v256 = v257
+                            if vu258.Parent.Name == "StartSummon" then
+                                task.delay(vu258:GetAttribute("EmitDelay") or 0, function()
+                                    vu258:Emit(vu258:GetAttribute("EmitCount") or 1)
+                                end)
+                            end
+                        end
+                    end
+                end
+            end)
+            local vu259 = vu138.Health
+            v195.OhMyInfinityHit = vu138:GetPropertyChangedSignal("Health"):connect(function()
+                if vu138.Health < vu259 then
+                    if vu138.Health == 0 or pu136:GetAttribute("Ulted") ~= true then
+                        if vu138.Health == 0 then
+                            local v260 = pu136:FindFirstChild("Aura")
+                            local v261 = math.random(1, 2)
+                            local v262 = {
+                                "Torso",
+                                "Head",
+                                "Left Arm",
+                                "Right Arm"
+                            }
+                            local v263 = {
+                                "Left Leg",
+                                "Right Leg"
+                            }
+                            if v260 then
+                                game.Debris:AddItem(v260, 1.5)
+                                local v264, v265, v266 = pairs(v260:GetDescendants())
+                                while true do
+                                    local v267
+                                    v266, v267 = v264(v265, v266)
+                                    if v266 == nil then
+                                        break
+                                    end
+                                    if v267:IsA("ParticleEmitter") then
+                                        game:GetService("TweenService"):Create(v267, TweenInfo.new(1.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                            Rate = 0
+                                        }):Play()
+                                    elseif v267:IsA("Beam") then
+                                        game:GetService("TweenService"):Create(v267, TweenInfo.new(1.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                            Width0 = 0,
+                                            Width1 = 1
+                                        }):Play()
+                                    end
+                                end
+                            end
+                            local v268 = pu136
+                            local v269, v270, v271 = pairs(v268:GetChildren())
+                            while true do
+                                local v272
+                                v271, v272 = v269(v270, v271)
+                                if v271 == nil then
+                                    break
+                                end
+                                if v261 == 1 and table.find(v262, v272.Name) or table.find(v263, v272.Name) then
+                                    v272.Transparency = 1
+                                    v272:ClearAllChildren()
+                                end
+                            end
+                        end
+                    else
+                        local v273 = pu136
+                        local v274, v275, v276 = pairs(v273:GetDescendants())
+                        while true do
+                            local vu277
+                            v276, vu277 = v274(v275, v276)
+                            if v276 == nil then
+                                break
+                            end
+                            if vu277.Parent.Name == "Infinity Hit" then
+                                task.delay(vu277:GetAttribute("EmitDelay") or 0, function()
+                                    vu277:Emit(vu277:GetAttribute("EmitCount") or 1)
+                                end)
+                            end
+                        end
+                    end
+                end
+            end)
+            v195.MoveNameConnection = vu137.Backpack.ChildAdded:connect(function(p278)
+                ChangeName(p278)
+            end)
+            v195.AtleastDetectHitRight = workspace.Live.ChildAdded:connect(function(p279)
+                vu190(p279)
+            end)
+            v195.MoveDetectionConnection = vu140.AnimationPlayed:connect(function(pu280)
+                local v281 = pu280.Animation.AnimationId
+                if vu194[v281] then
+                    vu150()
+                    if vu194[v281].CustomAnim then
+                        pu280:AdjustWeight(- 9999999, 0)
+                        local v282 = LoadAnimation(vu140, vu194[v281].CustomAnim)
+                        v282:Play()
+                        if vu194[v281].CustomProperties then
+                            v282:AdjustSpeed(3)
+                            wait(0.1)
+                            v282:AdjustSpeed(1)
+                            v282.TimePosition = 3.9
+                        end
+                    end
+                    local v283 = vu18:FindFirstChild("CursedEnergy", true)
+                    if v283 then
+                        v283 = v283:FindFirstChild("Arm"):Clone()
+                    end
+                    local v284 = pu136:FindFirstChild(vu194[v281].BodyPart)
+                    if v283 and v284 then
+                        v283.Parent = workspace.Thrown
+                        local v285 = Instance.new("Weld", v283)
+                        v285.Part0 = v283
+                        v285.Part1 = v284
+                        local v286, v287, v288 = pairs(v283:GetDescendants())
+                        while true do
+                            local v289, vu290 = v286(v287, v288)
+                            if v289 == nil then
+                                break
+                            end
+                            v288 = v289
+                            if vu290:IsA("ParticleEmitter") then
+                                vu290.Enabled = true
+                                game:GetService("TweenService"):Create(vu290, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                                    Rate = 0
+                                }):Play()
+                            elseif vu290:IsA("Beam") then
+                                vu290.Enabled = true
+                                vu290.Segments = vu290.Segments * (vu1 and 5 or 1)
+                                local vu291 = Instance.new("NumberValue", vu290)
+                                local vu292 = Instance.new("NumberValue", vu290)
+                                local vu293 = Instance.new("NumberValue", vu290)
+                                vu293.Value = 0.95
+                                vu291.Changed:Connect(function()
+                                    vu290.Transparency = NumberSequence.new({
+                                        NumberSequenceKeypoint.new(0, 1, 0),
+                                        NumberSequenceKeypoint.new(0.188, vu291.Value, 0),
+                                        NumberSequenceKeypoint.new(0.413, vu292.Value, 0),
+                                        NumberSequenceKeypoint.new(0.492, vu293.Value, 0),
+                                        NumberSequenceKeypoint.new(1, 1, 0)
+                                    })
+                                end)
+                                game:GetService("TweenService"):Create(vu291, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                                    Value = 1
+                                }):Play()
+                                game:GetService("TweenService"):Create(vu292, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                                    Value = 1
+                                }):Play()
+                                game:GetService("TweenService"):Create(vu293, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                                    Value = 1
+                                }):Play()
+                            end
+                        end
+                        game.Debris:AddItem(v283, 1.5)
+                    end
+                elseif v281:match("15955393872") then
+                    pu280:AdjustWeight(- 9999999, 0)
+                    local _ = vu139.CFrame
+                    local v294 = LoadAnimation(vu140, 18903642853)
+                    v294:Play()
+                    v294.TimePosition = 1.3
+                    task.wait(0.25)
+                    local vu295 = Instance.new("Sound", workspace)
+                    vu295.SoundId = "rbxassetid://18846960753"
+                    vu295.Volume = 4
+                    vu295.TimePosition = 1.55
+                    local v296 = vu295
+                    vu295.Play(v296)
+                    task.delay(5, function()
+                        vu295:Destroy()
+                    end)
+                    local vu297 = game:GetService("TweenService")
+                    local vu298 = game.ReplicatedStorage.Resources.Sorcerer.WallFX:Clone()
+                    local v299 = vu298
+                    vu298.PivotTo(v299, vu139.CFrame * CFrame.new(0, 0, - 6))
+                    vu298.Parent = workspace.Thrown
+                    local vu300 = game.ReplicatedStorage.Resources.Sorcerer.Lighting:Clone()
+                    vu300.Parent = game.Lighting
+                    local vu301 = game.ReplicatedStorage.Resources.Sorcerer.LimitlessBarrier:Clone()
+                    local v302 = vu301
+                    vu301.PivotTo(v302, vu139.CFrame)
+                    vu301.Parent = workspace.Thrown
+                    task.delay(10, function()
+                        vu301:Destroy()
+                    end)
+                    local vu303 = vu301.Sphere
+                    task.delay(0.085, function()
+                        local v304, v305, v306 = pairs(vu298.FirstSlam:GetDescendants())
+                        while true do
+                            local v307
+                            v306, v307 = v304(v305, v306)
+                            if v306 == nil then
+                                break
+                            end
+                            if v307:IsA("ParticleEmitter") then
+                                v307:Emit(v307:GetAttribute("EmitCount"))
+                            end
+                        end
+                    end)
+                    task.delay(0, function()
+                        task.spawn(function()
+                            local v308 = Instance.new("ColorCorrectionEffect")
+                            v308.Name = "cloned"
+                            v308.Parent = game.Lighting
+                            local v309 = vu300.BarrierScreen
+                            vu297:Create(v308, TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                                Brightness = v309.Brightness,
+                                Contrast = v309.Contrast,
+                                Saturation = v309.Saturation,
+                                TintColor = v309.TintColor
+                            }):Play()
+                            task.wait(2)
+                            vu297:Create(v308, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                Brightness = 0,
+                                Contrast = 0,
+                                Saturation = 0
+                            }):Play()
+                            task.wait(1)
+                            v308:Destroy()
+                        end)
+                        task.spawn(function()
+                            vu298.Final.BarrierCrater.Transparency = 0
+                            vu298.Final.FinalCrater.Transparency = 0
+                            vu298.Final.FinalCrater.Color3 = Color3.fromRGB(100, 600, 2000)
+                            vu297:Create(vu298.Final.FinalCrater, TweenInfo.new(4, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut), {
+                                Color3 = Color3.fromRGB(0, 0, 0),
+                                Transparency = 1
+                            }):Play()
+                            task.wait(5)
+                            vu297:Create(vu298.Final.BarrierCrater, TweenInfo.new(3, Enum.EasingStyle.Cubic, Enum.EasingDirection.InOut), {
+                                Transparency = 1
+                            }):Play()
+                        end)
+                        task.spawn(function()
+                            local v310 = workspace.Camera
+                            vu297:Create(v310, TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+                                FieldOfView = 80
+                            }):Play()
+                            task.wait(2.14)
+                            vu297:Create(v310, TweenInfo.new(1.35, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                FieldOfView = 65
+                            }):Play()
+                        end)
+                        local v311 = vu301.Core.Appear
+                        local v312, v313, v314 = pairs(v311:GetDescendants())
+                        while true do
+                            local v315, v316 = v312(v313, v314)
+                            if v315 == nil then
+                                break
+                            end
+                            v314 = v315
+                            if v316:IsA("ParticleEmitter") then
+                                v316:Emit(v316.Name)
+                            end
+                        end
+                        local v317 = vu301.Core.BarrierFX
+                        local v318, v319, v320 = pairs(v317:GetDescendants())
+                        while true do
+                            local v321, v322 = v318(v319, v320)
+                            if v321 == nil then
+                                break
+                            end
+                            v320 = v321
+                            if v322:IsA("ParticleEmitter") then
+                                v322.Enabled = true
+                            end
+                        end
+                        task.delay(2, function()
+                            local v323 = vu301.Core.BarrierFX
+                            local v324, v325, v326 = pairs(v323:GetDescendants())
+                            while true do
+                                local v327
+                                v326, v327 = v324(v325, v326)
+                                if v326 == nil then
+                                    break
+                                end
+                                if v327:IsA("ParticleEmitter") then
+                                    v327.Enabled = false
+                                end
+                            end
+                        end)
+                        local v328 = vu301.Core.BeamRings
+                        local v329, v330, v331 = pairs(v328:GetDescendants())
+                        while true do
+                            local v332
+                            v331, v332 = v329(v330, v331)
+                            if v331 == nil then
+                                break
+                            end
+                            if v332:IsA("Beam") then
+                                v332.Enabled = true
+                                vu297:Create(v332, TweenInfo.new(2.15, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                    Brightness = 0
+                                }):Play()
+                            end
+                        end
+                        local function v338()
+                            local v333 = vu301.WindRing:Clone()
+                            local v334 = math.random(0, 360)
+                            v333:SetPrimaryPartCFrame(v333.PrimaryPart.CFrame * CFrame.Angles(0, math.rad(v334), 0))
+                            local v335 = v333.Start
+                            local v336 = v333.End
+                            local v337 = v335:Clone()
+                            v337.Name = "ClonedMesh"
+                            v337.Parent = vu301.CurrentTweens
+                            vu297:Create(v337.Decal, TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+                                Transparency = 0.9
+                            }):Play()
+                            vu297:Create(v337, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                                Size = v336.Size,
+                                CFrame = v336.CFrame
+                            }):Play()
+                            vu297:Create(v337.Mesh, TweenInfo.new(1, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+                                Scale = v336.Mesh.Scale
+                            }):Play()
+                            task.wait(0.2)
+                            vu297:Create(v337.Decal, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+                                Transparency = 1
+                            }):Play()
+                            task.wait(1.2)
+                            v337:Destroy()
+                        end
+                        local function vu341()
+                            local v339 = Random.new():NextNumber(24, 26)
+                            local v340 = vu303:Clone()
+                            v340.Name = "Cloned"
+                            v340.Parent = vu301.CurrentTweens
+                            vu297:Create(v340, TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+                                Size = Vector3.new(v339, v339, v339),
+                                Transparency = 3.65
+                            }):Play()
+                            task.wait(0.3)
+                            vu297:Create(v340, TweenInfo.new(0.3, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
+                                Size = Vector3.new(0, 0, 0, 0),
+                                Transparency = 1
+                            }):Play()
+                            task.wait(0.3)
+                            v340:Destroy()
+                        end
+                        task.spawn(function()
+                            for _ = 1, 13 do
+                                spawn(vu341)
+                                task.wait(0.15)
+                            end
+                        end)
+                        for _ = 1, 13 do
+                            spawn(v338)
+                            task.wait(0.15)
+                        end
+                    end)
+                    task.delay(2.29, function()
+                        local vu342 = Instance.new("Sound", workspace)
+                        vu342.SoundId = "rbxassetid://18846960425"
+                        vu342.Volume = 4
+                        vu342.TimePosition = 1.55
+                        local v343 = vu342
+                        vu342.Play(v343)
+                        task.delay(5, function()
+                            vu342:Destroy()
+                        end)
+                        local v344 = vu301.Core.EndEmit
+                        local v345, v346, v347 = pairs(v344:GetDescendants())
+                        while true do
+                            local v348
+                            v347, v348 = v345(v346, v347)
+                            if v347 == nil then
+                                break
+                            end
+                            if v348:IsA("ParticleEmitter") then
+                                v348:Emit(v348:GetAttribute("EmitCount"))
+                            end
+                        end
+                        local v349 = vu298.Final
+                        local v350, v351, v352 = pairs(v349:GetDescendants())
+                        while true do
+                            local v353
+                            v352, v353 = v350(v351, v352)
+                            if v352 == nil then
+                                break
+                            end
+                            if v353:IsA("ParticleEmitter") then
+                                v353:Emit(v353:GetAttribute("EmitCount"))
+                            end
+                        end
+                        task.spawn(function()
+                            local v354 = vu300.ImpactFrameWhite
+                            v354.Enabled = true
+                            task.wait(0.045)
+                            v354.Enabled = false
+                            v354.Enabled = true
+                            task.wait(0.045)
+                            v354.Enabled = false
+                            local v355 = vu300.BarrierFinal:Clone()
+                            v355.Name = "cloned2"
+                            v355.Parent = game.Lighting
+                            vu297:Create(v355, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+                                Brightness = 0,
+                                Contrast = 0,
+                                Saturation = 0,
+                                TintColor = Color3.fromRGB(255, 255, 255)
+                            }):Play()
+                            task.wait(1.5)
+                            v355:Destroy()
+                        end)
+                        task.spawn(function()
+                            local v356 = workspace.Camera
+                            vu297:Create(v356, TweenInfo.new(0.2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+                                FieldOfView = 98
+                            }):Play()
+                            task.wait(0.2)
+                            vu297:Create(v356, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                FieldOfView = 70
+                            }):Play()
+                        end)
+                        task.spawn(function()
+                            local v357 = vu301.WindRing:Clone()
+                            local v358 = math.random(0, 360)
+                            v357:SetPrimaryPartCFrame(v357.PrimaryPart.CFrame * CFrame.Angles(0, math.rad(v358), 0))
+                            local v359 = v357.Start
+                            local v360 = v357.End2
+                            local v361 = v359:Clone()
+                            v361.Name = "ClonedMesh"
+                            v361.Parent = vu301.CurrentTweens
+                            vu297:Create(v361.Decal, TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+                                Transparency = 0.9
+                            }):Play()
+                            vu297:Create(v361, TweenInfo.new(5, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {
+                                Size = v360.Size,
+                                CFrame = v360.CFrame
+                            }):Play()
+                            vu297:Create(v361.Mesh, TweenInfo.new(5, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {
+                                Scale = v360.Mesh.Scale
+                            }):Play()
+                            task.wait(0.2)
+                            vu297:Create(v361.Decal, TweenInfo.new(5, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+                                Transparency = 1
+                            }):Play()
+                            task.wait(5.2)
+                            v361:Destroy()
+                        end)
+                        local function v364()
+                            local v362 = Random.new():NextNumber(55, 50)
+                            local v363 = vu303:Clone()
+                            v363.Name = "Cloned"
+                            v363.Transparency = 0.01
+                            v363.Material = Enum.Material.Neon
+                            v363.Color = Color3.fromRGB(84, 150, 194)
+                            v363.Parent = vu301.CurrentTweens
+                            vu297:Create(v363, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+                                Size = Vector3.new(v362, v362, v362),
+                                Transparency = 1
+                            }):Play()
+                            task.wait(0.2)
+                            v363:Destroy()
+                        end
+                        for _ = 1, 5 do
+                            spawn(v364)
+                            task.wait(0.065)
+                        end
+                    end)
+                elseif v281:match("12447707844") then
+                    pu280:AdjustWeight(- 9999999, 0)
+                    local v365 = vu18:FindFirstChild("Mastery", true)
+                    if v365 then
+                        v365 = vu18:FindFirstChild("Mastery", true):Clone()
+                    end
+                    if v365 then
+                        spawn(function()
+                            local v366 = Instance.new("Sound", vu139)
+                            v366.PlayOnRemove = true
+                            v366.Volume = 2
+                            v366.SoundId = getcustomasset("TSEKSounds/AwakenVoiceline.mp3")
+                            v366:Destroy()
+                        end)
+                        spawn(function()
+                            local v367 = Instance.new("Sound", vu139)
+                            v367.PlayOnRemove = true
+                            v367.Volume = 1
+                            v367.SoundId = getcustomasset("TSEKSounds/AwakenActivate.mp3")
+                            v367:Destroy()
+                        end)
+                        local vu368 = LoadAnimation(vu140, 18897551628)
+                        local v369 = vu368
+                        vu368.Play(v369)
+                        local v370 = vu368
+                        vu368.AdjustSpeed(v370, 0.4)
+                        task.delay(1, function()
+                            vu368:AdjustSpeed(1)
+                        end)
+                        v365.Parent = workspace.Thrown
+                        local v371 = Instance.new("Weld", v365)
+                        v371.Part0 = v365
+                        v371.Part1 = vu139
+                        EmitAll(v365, 1)
+                        game.Debris:AddItem(v365, 5)
+                        local v372 = game:GetService("Chat")
+                        wait(0.5)
+                        v372:Chat(game.Players.LocalPlayer.Character.Head, "LET\'S GET...")
+                        wait(0.5)
+                        v372:Chat(game.Players.LocalPlayer.Character.Head, "...A LITTLE CRAZY.")
+                    end
+                elseif v281:match("10468665991") then
+                    vu150()
+                    local vu373 = vu18:FindFirstChild("ReversalRed", true)
+                    local vu374
+                    if vu373 then
+                        vu374 = vu373:FindFirstChild("BlastCharge"):Clone()
+                    else
+                        vu374 = vu373
+                    end
+                    local vu375
+                    if vu373 then
+                        vu375 = vu373:FindFirstChild("Blast"):Clone()
+                    else
+                        vu375 = vu373
+                    end
+                    if vu373 then
+                        vu373 = vu373:FindFirstChild("BlastShort"):Clone()
+                    end
+                    local v376 = pu136:FindFirstChild("Left Arm")
+                    if vu374 and (vu375 and (vu373 and v376)) then
+                        pu280:AdjustWeight(- 9999999, 0)
+                        spawn(function()
+                            local v377 = Instance.new("Sound", vu139)
+                            v377.SoundId = getcustomasset("TSEKSounds/Jamada.MP3")
+                            v377.Volume = 3
+                            v377:Play()
+                            game.Debris:AddItem(v377, 3)
+                        end)
+                        local vu378 = LoadAnimation(vu140, 14498295360)
+                        local v379 = vu378
+                        vu378.Play(v379)
+                        vu378.Priority = Enum.AnimationPriority.Action4
+                        local v380 = vu378
+                        vu378.AdjustSpeed(v380, 2)
+                        vu374.Parent = workspace.Thrown
+                        local v381 = Instance.new("Weld", vu374)
+                        v381.Part0 = vu374
+                        v381.Part1 = v376
+                        v381.C0 = CFrame.new(0, 2, 0)
+                        vu10:Create(vu374, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                            Transparency = 0
+                        }):Play()
+                        EmitAll(vu374, 1)
+                        task.delay(0.7, function()
+                            if pu280.IsPlaying then
+                                task.delay(0.3, function()
+                                    vu378:Stop(0.4)
+                                end)
+                                spawn(function()
+                                    local v382 = Instance.new("Sound", vu139)
+                                    v382.SoundId = getcustomasset("TSEKSounds/ReversalRedFire.mp3")
+                                    v382.Volume = 2
+                                    v382.TimePosition = 1
+                                    v382:Play()
+                                    game.Debris:AddItem(v382, 3)
+                                end)
+                                vu374:Destroy()
+                                vu373.Parent = workspace.Thrown
+                                vu375.Parent = workspace.Thrown
+                                vu373.CFrame = vu139.CFrame * CFrame.new(0, 0, - 3)
+                                vu375.CFrame = vu139.CFrame * CFrame.new(0, 4, - 33)
+                                EmitAll(vu373, 1)
+                                EmitAll(vu375, 1)
+                                game.Debris:AddItem(vu373, 3)
+                                game.Debris:AddItem(vu375, 3)
+                            else
+                                vu374:Destroy()
+                            end
+                        end)
+                    end
+                elseif v281:match("10466974800") then
+                    vu150()
+                    pu280:AdjustWeight(- 9999999, 0)
+                    local v383 = LoadAnimation(vu140, 13560306510)
+                    v383:Play()
+                    v383:AdjustSpeed(2.7)
+                elseif v281:match("10471336737") then
+                    vu150()
+                    local v384 = math.random(1, 3)
+                    pu280:AdjustWeight(- 9999999, 0)
+                    if v384 == 1 then
+                        local vu385 = LoadAnimation(vu140, 18440389930)
+                        local v386 = vu385
+                        vu385.Play(v386, 0.2)
+                        vu385.TimePosition = 1.2
+                        task.delay(0.6, function()
+                            vu385:Stop(0.4)
+                        end)
+                    elseif v384 == 2 then
+                        LoadAnimation(vu140, 18181348446):Play()
+                    elseif v384 == 3 then
+                        local vu387 = LoadAnimation(vu140, 18897118507)
+                        local vu388 = LoadAnimation(vu140, 17838619895)
+                        local v389 = GetAsset(game.ReplicatedStorage.Resources.KJEffects.tpthing, {
+                            Parent = pu136:FindFirstChild("Torso") or vu139
+                        })
+                        v389.Enabled = true
+                        v389:Emit(20)
+                        game.Debris:AddItem(v389, 2)
+                        vu387:Play()
+                        vu387.TimePosition = 2.2
+                        vu387:AdjustSpeed(1)
+                        task.delay(0.05, function()
+                            vu387:Stop()
+                            vu388:Play()
+                            vu388.TimePosition = 0.45
+                        end)
+                    end
+                elseif v281:match("12510170988") then
+                    vu150()
+                    pu280:AdjustWeight(- 9999999, 0)
+                    local v390 = 1
+                    if v390 == 1 then
+                        LoadAnimation(vu140, 18897119503):Play()
+                        local v391 = vu18:FindFirstChild("ShatteringSlam", true)
+                        local vu392 = v391 and v391:FindFirstChild("Slam")
+                        if vu392 then
+                            vu392 = v391.Slam:Clone()
+                        end
+                        if vu392 then
+                            task.delay(0.65, function()
+                                vu392.Parent = workspace.Thrown
+                                vu392.CFrame = vu139.CFrame * CFrame.new(0, - 2.5, 0)
+                                local v393 = vu392
+                                local v394, v395, v396 = pairs(v393:GetDescendants())
+                                while true do
+                                    local v397
+                                    v396, v397 = v394(v395, v396)
+                                    if v396 == nil then
+                                        break
+                                    end
+                                    if (not v397.Name:match("Crack1") or v397.FlipbookMode ~= Enum.ParticleFlipbookMode.OneShot) and v397:IsA("ParticleEmitter") then
+                                        v397:Emit(1)
+                                    end
+                                end
+                                game.Debris:AddItem(vu392, 3)
+                            end)
+                        end
+                    elseif v390 == 2 then
+                        local v398 = LoadAnimation(vu140, 18179181663)
+                        v398:Play()
+                        v398:AdjustSpeed(0.95)
+                    end
+                elseif v281:match("11365563255") then
+                    vu150()
+                    pu280:AdjustWeight(- 9999999, 0)
+                    local vu399 = LoadAnimation(vu140, 134823032473116)
+                    local v400 = vu399
+                    vu399.Play(v400)
+                    task.delay(1, function()
+                        vu399:AdjustSpeed(0.6)
+                    end)
+                    local vu401 = GetAsset(vu18.Particles.RedOrb, {
+                        Parent = workspace.Thrown
+                    })
+                    local v402 = Instance.new("Weld", vu401)
+                    v402.Part0 = vu401
+                    v402.Part1 = vu139
+                    v402.C0 = CFrame.new(0, 0, 0)
+                    game:GetService("TweenService"):Create(v402, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                        C0 = CFrame.new(0, 0, 8)
+                    }):Play()
+                    local v403, v404, v405 = pairs(vu401:GetDescendants())
+                    while true do
+                        local v406, v407 = v403(v404, v405)
+                        if v406 == nil then
+                            break
+                        end
+                        v405 = v406
+                        if v407:IsA("ParticleEmitter") then
+                            v407:Emit(v407:GetAttribute("EmitCount"))
+                        end
+                    end
+                    task.delay(2, function()
+                        game.Debris:AddItem(vu401, 1)
+                        game:GetService("TweenService"):Create(vu401, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                            Size = Vector3.new(4.243, 4.243, 4.243),
+                            Transparency = 0.8
+                        }):Play()
+                        local vu408 = GetAsset(vu18.Particles.HollowPurple.Rig.RedSphere.RedSphere, {
+                            Parent = workspace.Thrown
+                        })
+                        local v409, v410, v411 = pairs(vu408:GetDescendants())
+                        while true do
+                            local vu412
+                            v411, vu412 = v409(v410, v411)
+                            if v411 == nil then
+                                break
+                            end
+                            if vu412:IsA("Beam") then
+                                local v413 = vu412.Width0
+                                local v414 = vu412.Width1
+                                vu412.Width0 = 0
+                                vu412.Width1 = 0
+                                game:GetService("TweenService"):Create(vu412, TweenInfo.new(1.25, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                    Width0 = v413,
+                                    Width1 = v414
+                                }):Play()
+                            elseif vu412:IsA("ParticleEmitter") then
+                                local vu415 = tick()
+                                vu412.Rate = vu412.Rate * (vu1 and 5 or 1)
+                                local v416, v417, v418 = pairs(vu412.Size.Keypoints)
+                                local vu419 = {}
+                                while true do
+                                    local v420
+                                    v418, v420 = v416(v417, v418)
+                                    if v418 == nil then
+                                        break
+                                    end
+                                    local v421 = v420.Value
+                                    local v422 = Instance.new("NumberValue", vu412)
+                                    v422.Value = 0
+                                    table.insert(vu419, v422)
+                                    game:GetService("TweenService"):Create(v422, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                        Value = v421
+                                    }):Play()
+                                end
+                                local v423, v424, vu425 = pairs(vu419)
+                                local vu426 = {}
+                                while true do
+                                    local vu427
+                                    vu425, vu427 = v423(v424, vu425)
+                                    if vu425 == nil then
+                                        break
+                                    end
+                                    local v428 = vu412.Size.Keypoints[vu425]
+                                    vu426[vu425] = NumberSequenceKeypoint.new(v428.Time, vu427.Value, v428.Envelope)
+                                    vu427.Changed:Connect(function()
+                                        local v429 = vu412.Size.Keypoints[vu425]
+                                        vu426[vu425] = NumberSequenceKeypoint.new(v429.Time, vu427.Value, v429.Envelope)
+                                    end)
+                                end
+                                spawn(function()
+                                    vu412.Size = NumberSequence.new(vu426)
+                                    repeat
+                                        vu412.Size = NumberSequence.new(vu426)
+                                        task.wait()
+                                    until tick() - vu415 >= 1
+                                    local v430, v431, v432 = pairs(vu419)
+                                    while true do
+                                        local v433
+                                        v432, v433 = v430(v431, v432)
+                                        if v432 == nil then
+                                            break
+                                        end
+                                        v433:Destroy()
+                                    end
+                                end)
+                            end
+                        end
+                        local vu434 = Instance.new("Weld", vu408)
+                        vu434.Part0 = vu408
+                        vu434.Part1 = vu139
+                        vu434.C0 = CFrame.new(- 8, 0, 0) * CFrame.fromOrientation(0, math.rad(- 90), 0)
+                        task.delay(1, function()
+                            local v435 = vu408
+                            local v436, v437, v438 = pairs(v435:GetDescendants())
+                            while true do
+                                local v439
+                                v438, v439 = v436(v437, v438)
+                                if v438 == nil then
+                                    break
+                                end
+                                if v439:IsA("ParticleEmitter") then
+                                    v439:Emit(v439:GetAttribute("EmitCount"))
+                                end
+                            end
+                        end)
+                        task.delay(2, function()
+                            game:GetService("TweenService"):Create(vu434, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                C0 = CFrame.new(- 150, 0, 0) * CFrame.fromOrientation(0, math.rad(- 90), 0)
+                            }):Play()
+                        end)
+                        task.delay(3, function()
+                            local v440 = GetAsset(vu18.Particles.RedOrb, {
+                                Parent = workspace.Thrown
+                            })
+                            local v441 = Instance.new("Weld", v440)
+                            v441.Part0 = v440
+                            v441.Part1 = vu139
+                            v441.C0 = CFrame.new(0, 0, - 10)
+                            game:GetService("TweenService"):Create(v441, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                                C0 = CFrame.new(0, 0, 150)
+                            }):Play()
+                            game.Debris:AddItem(v440, 0.4)
+                        end)
+                        task.delay(3.4, function()
+                            local vu442 = Random.new()
+                            local vu443 = tick()
+                            spawn(function()
+                                repeat
+                                    local v444 = vu442
+                                    local v445 = vu442
+                                    vu434.C0 = CFrame.new(- 150, v444:NextNumber(0, 1), v445:NextNumber(0, 1)) * CFrame.fromOrientation(0, math.rad(- 90), 0)
+                                    task.wait()
+                                until tick() - vu443 >= 0.6
+                                local vu446 = Instance.new("ColorCorrectionEffect", game.Lighting)
+                                game:GetService("TweenService"):Create(vu446, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                    Brightness = 1
+                                }):Play()
+                                task.delay(1.5, function()
+                                    game:GetService("TweenService"):Create(vu446, TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                        Brightness = 0
+                                    }):Play()
+                                    game.Debris:AddItem(vu446, 2)
+                                end)
+                                local v447 = game.ReplicatedStorage.Resources.FiveSeasonsFX.FinalExplosion:Clone()
+                                v447.Parent = workspace.Thrown
+                                v447:SetPrimaryPartCFrame(vu408.CFrame * CFrame.new(0, - 5.3, 0))
+                                local v448, v449, v450 = pairs(v447:GetDescendants())
+                                while true do
+                                    local v451
+                                    v450, v451 = v448(v449, v450)
+                                    if v450 == nil then
+                                        break
+                                    end
+                                    if v451:IsA("ParticleEmitter") then
+                                        v451:Emit(v451:GetAttribute("EmitCount"))
+                                    end
+                                end
+                                local v452 = Instance.new("Sound", workspace)
+                                v452.SoundId = "rbxassetid://18462330981"
+                                v452.Volume = 4
+                                v452.PlayOnRemove = true
+                                v452:Destroy()
+                                game.Debris:AddItem(v447, 15)
+                                local v453 = vu408
+                                local v454, v455, v456 = pairs(v453:GetDescendants())
+                                while true do
+                                    local vu457
+                                    v456, vu457 = v454(v455, v456)
+                                    if v456 == nil then
+                                        break
+                                    end
+                                    if vu457:IsA("ParticleEmitter") then
+                                        local vu458 = tick()
+                                        local v459, v460, v461 = pairs(vu457.Size.Keypoints)
+                                        local vu462 = {}
+                                        while true do
+                                            local v463
+                                            v461, v463 = v459(v460, v461)
+                                            if v461 == nil then
+                                                break
+                                            end
+                                            local v464 = v463.Value
+                                            local v465 = Instance.new("NumberValue", vu457)
+                                            v465.Value = v464
+                                            table.insert(vu462, v465)
+                                            game:GetService("TweenService"):Create(v465, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                                Value = v464 * 15
+                                            }):Play()
+                                        end
+                                        local v466, v467, vu468 = pairs(vu462)
+                                        local vu469 = {}
+                                        while true do
+                                            local vu470
+                                            vu468, vu470 = v466(v467, vu468)
+                                            if vu468 == nil then
+                                                break
+                                            end
+                                            local v471 = vu457.Size.Keypoints[vu468]
+                                            vu469[vu468] = NumberSequenceKeypoint.new(v471.Time, vu470.Value, v471.Envelope)
+                                            vu470.Changed:Connect(function()
+                                                local v472 = vu457.Size.Keypoints[vu468]
+                                                vu469[vu468] = NumberSequenceKeypoint.new(v472.Time, vu470.Value, v472.Envelope)
+                                            end)
+                                        end
+                                        spawn(function()
+                                            game.Debris:AddItem(vu408, 1)
+                                            vu457.Size = NumberSequence.new(vu469)
+                                            repeat
+                                                vu457.Size = NumberSequence.new(vu469)
+                                                vu457.Transparency = NumberSequence.new(tick() - vu458)
+                                                task.wait()
+                                            until tick() - vu458 >= 1
+                                            local v473, v474, v475 = pairs(vu462)
+                                            while true do
+                                                local v476
+                                                v475, v476 = v473(v474, v475)
+                                                if v475 == nil then
+                                                    break
+                                                end
+                                                v476:Destroy()
+                                            end
+                                        end)
+                                    end
+                                end
+                            end)
+                            local v477 = vu408
+                            local v478, v479, v480 = pairs(v477:GetDescendants())
+                            while true do
+                                local vu481
+                                v480, vu481 = v478(v479, v480)
+                                if v480 == nil then
+                                    break
+                                end
+                                if vu481:IsA("ParticleEmitter") then
+                                    local vu482 = tick()
+                                    local v483, v484, v485 = pairs(vu481.Size.Keypoints)
+                                    local vu486 = {}
+                                    while true do
+                                        local v487
+                                        v485, v487 = v483(v484, v485)
+                                        if v485 == nil then
+                                            break
+                                        end
+                                        local v488 = v487.Value
+                                        local v489 = Instance.new("NumberValue", vu481)
+                                        v489.Value = v488
+                                        table.insert(vu486, v489)
+                                        game:GetService("TweenService"):Create(v489, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                            Value = v488 * 2.3
+                                        }):Play()
+                                    end
+                                    local v490, v491, vu492 = pairs(vu486)
+                                    local vu493 = {}
+                                    while true do
+                                        local vu494
+                                        vu492, vu494 = v490(v491, vu492)
+                                        if vu492 == nil then
+                                            break
+                                        end
+                                        local v495 = vu481.Size.Keypoints[vu492]
+                                        vu493[vu492] = NumberSequenceKeypoint.new(v495.Time, vu494.Value, v495.Envelope)
+                                        vu494.Changed:Connect(function()
+                                            local v496 = vu481.Size.Keypoints[vu492]
+                                            vu493[vu492] = NumberSequenceKeypoint.new(v496.Time, vu494.Value * 2.3, v496.Envelope)
+                                        end)
+                                    end
+                                    spawn(function()
+                                        vu481.Size = NumberSequence.new(vu493)
+                                        repeat
+                                            vu481.Size = NumberSequence.new(vu493)
+                                            task.wait()
+                                        until tick() - vu482 >= 1
+                                        local v497, v498, v499 = pairs(vu486)
+                                        while true do
+                                            local v500
+                                            v499, v500 = v497(v498, v499)
+                                            if v499 == nil then
+                                                break
+                                            end
+                                            v500:Destroy()
+                                        end
+                                    end)
+                                end
+                            end
+                        end)
+                    end)
+                elseif v281:match("12983333733") then
+                    vu150()
+                    if vu138.FloorMaterial == Enum.Material.Air then
+                        pu280:AdjustWeight(- 9999999, 0)
+                        local vu501 = false
+                        spawn(function()
+                            task.delay(6, function()
+                                local v502 = Instance.new("Sound", vu139)
+                                v502.PlayOnRemove = true
+                                v502.Volume = 3
+                                v502.SoundId = getcustomasset("TSEKSounds/PurpleShoot.mp3")
+                                v502:Destroy()
+                            end)
+                        end)
+                        local vu503 = LoadAnimation(vu140, 78615192673057)
+                        local v504 = vu503
+                        vu503.Play(v504)
+                        task.delay(1, function()
+                            vu503:AdjustSpeed(0)
+                        end)
+                        task.delay(2, function()
+                            task.delay(0.5, function()
+                                vu503:Stop(0.5)
+                                local vu505 = LoadAnimation(vu140, 18897534746)
+                                local v506 = vu505
+                                vu505.Play(v506, 0.5)
+                                task.delay(1, function()
+                                    vu505:Stop(1)
+                                    LoadAnimation(vu140, 124645358602106):Play(1)
+                                end)
+                            end)
+                        end)
+                        task.delay(5.35, function()
+                            vu501 = true
+                            task.delay(1, function()
+                                vu501 = false
+                            end)
+                            local v507 = Instance.new("Part", workspace)
+                            v507.Name = "hi"
+                            v507.CFrame = vu139.CFrame * CFrame.Angles(math.rad(- 90), 0, 0)
+                            v507.CanCollide = false
+                            v507.Anchored = true
+                            v507.Transparency = 1
+                            repeat
+                                task.wait()
+                                vu139.CFrame = v507.CFrame
+                            until not vu501
+                            v507:Destroy()
+                            vu139.Velocity = Vector3.new(0, 0, 0)
+                            vu139.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+                            vu139.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+                        end)
+                        local vu508 = GetAsset(vu18.Particles.HollowPurple.Rig.BlueSphere.BlueSphere, {
+                            Parent = workspace.Thrown
+                        })
+                        local vu509 = Instance.new("Weld", vu508)
+                        vu509.Part0 = vu508
+                        vu509.Part1 = vu139
+                        vu509.C0 = CFrame.new(- 4, 0, - 4)
+                        local v510, v511, v512 = pairs(vu508:GetDescendants())
+                        while true do
+                            local v513, v514 = v510(v511, v512)
+                            if v513 == nil then
+                                break
+                            end
+                            v512 = v513
+                            if v514:IsA("ParticleEmitter") and v514.Parent and v514.Parent.Name:match("Summon") then
+                                v514:Emit(1)
+                            elseif v514:IsA("ParticleEmitter") and v514.Parent and not v514.Parent.Name:match("Summon") then
+                                v514.Enabled = true
+                                v514.Rate = v514.Rate * (vu1 and 5 or 1)
+                            elseif v514:IsA("Beam") and v514.Parent and not v514.Parent.Name:match("Summon") then
+                                v514.Enabled = true
+                                v514.Segments = v514.Segments * (vu1 and 5 or 1)
+                            end
+                        end
+                        task.delay(2, function()
+                            local vu515 = GetAsset(vu18.Particles.HollowPurple.Rig.RedSphere.RedSphere, {
+                                Parent = workspace.Thrown
+                            })
+                            local vu516 = Instance.new("Weld", vu515)
+                            vu516.Part0 = vu515
+                            vu516.Part1 = vu139
+                            vu516.C0 = CFrame.new(4, 0, - 4)
+                            local v517, v518, v519 = pairs(vu515:GetDescendants())
+                            while true do
+                                local v520
+                                v519, v520 = v517(v518, v519)
+                                if v519 == nil then
+                                    break
+                                end
+                                if v520:IsA("ParticleEmitter") and v520.Parent and v520.Parent.Name:match("Summon") then
+                                    v520:Emit(1)
+                                elseif v520:IsA("ParticleEmitter") and v520.Parent and not v520.Parent.Name:match("Summon") then
+                                    v520.Enabled = true
+                                    v520.Rate = v520.Rate * (vu1 and 5 or 1)
+                                elseif v520:IsA("Beam") and v520.Parent and not v520.Parent.Name:match("Summon") then
+                                    v520.Enabled = true
+                                    v520.Segments = v520.Segments * (vu1 and 5 or 1)
+                                end
+                            end
+                            task.delay(1, function()
+                                game:GetService("TweenService"):Create(vu516, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                    C0 = CFrame.new(15, 0, - 15)
+                                }):Play()
+                                game:GetService("TweenService"):Create(vu509, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                    C0 = CFrame.new(- 15, 0, - 15)
+                                }):Play()
+                                game:GetService("TweenService"):Create(vu138, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                    HipHeight = 45
+                                }):Play()
+                            end)
+                            task.delay(2, function()
+                                local vu521 = game:GetService("RunService").RenderStepped:connect(function()
+                                    vu138.WalkSpeed = 100
+                                end)
+                                game:GetService("TweenService"):Create(vu516, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                                    C0 = CFrame.new(0, 0, - 15)
+                                }):Play()
+                                game:GetService("TweenService"):Create(vu509, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                                    C0 = CFrame.new(0, 0, - 15)
+                                }):Play()
+                                game.Debris:AddItem(vu515, 0.5)
+                                game.Debris:AddItem(vu508, 0.5)
+                                local vu522 = GetAsset(vu18.Particles.HollowPurple.Nuke.Merge, {
+                                    Parent = workspace.Thrown
+                                })
+                                local v523 = Instance.new("Weld", vu522)
+                                v523.Part0 = vu522
+                                v523.Part1 = vu139
+                                v523.C0 = CFrame.new(0, 0, - 15)
+                                task.delay(0.45, function()
+                                    local v524 = vu522
+                                    local v525, v526, v527 = pairs(v524:GetDescendants())
+                                    while true do
+                                        local v528
+                                        v527, v528 = v525(v526, v527)
+                                        if v527 == nil then
+                                            break
+                                        end
+                                        if v528:IsA("ParticleEmitter") then
+                                            v528:Emit(v528:GetAttribute("EmitCount"), v528:GetAttribute("EmitDelay"))
+                                        end
+                                    end
+                                    game.Debris:AddItem(vu522, 1)
+                                    local vu529 = GetAsset(vu18.Particles.HollowPurple.Nuke.Second, {
+                                        Parent = workspace.Thrown
+                                    })
+                                    local v530 = Instance.new("Weld", vu529)
+                                    v530.Part0 = vu529
+                                    v530.Part1 = vu139
+                                    v530.C0 = CFrame.new(0, 0, - 15)
+                                    local v531, v532, v533 = pairs(vu529:GetDescendants())
+                                    while true do
+                                        local v534
+                                        v533, v534 = v531(v532, v533)
+                                        if v533 == nil then
+                                            break
+                                        end
+                                        if v534:IsA("ParticleEmitter") and not v534:FindFirstAncestor("Summon") then
+                                            v534.Enabled = true
+                                            v534.Rate = v534.Rate * (vu1 and 5 or 1)
+                                        end
+                                    end
+                                    task.delay(1.3, function()
+                                        local vu535 = Instance.new("ColorCorrectionEffect", game.Lighting)
+                                        vu535.Enabled = true
+                                        game:GetService("TweenService"):Create(vu535, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                                            Brightness = 1
+                                        }):Play()
+                                        task.delay(2, function()
+                                            game.Debris:AddItem(vu535, 1)
+                                            game:GetService("TweenService"):Create(vu535, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                                                Brightness = 0
+                                            }):Play()
+                                            game:GetService("TweenService"):Create(vu138, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                                                HipHeight = 0
+                                            }):Play()
+                                            vu521:Disconnect()
+                                        end)
+                                        game.Debris:AddItem(vu529, 0.5)
+                                        local v536 = GetAsset(vu18.Particles.HollowPurple.Nuke.Nuke, {
+                                            Parent = workspace.Thrown
+                                        })
+                                        local v537 = Instance.new("Weld", vu529)
+                                        v537.Part0 = v536
+                                        v537.Part1 = vu139
+                                        v537.C0 = CFrame.new(0, 0, - 15)
+                                        local v538, v539, v540 = pairs(v536:GetDescendants())
+                                        while true do
+                                            local v541
+                                            v540, v541 = v538(v539, v540)
+                                            if v540 == nil then
+                                                break
+                                            end
+                                            if v541:IsA("ParticleEmitter") then
+                                                v541:Emit(5)
+                                            end
+                                        end
+                                        game.Debris:AddItem(v536, 3)
+                                    end)
+                                end)
+                            end)
+                        end)
+                    else
+                        local v542 = vu18:FindFirstChild("HollowPurple", true)
+                        local v543
+                        if v542 then
+                            v543 = v542:FindFirstChild("Rig")
+                        else
+                            v543 = v542
+                        end
+                        local v544
+                        if v542 then
+                            v544 = v542:FindFirstChild("Projectile")
+                        else
+                            v544 = v542
+                        end
+                        local v545
+                        if v542 then
+                            v545 = v542:FindFirstChild("Fire")
+                        else
+                            v545 = v542
+                        end
+                        local v546 = v543 and v543:FindFirstChild("BlueSphere")
+                        if v546 then
+                            v546 = v543.BlueSphere:FindFirstChild("BlueSphere")
+                        end
+                        local v547 = v543 and v543:FindFirstChild("RedSphere")
+                        if v547 then
+                            v547 = v543.RedSphere:FindFirstChild("RedSphere")
+                        end
+                        local v548
+                        if v543 then
+                            v548 = v543:FindFirstChild("Electricity")
+                        else
+                            v548 = v543
+                        end
+                        local v549
+                        if v543 then
+                            v549 = v543:FindFirstChild("Merge")
+                        else
+                            v549 = v543
+                        end
+                        local v550
+                        if v544 then
+                            v550 = v544:FindFirstChild("Part")
+                        else
+                            v550 = v544
+                        end
+                        local v551
+                        if v544 then
+                            v551 = v544:FindFirstChild("Burn")
+                        else
+                            v551 = v544
+                        end
+                        local v552
+                        if v545 then
+                            v552 = v545:FindFirstChild("Fire")
+                        else
+                            v552 = v545
+                        end
+                        if v542 and (v543 and (v544 and (v545 and (v546 and (v547 and (v548 and (v549 and (v550 and (v551 and v552))))))))) then
+                            pu280:AdjustWeight(- 9999999, 0)
+                            spawn(function()
+                                local v553 = Instance.new("Sound", vu139)
+                                v553.Volume = 2
+                                v553.SoundId = getcustomasset("TSEKSounds/PurpleStartup.mp3")
+                                v553:Play()
+                                v553.PlaybackSpeed = 0.85
+                                game.Debris:AddItem(v553, 6)
+                            end)
+                            spawn(function()
+                                task.delay(6, function()
+                                    local v554 = Instance.new("Sound", vu139)
+                                    v554.PlayOnRemove = true
+                                    v554.Volume = 2
+                                    v554.SoundId = getcustomasset("TSEKSounds/PurpleShoot.mp3")
+                                    v554:Destroy()
+                                end)
+                            end)
+                            local vu555 = LoadAnimation(vu140, 18897551628)
+                            local v556 = vu555
+                            vu555.Play(v556)
+                            local v557 = vu555
+                            vu555.AdjustSpeed(v557, 0.4)
+                            task.delay(1, function()
+                                vu555:AdjustSpeed(0)
+                            end)
+                            task.delay(4, function()
+                                vu555:Stop()
+                                local v558 = LoadAnimation(vu140, 13071982935)
+                                v558:Play()
+                                v558.TimePosition = 2.5
+                                v558:AdjustSpeed(1)
+                            end)
+                            local vu559 = GetAsset(v546, {
+                                Parent = workspace.Thrown
+                            })
+                            local vu560 = GetAsset(v547, {
+                                Parent = workspace.Thrown
+                            })
+                            local vu561 = GetAsset(v548, {
+                                Parent = workspace.Thrown
+                            })
+                            local vu562 = GetAsset(v549)
+                            local vu563 = GetAsset(v550)
+                            local vu564 = GetAsset(v551)
+                            local vu565 = GetAsset(v552)
+                            game.Debris:AddItem(vu559, 6)
+                            game.Debris:AddItem(vu560, 6)
+                            local vu566 = Instance.new("Weld", vu559)
+                            vu566.Part0 = vu559
+                            vu566.Part1 = vu139
+                            vu566.C0 = CFrame.new(- 4, 0, - 4)
+                            local vu567 = Instance.new("Weld", vu560)
+                            vu567.Part0 = vu560
+                            vu567.Part1 = vu139
+                            vu567.C0 = CFrame.new(4, 0, - 4)
+                            local v568 = Instance.new("Weld", vu561)
+                            v568.Part0 = vu561
+                            v568.Part1 = vu139
+                            v568.C0 = CFrame.new(0, 0, - 4)
+                            EnableAllVisuals(vu559, false)
+                            EnableAllVisuals(vu560, false)
+                            local vu569 = Instance.new("Weld", vu563)
+                            vu569.Part0 = vu563
+                            vu569.Part1 = vu139
+                            vu569.C0 = CFrame.new(0, 0, 4)
+                            local v570, v571, v572 = pairs(vu559:GetDescendants())
+                            while true do
+                                local v573
+                                v572, v573 = v570(v571, v572)
+                                if v572 == nil then
+                                    break
+                                end
+                                if v573:IsA("ParticleEmitter") and v573.Parent and v573.Parent.Name:match("Summon") then
+                                    v573:Emit(1)
+                                elseif v573:IsA("ParticleEmitter") and v573.Parent and not v573.Parent.Name:match("Summon") then
+                                    v573.Enabled = true
+                                    v573.Rate = v573.Rate * (vu1 and 5 or 1)
+                                elseif v573:IsA("Beam") and v573.Parent and not v573.Parent.Name:match("Summon") then
+                                    v573.Enabled = true
+                                    v573.Segments = v573.Segments * (vu1 and 5 or 1)
+                                end
+                            end
+                            task.delay(2, function()
+                                local v574 = vu560
+                                local v575, v576, v577 = pairs(v574:GetDescendants())
+                                while true do
+                                    local v578
+                                    v577, v578 = v575(v576, v577)
+                                    if v577 == nil then
+                                        break
+                                    end
+                                    if v578:IsA("ParticleEmitter") and v578.Parent and v578.Parent.Name:match("Summon") then
+                                        v578:Emit(1)
+                                    elseif v578:IsA("ParticleEmitter") and v578.Parent and not v578.Parent.Name:match("Summon") then
+                                        v578.Enabled = true
+                                        v578.Rate = v578.Rate * (vu1 and 5 or 1)
+                                    elseif v578:IsA("Beam") and v578.Parent and not v578.Parent.Name:match("Summon") then
+                                        v578.Enabled = true
+                                        v578.Segments = v578.Segments * (vu1 and 5 or 1)
+                                    end
+                                end
+                                EmitAll(vu561, 1)
+                            end)
+                            task.delay(3, function()
+                                game:GetService("TweenService"):Create(vu566, TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                    C0 = CFrame.new(0, 0, - 4)
+                                }):Play()
+                                game:GetService("TweenService"):Create(vu567, TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                    C0 = CFrame.new(0, 0, - 4)
+                                }):Play()
+                            end)
+                            task.delay(4, function()
+                                vu562.Parent = workspace.Thrown
+                                local v579 = Instance.new("Weld", vu562)
+                                v579.Part0 = vu562
+                                v579.Part1 = vu139
+                                v579.C0 = CFrame.new(0, 0, - 4)
+                                local v580 = vu562
+                                local v581, v582, v583 = pairs(v580:GetDescendants())
+                                while true do
+                                    local vu584
+                                    v583, vu584 = v581(v582, v583)
+                                    if v583 == nil then
+                                        break
+                                    end
+                                    if vu584:isA("ParticleEmitter") then
+                                        vu584.Rate = vu584.Rate * (vu1 and 5 or 1)
+                                        task.delay(1.2, function()
+                                            vu584.Enabled = false
+                                        end)
+                                    end
+                                end
+                                EmitAll(vu561, 1)
+                                game.Debris:AddItem(vu562, 2)
+                                game.Debris:AddItem(vu561, 2)
+                                local v585 = vu559
+                                local v586, v587, v588 = pairs(v585:GetDescendants())
+                                while true do
+                                    local v589
+                                    v588, v589 = v586(v587, v588)
+                                    if v588 == nil then
+                                        break
+                                    end
+                                    if v589:IsA("ParticleEmitter") then
+                                        v589.Enabled = false
+                                    elseif v589:IsA("Beam") then
+                                        game:GetService("TweenService"):Create(v589, TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                            Width0 = 0,
+                                            Width1 = 0
+                                        }):Play()
+                                    end
+                                end
+                                local v590 = vu560
+                                local v591, v592, v593 = pairs(v590:GetDescendants())
+                                while true do
+                                    local v594
+                                    v593, v594 = v591(v592, v593)
+                                    if v593 == nil then
+                                        break
+                                    end
+                                    if v594:IsA("ParticleEmitter") then
+                                        v594.Enabled = false
+                                    elseif v594:IsA("Beam") then
+                                        game:GetService("TweenService"):Create(v594, TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+                                            Width0 = 0,
+                                            Width1 = 0
+                                        }):Play()
+                                    end
+                                end
+                            end)
+                            task.delay(5, function()
+                                vu563.Parent = workspace.Thrown
+                                game:GetService("TweenService"):Create(vu569, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                    C0 = CFrame.new(0, - 10, 16)
+                                }):Play()
+                                local v595 = Instance.new("ColorCorrectionEffect", game.Lighting)
+                                game:GetService("TweenService"):Create(v595, TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                    TintColor = Color3.fromRGB(255, 97, 255),
+                                    Contrast = 1
+                                }):Play()
+                                game.Debris:AddItem(v595, 2)
+                                local v596, v597, v598 = pairs(vu563.Ball.B1:GetDescendants())
+                                local v599 = {
+                                    "Dots",
+                                    "Dots2",
+                                    "ShinyPart",
+                                    "Swirl",
+                                    "Swirl2",
+                                    "flare2",
+                                    "flare3",
+                                    "flare4"
+                                }
+                                while true do
+                                    local vu600
+                                    v598, vu600 = v596(v597, v598)
+                                    if v598 == nil then
+                                        break
+                                    end
+                                    if vu600:IsA("ParticleEmitter") then
+                                        if table.find(v599, vu600.Name) then
+                                            local vu601 = tick()
+                                            vu600.Rate = vu600.Rate * (vu1 and 5 or 1)
+                                            local v602, v603, v604 = pairs(vu600.Size.Keypoints)
+                                            local v605 = {}
+                                            while true do
+                                                local v606
+                                                v604, v606 = v602(v603, v604)
+                                                if v604 == nil then
+                                                    break
+                                                end
+                                                local v607 = v606.Value
+                                                local v608 = Instance.new("NumberValue", vu600)
+                                                v608.Value = 0
+                                                table.insert(v605, v608)
+                                                game:GetService("TweenService"):Create(v608, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                                    Value = v607
+                                                }):Play()
+                                            end
+                                            local v609, v610, vu611 = pairs(v605)
+                                            local vu612 = {}
+                                            while true do
+                                                local vu613
+                                                vu611, vu613 = v609(v610, vu611)
+                                                if vu611 == nil then
+                                                    break
+                                                end
+                                                vu613.Changed:Connect(function()
+                                                    local v614 = vu600.Size.Keypoints[vu611]
+                                                    vu612[vu611] = NumberSequenceKeypoint.new(v614.Time, vu613.Value * 2.3, v614.Envelope)
+                                                end)
+                                            end
+                                            spawn(function()
+                                                repeat
+                                                    task.wait()
+                                                    vu600.Size = NumberSequence.new(vu612)
+                                                until tick() - vu601 >= 1
+                                            end)
+                                        else
+                                            vu600.Rate = vu600.Rate * (vu1 and 5 or 1)
+                                            local v615 = vu600.Size.Keypoints[1].Value * 2
+                                            local vu616 = Instance.new("NumberValue", vu600)
+                                            vu616.Value = 0
+                                            vu600.Size = NumberSequence.new(0)
+                                            vu616.Changed:Connect(function()
+                                                vu600.Size = NumberSequence.new(vu616.Value)
+                                            end)
+                                            game:GetService("TweenService"):Create(vu616, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
+                                                Value = v615
+                                            }):Play()
+                                        end
+                                    end
+                                end
+                            end)
+                            task.delay(6, function()
+                                vu569:Destroy()
+                                vu563.Anchored = true
+                                local vu617 = Instance.new("ColorCorrectionEffect", game.Lighting)
+                                vu617.Brightness = - 500
+                                vu617.Contrast = - 1500
+                                vu617.Saturation = - 1
+                                vu617.TintColor = Color3.fromRGB(255, 255, 255)
+                                game.Debris:AddItem(vu617, 0.025)
+                                task.delay(0.025, function()
+                                    vu617.Enabled = false
+                                    local vu618 = Instance.new("ColorCorrectionEffect", game.Lighting)
+                                    vu618.Brightness = 250
+                                    vu618.Contrast = 1400
+                                    vu618.Saturation = - 1
+                                    vu618.TintColor = Color3.fromRGB(255, 255, 255)
+                                    game.Debris:AddItem(vu618, 0.025)
+                                    task.delay(0.025, function()
+                                        vu618.Enabled = false
+                                        local v619 = Instance.new("ColorCorrectionEffect", game.Lighting)
+                                        v619.Brightness = 250
+                                        v619.Contrast = 1400
+                                        v619.Saturation = - 1
+                                        v619.TintColor = Color3.fromRGB(64, 0, 255)
+                                        game.Debris:AddItem(v619, 0.025)
+                                    end)
+                                end)
+                                vu565.Parent = workspace.Thrown
+                                vu565.CFrame = vu563.CFrame * CFrame.fromOrientation(math.rad(90), 0, 0)
+                                EmitAll(vu565, 1)
+                                vu564.Parent = workspace.Thrown
+                                local v620 = Instance.new("Weld", vu564)
+                                v620.Part0 = vu564
+                                v620.Part1 = vu563
+                                v620.C0 = CFrame.new(- 10, 0, 0) * CFrame.fromOrientation(math.rad(- 90), math.rad(90), 0)
+                                local v621 = vu563
+                                local v622, v623, v624 = pairs(v621:GetDescendants())
+                                while true do
+                                    local v625
+                                    v624, v625 = v622(v623, v624)
+                                    if v624 == nil then
+                                        break
+                                    end
+                                    if v625:IsA("ParticleEmitter") and not v625.Enabled then
+                                        v625.Rate = v625.Rate * (vu1 and 5 or 1)
+                                        v625.Enabled = true
+                                    elseif v625:IsA("Trail") then
+                                        v625.Enabled = true
+                                    end
+                                end
+                                game:GetService("TweenService"):Create(vu563, TweenInfo.new(20, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                                    CFrame = vu563.CFrame * CFrame.new(0, 0, - 5000)
+                                }):Play()
+                                game.Debris:AddItem(vu563, 5)
+                                game.Debris:AddItem(vu564, 5)
+                                game.Debris:AddItem(vu565, 5)
+                            end)
+                        end
+                    end
+                elseif v281:match("11343318134") then
+                    local v626 = workspace.CurrentCamera.CFrame
+                    workspace.CurrentCamera:Destroy()
+                    local v627 = Instance.new("Camera", workspace)
+                    v627.CameraType = "Custom"
+                    v627.CameraSubject = vu138
+                    v627.CFrame = v626
+                    vu137.CameraMode = "Classic"
+                    pu136:WaitForChild("Head", 1).Anchored = false
+                    workspace.CurrentCamera = v627
+                    pu280:AdjustWeight(- 999999, false)
+                    local vu628 = LoadAnimation(vu140, 104956990421479)
+                    local v629 = vu628
+                    vu628.Play(v629)
+                    local v630 = vu628
+                    vu628.AdjustSpeed(v630, 0.8)
+                    task.delay(5, function()
+                        vu628:Stop()
+                        vu138.HipHeight = 1
+                        LoadAnimation(vu140, 140145728452253):Play()
+                        task.delay(5, function()
+                            vu138.HipHeight = 0
+                        end)
+                    end)
+                end
+            end)
+            Notification("Made by i.am.an.agent on DISCORD", 10)
+        end
+    end
+    DoTheGojo(v11)
+end
